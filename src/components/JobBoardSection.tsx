@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -61,8 +60,8 @@ const JobBoardSection = () => {
   const filteredJobs = jobOffers.filter(job => {
     const matchesSearch = job.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          job.company.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesCountry = selectedCountry === '' || job.location.includes(selectedCountry);
-    const matchesSector = selectedSector === '' || job.sector === selectedSector;
+    const matchesCountry = selectedCountry === 'all' || selectedCountry === '' || job.location.includes(selectedCountry);
+    const matchesSector = selectedSector === 'all' || selectedSector === '' || job.sector === selectedSector;
     
     return matchesSearch && matchesCountry && matchesSector;
   });
@@ -97,7 +96,7 @@ const JobBoardSection = () => {
                 <SelectValue placeholder="Sélectionner un pays" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="">Tous les pays</SelectItem>
+                <SelectItem value="all">Tous les pays</SelectItem>
                 <SelectItem value="Nigeria">Nigeria</SelectItem>
                 <SelectItem value="Afrique du Sud">Afrique du Sud</SelectItem>
                 <SelectItem value="Maroc">Maroc</SelectItem>
@@ -110,7 +109,7 @@ const JobBoardSection = () => {
                 <SelectValue placeholder="Secteur" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="">Tous les secteurs</SelectItem>
+                <SelectItem value="all">Tous les secteurs</SelectItem>
                 <SelectItem value="Finance">Finance</SelectItem>
                 <SelectItem value="Technologie">Technologie</SelectItem>
                 <SelectItem value="Énergie">Énergie</SelectItem>
