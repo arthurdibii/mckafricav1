@@ -1,8 +1,8 @@
-
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import { Link } from 'react-router-dom';
 
 const InsightsSection = () => {
   // Articles et insights
@@ -83,9 +83,11 @@ const InsightsSection = () => {
                     </Badge>
                   </div>
                   
-                  <h3 className="text-3xl font-bold text-gray-900 mb-4 hover:text-mck-blue-600 transition-colors cursor-pointer">
-                    {insights.find(insight => insight.featured)?.title}
-                  </h3>
+                  <Link to={`/article/${insights.find(insight => insight.featured)?.id}`}>
+                    <h3 className="text-3xl font-bold text-gray-900 mb-4 hover:text-mck-blue-600 transition-colors cursor-pointer">
+                      {insights.find(insight => insight.featured)?.title}
+                    </h3>
+                  </Link>
                   
                   <p className="text-gray-600 mb-6 text-lg leading-relaxed">
                     {insights.find(insight => insight.featured)?.excerpt}
@@ -99,9 +101,11 @@ const InsightsSection = () => {
                       <span className="mx-2">•</span>
                       <span>{insights.find(insight => insight.featured)?.readTime} de lecture</span>
                     </div>
-                    <Button className="bg-mck-blue-600 hover:bg-mck-blue-700">
-                      Lire l'article
-                    </Button>
+                    <Link to={`/article/${insights.find(insight => insight.featured)?.id}`}>
+                      <Button className="bg-mck-blue-600 hover:bg-mck-blue-700">
+                        Lire l'article
+                      </Button>
+                    </Link>
                   </div>
                 </div>
                 <div className="md:w-1/3 bg-gradient-to-br from-mck-blue-100 to-mck-gold-100 flex items-center justify-center p-8">
@@ -122,9 +126,11 @@ const InsightsSection = () => {
                     {insight.category}
                   </Badge>
                 </div>
-                <CardTitle className="text-xl font-bold text-gray-900 hover:text-mck-blue-600 transition-colors leading-tight">
-                  {insight.title}
-                </CardTitle>
+                <Link to={`/article/${insight.id}`}>
+                  <CardTitle className="text-xl font-bold text-gray-900 hover:text-mck-blue-600 transition-colors leading-tight cursor-pointer">
+                    {insight.title}
+                  </CardTitle>
+                </Link>
               </CardHeader>
               <CardContent className="space-y-4">
                 <p className="text-gray-600 leading-relaxed">
@@ -136,9 +142,11 @@ const InsightsSection = () => {
                     <p className="font-medium">{insight.author}</p>
                     <p>{insight.date} • {insight.readTime} de lecture</p>
                   </div>
-                  <Button variant="ghost" size="sm" className="text-mck-blue-600 hover:text-mck-blue-700">
-                    Lire →
-                  </Button>
+                  <Link to={`/article/${insight.id}`}>
+                    <Button variant="ghost" size="sm" className="text-mck-blue-600 hover:text-mck-blue-700">
+                      Lire →
+                    </Button>
+                  </Link>
                 </div>
               </CardContent>
             </Card>

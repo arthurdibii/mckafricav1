@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { Menu } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -23,13 +24,13 @@ const Navigation = () => {
         <div className="flex justify-between items-center h-16">
           {/* Logo McK Africa */}
           <div className="flex-shrink-0">
-            <a href="#accueil" className="flex items-center">
+            <Link to="/" className="flex items-center">
               <img 
                 src="/lovable-uploads/97df0f49-9381-4123-b527-f4fa3f43c655.png" 
                 alt="McK Africa - New African Consulting Company" 
                 className="h-12 w-auto"
               />
-            </a>
+            </Link>
           </div>
 
           {/* Navigation Desktop */}
@@ -47,8 +48,13 @@ const Navigation = () => {
             </div>
           </div>
 
-          {/* Bouton CTA Desktop */}
-          <div className="hidden md:block">
+          {/* Boutons CTA Desktop */}
+          <div className="hidden md:flex items-center space-x-3">
+            <Link to="/connexion">
+              <Button variant="outline" className="border-mck-blue-500 text-mck-blue-500">
+                Se connecter
+              </Button>
+            </Link>
             <Button className="bg-mck-blue-500 hover:bg-mck-blue-600 text-white">
               Nous Contacter
             </Button>
@@ -81,9 +87,16 @@ const Navigation = () => {
                       {item.name}
                     </a>
                   ))}
-                  <Button className="bg-mck-blue-500 hover:bg-mck-blue-600 text-white mt-4">
-                    Nous Contacter
-                  </Button>
+                  <div className="space-y-3 pt-4 border-t">
+                    <Link to="/connexion" onClick={() => setIsOpen(false)}>
+                      <Button variant="outline" className="w-full border-mck-blue-500 text-mck-blue-500">
+                        Se connecter
+                      </Button>
+                    </Link>
+                    <Button className="w-full bg-mck-blue-500 hover:bg-mck-blue-600 text-white">
+                      Nous Contacter
+                    </Button>
+                  </div>
                 </div>
               </SheetContent>
             </Sheet>

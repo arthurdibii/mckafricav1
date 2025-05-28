@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Badge } from '@/components/ui/badge';
+import { Link } from 'react-router-dom';
 
 const JobBoardSection = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -134,9 +135,11 @@ const JobBoardSection = () => {
                 <div className="flex justify-between items-start">
                   <div className="flex-1">
                     <div className="flex items-center gap-3 mb-2">
-                      <CardTitle className="text-xl font-bold text-gray-900 hover:text-mck-blue-600 transition-colors">
-                        {job.title}
-                      </CardTitle>
+                      <Link to={`/emploi/${job.id}`}>
+                        <CardTitle className="text-xl font-bold text-gray-900 hover:text-mck-blue-600 transition-colors cursor-pointer">
+                          {job.title}
+                        </CardTitle>
+                      </Link>
                       {job.urgent && (
                         <Badge className="bg-red-100 text-red-700 hover:bg-red-100">
                           Urgent
@@ -175,9 +178,11 @@ const JobBoardSection = () => {
                     <Button variant="outline" size="sm">
                       Sauvegarder
                     </Button>
-                    <Button size="sm" className="bg-mck-blue-600 hover:bg-mck-blue-700">
-                      Postuler
-                    </Button>
+                    <Link to={`/emploi/${job.id}`}>
+                      <Button size="sm" className="bg-mck-blue-600 hover:bg-mck-blue-700">
+                        Voir l'offre
+                      </Button>
+                    </Link>
                   </div>
                 </div>
               </CardContent>
