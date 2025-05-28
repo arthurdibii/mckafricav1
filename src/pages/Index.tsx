@@ -8,6 +8,9 @@ import JobBoardSection from '../components/JobBoardSection';
 import InsightsSection from '../components/InsightsSection';
 import ContactSection from '../components/ContactSection';
 import Footer from '../components/Footer';
+import { Button } from '@/components/ui/button';
+import { Link } from 'react-router-dom';
+import { Settings } from 'lucide-react';
 
 /**
  * Page principale du site McK Africa
@@ -28,6 +31,16 @@ const Index = () => {
     <div className="min-h-screen bg-white">
       {/* Navigation fixe en haut */}
       <Navigation />
+      
+      {/* Bouton d'accès temporaire au dashboard */}
+      <div className="fixed bottom-4 right-4 z-50">
+        <Link to="/admin">
+          <Button className="bg-mck-blue-500 hover:bg-mck-blue-600 shadow-lg">
+            <Settings className="h-4 w-4 mr-2" />
+            Admin Dashboard (Dev)
+          </Button>
+        </Link>
+      </div>
       
       {/* Contenu principal avec espacement pour la navigation fixe */}
       <main className="pt-16">

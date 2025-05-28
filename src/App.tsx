@@ -8,6 +8,9 @@ import Index from "./pages/Index";
 import JobDetail from "./pages/JobDetail";
 import ArticleDetail from "./pages/ArticleDetail";
 import Login from "./pages/Login";
+import AdminDashboard from "./pages/AdminDashboard";
+import AdminJobs from "./pages/AdminJobs";
+import JobPipeline from "./pages/JobPipeline";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -23,6 +26,12 @@ const App = () => (
           <Route path="/emploi/:id" element={<JobDetail />} />
           <Route path="/article/:id" element={<ArticleDetail />} />
           <Route path="/connexion" element={<Login />} />
+          
+          {/* Routes d'administration */}
+          <Route path="/admin" element={<AdminDashboard />} />
+          <Route path="/admin/offres" element={<AdminJobs />} />
+          <Route path="/admin/offres/:id/pipeline" element={<JobPipeline />} />
+          
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
