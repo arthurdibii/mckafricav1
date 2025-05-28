@@ -63,21 +63,30 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				// Couleurs personnalisées pour McK Africa
+				// Couleurs principales McK Africa basées sur le logo
 				'mck-blue': {
-					50: '#eff6ff',
-					100: '#dbeafe',
-					500: '#3b82f6',
-					600: '#2563eb',
-					700: '#1d4ed8',
-					900: '#1e3a8a'
+					50: '#e6f3ff',
+					100: '#b3d9ff',
+					200: '#80bfff',
+					300: '#4da6ff',
+					400: '#1a8cff',
+					500: '#0077cc', // Couleur principale du logo McK
+					600: '#006bb8',
+					700: '#005fa3',
+					800: '#00528f',
+					900: '#00467a'
 				},
-				'mck-gold': {
-					50: '#fffbeb',
-					100: '#fef3c7',
-					400: '#fbbf24',
-					500: '#f59e0b',
-					600: '#d97706'
+				'mck-green': {
+					50: '#f0f9ff',
+					100: '#e0f2fe',
+					200: '#bae6fd',
+					300: '#7dd3fc',
+					400: '#38bdf8',
+					500: '#8bc34a', // Couleur verte du logo McK
+					600: '#7cb342',
+					700: '#689f38',
+					800: '#558b2f',
+					900: '#33691e'
 				}
 			},
 			borderRadius: {

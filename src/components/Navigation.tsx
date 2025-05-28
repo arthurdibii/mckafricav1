@@ -23,9 +23,13 @@ const Navigation = () => {
         <div className="flex justify-between items-center h-16">
           {/* Logo McK Africa */}
           <div className="flex-shrink-0">
-            <h1 className="text-2xl font-bold text-mck-blue-700">
-              McK <span className="text-mck-gold-500">Africa</span>
-            </h1>
+            <a href="#accueil" className="flex items-center">
+              <img 
+                src="/lovable-uploads/97df0f49-9381-4123-b527-f4fa3f43c655.png" 
+                alt="McK Africa - New African Consulting Company" 
+                className="h-12 w-auto"
+              />
+            </a>
           </div>
 
           {/* Navigation Desktop */}
@@ -35,7 +39,7 @@ const Navigation = () => {
                 <a
                   key={item.name}
                   href={item.href}
-                  className="text-gray-700 hover:text-mck-blue-600 px-3 py-2 text-sm font-medium transition-colors duration-200 hover:border-b-2 hover:border-mck-gold-400"
+                  className="text-gray-700 hover:text-mck-blue-500 px-3 py-2 text-sm font-medium transition-colors duration-200 hover:border-b-2 hover:border-mck-green-500"
                 >
                   {item.name}
                 </a>
@@ -45,7 +49,7 @@ const Navigation = () => {
 
           {/* Bouton CTA Desktop */}
           <div className="hidden md:block">
-            <Button className="bg-mck-blue-600 hover:bg-mck-blue-700 text-white">
+            <Button className="bg-mck-blue-500 hover:bg-mck-blue-600 text-white">
               Nous Contacter
             </Button>
           </div>
@@ -60,17 +64,24 @@ const Navigation = () => {
               </SheetTrigger>
               <SheetContent side="right" className="w-[300px] sm:w-[400px]">
                 <div className="flex flex-col space-y-4 mt-8">
+                  <div className="mb-8">
+                    <img 
+                      src="/lovable-uploads/97df0f49-9381-4123-b527-f4fa3f43c655.png" 
+                      alt="McK Africa" 
+                      className="h-10 w-auto"
+                    />
+                  </div>
                   {navItems.map((item) => (
                     <a
                       key={item.name}
                       href={item.href}
                       onClick={() => setIsOpen(false)}
-                      className="text-lg font-medium text-gray-700 hover:text-mck-blue-600 transition-colors duration-200 py-2"
+                      className="text-lg font-medium text-gray-700 hover:text-mck-blue-500 transition-colors duration-200 py-2"
                     >
                       {item.name}
                     </a>
                   ))}
-                  <Button className="bg-mck-blue-600 hover:bg-mck-blue-700 text-white mt-4">
+                  <Button className="bg-mck-blue-500 hover:bg-mck-blue-600 text-white mt-4">
                     Nous Contacter
                   </Button>
                 </div>

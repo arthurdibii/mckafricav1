@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 
@@ -11,18 +10,22 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Logo et description */}
           <div className="md:col-span-1">
-            <h3 className="text-2xl font-bold mb-4">
-              McK <span className="text-mck-gold-400">Africa</span>
-            </h3>
+            <div className="mb-4">
+              <img 
+                src="/lovable-uploads/97df0f49-9381-4123-b527-f4fa3f43c655.png" 
+                alt="McK Africa" 
+                className="h-10 w-auto filter brightness-0 invert"
+              />
+            </div>
             <p className="text-gray-300 mb-6 leading-relaxed">
               Le cabinet de conseil en recrutement de référence en Afrique. 
               Nous connectons les talents exceptionnels aux opportunités transformatrices.
             </p>
             <div className="flex space-x-4">
-              <Button variant="outline" size="sm" className="border-mck-gold-400 text-mck-gold-400 hover:bg-mck-gold-400 hover:text-gray-900">
+              <Button variant="outline" size="sm" className="border-mck-green-500 text-mck-green-500 hover:bg-mck-green-500 hover:text-gray-900">
                 LinkedIn
               </Button>
-              <Button variant="outline" size="sm" className="border-mck-gold-400 text-mck-gold-400 hover:bg-mck-gold-400 hover:text-gray-900">
+              <Button variant="outline" size="sm" className="border-mck-green-500 text-mck-green-500 hover:bg-mck-green-500 hover:text-gray-900">
                 Twitter
               </Button>
             </div>
@@ -30,7 +33,7 @@ const Footer = () => {
 
           {/* Services */}
           <div>
-            <h4 className="text-lg font-semibold mb-4 text-mck-gold-400">Nos Services</h4>
+            <h4 className="text-lg font-semibold mb-4 text-mck-green-500">Nos Services</h4>
             <ul className="space-y-3 text-gray-300">
               <li><a href="#" className="hover:text-white transition-colors">Chasse de Tête Executive</a></li>
               <li><a href="#" className="hover:text-white transition-colors">Conseil en Stratégie RH</a></li>
@@ -42,7 +45,7 @@ const Footer = () => {
 
           {/* Secteurs */}
           <div>
-            <h4 className="text-lg font-semibold mb-4 text-mck-gold-400">Secteurs d'Expertise</h4>
+            <h4 className="text-lg font-semibold mb-4 text-mck-green-500">Secteurs d'Expertise</h4>
             <ul className="space-y-3 text-gray-300">
               <li><a href="#" className="hover:text-white transition-colors">Finance & Banque</a></li>
               <li><a href="#" className="hover:text-white transition-colors">Technologie & Digital</a></li>
@@ -54,7 +57,7 @@ const Footer = () => {
 
           {/* Contact & Ressources */}
           <div>
-            <h4 className="text-lg font-semibold mb-4 text-mck-gold-400">Ressources</h4>
+            <h4 className="text-lg font-semibold mb-4 text-mck-green-500">Ressources</h4>
             <ul className="space-y-3 text-gray-300 mb-6">
               <li><a href="#" className="hover:text-white transition-colors">Guide du Candidat</a></li>
               <li><a href="#" className="hover:text-white transition-colors">Études de Marché</a></li>
