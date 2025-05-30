@@ -19,7 +19,8 @@ import {
   User,
   ChevronDown,
   ChevronUp,
-  Award
+  Award,
+  Eye
 } from 'lucide-react';
 
 interface EvaluationAxis {
@@ -60,6 +61,9 @@ const CandidateDetailModal = ({ candidate, onClose }: CandidateDetailModalProps)
   const [expandedEvaluator, setExpandedEvaluator] = useState<string | null>(null);
   const [editingComment, setEditingComment] = useState<{evaluatorId: string, axisName: string} | null>(null);
   const [tempComment, setTempComment] = useState('');
+
+  // Simuler l'utilisateur connecté (en réalité, cela viendrait d'un contexte d'authentification)
+  const currentUserId = 'eval2'; // Jean Diabaté par exemple
 
   if (!candidate) return null;
 
@@ -129,6 +133,10 @@ const CandidateDetailModal = ({ candidate, onClose }: CandidateDetailModalProps)
   };
 
   const handleCommentEdit = (evaluatorId: string, axisName: string, currentComment: string) => {
+    // Vérifier si l'utilisateur connecté est l'auteur de l'évaluation
+    if (evaluatorId !== currentUserId) {
+      return; // Empêcher l'édition si ce n'est pas l'auteur
+    }
     setEditingComment({ evaluatorId, axisName });
     setTempComment(currentComment);
   };
@@ -142,6 +150,10 @@ const CandidateDetailModal = ({ candidate, onClose }: CandidateDetailModalProps)
 
   const toggleEvaluator = (evaluatorId: string) => {
     setExpandedEvaluator(expandedEvaluator === evaluatorId ? null : evaluatorId);
+  };
+
+  const canEditComment = (evaluatorId: string) => {
+    return evaluatorId === currentUserId;
   };
 
   return (
@@ -180,8 +192,8 @@ const CandidateDetailModal = ({ candidate, onClose }: CandidateDetailModalProps)
             
             <div className="space-y-2">
               <Button className="bg-mck-blue-500 hover:bg-mck-blue-600">
-                <FileText className="h-4 w-4 mr-2" />
-                Télécharger CV
+                <Eye className="h-4 w-4 mr-2" />
+                Voir le CV
               </Button>
             </div>
           </div>
@@ -287,10 +299,17 @@ const CandidateDetailModal = ({ candidate, onClose }: CandidateDetailModalProps)
                                 </div>
                               ) : (
                                 <div 
-                                  className="cursor-pointer hover:bg-gray-100 p-1 rounded"
-                                  onClick={() => handleCommentEdit(evaluator.id, axis.name, axis.comment)}
+                                  className={`p-1 rounded ${
+                                    canEditComment(evaluator.id) 
+                                      ? 'cursor-pointer hover:bg-gray-100' 
+                                      : 'cursor-default'
+                                  }`}
+                                  onClick={() => canEditComment(evaluator.id) && handleCommentEdit(evaluator.id, axis.name, axis.comment)}
                                 >
-                                  {axis.comment || "Cliquez pour ajouter un commentaire"}
+                                  {axis.comment || (canEditComment(evaluator.id) ? "Cliquez pour ajouter un commentaire" : "Aucun commentaire")}
+                                  {canEditComment(evaluator.id) && (
+                                    <span className="text-blue-500 text-xs ml-2">(éditable)</span>
+                                  )}
                                 </div>
                               )}
                             </div>

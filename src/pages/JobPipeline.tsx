@@ -3,17 +3,10 @@ import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import AdminLayout from '@/components/AdminLayout';
 import KanbanBoard from '@/components/KanbanBoard';
+import CandidateDetailModal from '@/components/CandidateDetailModal';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { 
-  Dialog, 
-  DialogContent, 
-  DialogHeader, 
-  DialogTitle 
-} from '@/components/ui/dialog';
-import { Textarea } from '@/components/ui/textarea';
-import { Star, Phone, Mail, FileText } from 'lucide-react';
 
 interface Candidate {
   id: string;
@@ -27,9 +20,7 @@ interface Candidate {
 
 const JobPipeline = () => {
   const { id } = useParams();
-  const [selectedCandidate, setSelectedCandidate] = useState<Candidate | null>(null);
-  const [candidateNotes, setCandidateNotes] = useState('');
-  const [candidateScore, setCandidateScore] = useState(0);
+  const [selectedCandidate, setSelectedCandidate] = useState<any>(null);
 
   // Données simulées de l'offre
   const jobData = {
@@ -43,32 +34,6 @@ const JobPipeline = () => {
 
   const handleCandidateClick = (candidate: Candidate) => {
     setSelectedCandidate(candidate);
-    setCandidateNotes(candidate.notes);
-    setCandidateScore(candidate.score);
-  };
-
-  const handleSaveCandidateData = () => {
-    if (selectedCandidate) {
-      // Ici on mettrait à jour les données du candidat
-      console.log('Mise à jour candidat:', {
-        id: selectedCandidate.id,
-        score: candidateScore,
-        notes: candidateNotes
-      });
-      setSelectedCandidate(null);
-    }
-  };
-
-  const renderStars = (score: number, interactive: boolean = false) => {
-    return Array.from({ length: 5 }, (_, i) => (
-      <Star
-        key={i}
-        className={`h-5 w-5 cursor-pointer transition-colors ${
-          i < score ? 'text-yellow-400 fill-current' : 'text-gray-300'
-        } ${interactive ? 'hover:text-yellow-300' : ''}`}
-        onClick={interactive ? () => setCandidateScore(i + 1) : undefined}
-      />
-    ));
   };
 
   return (
@@ -125,89 +90,10 @@ const JobPipeline = () => {
         </div>
 
         {/* Modal détail candidat */}
-        <Dialog open={selectedCandidate !== null} onOpenChange={() => setSelectedCandidate(null)}>
-          <DialogContent className="max-w-2xl">
-            <DialogHeader>
-              <DialogTitle>Détail du Candidat</DialogTitle>
-            </DialogHeader>
-            
-            {selectedCandidate && (
-              <div className="space-y-6">
-                {/* Informations personnelles */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div>
-                    <h4 className="font-semibold text-lg mb-2">{selectedCandidate.name}</h4>
-                    <div className="space-y-2">
-                      <div className="flex items-center space-x-2">
-                        <Mail className="h-4 w-4 text-gray-400" />
-                        <span className="text-sm">{selectedCandidate.email}</span>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <Phone className="h-4 w-4 text-gray-400" />
-                        <span className="text-sm">{selectedCandidate.phone}</span>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <FileText className="h-4 w-4 text-gray-400" />
-                        <Button variant="link" className="h-auto p-0 text-sm">
-                          Télécharger CV
-                        </Button>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <div>
-                    <h5 className="font-medium mb-2">Étape actuelle</h5>
-                    <Badge className="mb-4">
-                      {selectedCandidate.stage.replace('-', ' ').toUpperCase()}
-                    </Badge>
-                  </div>
-                </div>
-
-                {/* Système de notation */}
-                <div>
-                  <h5 className="font-medium mb-2">Évaluation</h5>
-                  <div className="flex items-center space-x-2 mb-4">
-                    {renderStars(candidateScore, true)}
-                    <span className="text-sm text-gray-600">
-                      ({candidateScore}/5)
-                    </span>
-                  </div>
-                </div>
-
-                {/* Notes */}
-                <div>
-                  <h5 className="font-medium mb-2">Notes et Commentaires</h5>
-                  <Textarea
-                    value={candidateNotes}
-                    onChange={(e) => setCandidateNotes(e.target.value)}
-                    placeholder="Ajoutez vos notes sur ce candidat..."
-                    className="min-h-[100px]"
-                  />
-                </div>
-
-                {/* Actions */}
-                <div className="flex justify-between pt-4">
-                  <div className="space-x-2">
-                    <Button variant="outline" size="sm">
-                      Planifier entretien
-                    </Button>
-                    <Button variant="outline" size="sm">
-                      Envoyer email
-                    </Button>
-                  </div>
-                  <div className="space-x-2">
-                    <Button variant="outline" onClick={() => setSelectedCandidate(null)}>
-                      Annuler
-                    </Button>
-                    <Button onClick={handleSaveCandidateData} className="bg-mck-blue-500 hover:bg-mck-blue-600">
-                      Sauvegarder
-                    </Button>
-                  </div>
-                </div>
-              </div>
-            )}
-          </DialogContent>
-        </Dialog>
+        <CandidateDetailModal
+          candidate={selectedCandidate}
+          onClose={() => setSelectedCandidate(null)}
+        />
       </div>
     </AdminLayout>
   );
