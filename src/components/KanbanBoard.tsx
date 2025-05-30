@@ -92,16 +92,9 @@ const KanbanBoard = ({ onCandidateClick }: KanbanBoardProps) => {
       <DndContext sensors={sensors} onDragStart={handleDragStart} onDragEnd={handleDragEnd}>
         <div className="w-full border rounded-lg bg-gray-50 p-4">
           {/* Zone de scroll horizontal avec scrollbar masquée */}
-          <div 
-            className="overflow-x-auto overflow-y-hidden scrollbar-hide"
-            style={{
-              scrollBehavior: 'smooth',
-              scrollbarWidth: 'none', /* Firefox */
-              msOverflowStyle: 'none', /* Internet Explorer 10+ */
-            }}
-          >
+          <div className="overflow-x-auto overflow-y-hidden scrollbar-hide pb-2">
             {/* Container flex avec largeur minimale pour forcer le scroll */}
-            <div className="flex space-x-4 min-w-max pb-2">
+            <div className="flex space-x-4 min-w-max">
               {columns.map((column) => (
                 <KanbanColumn
                   key={column.id}
@@ -121,13 +114,6 @@ const KanbanBoard = ({ onCandidateClick }: KanbanBoardProps) => {
           ) : null}
         </DragOverlay>
       </DndContext>
-
-      {/* Style pour masquer la scrollbar sur WebKit */}
-      <style jsx>{`
-        .scrollbar-hide::-webkit-scrollbar {
-          display: none;
-        }
-      `}</style>
     </div>
   );
 };
