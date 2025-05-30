@@ -18,8 +18,9 @@ import { CSS } from '@dnd-kit/utilities';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Star, Eye, MessageSquare, Medal } from 'lucide-react';
+import { Star, Eye, MessageSquare, Medal, Settings } from 'lucide-react';
 import DropZone from './DropZone';
+import PipelineStageManager from './PipelineStageManager';
 import { useNotifications } from '@/hooks/useNotifications';
 
 interface Candidate {
@@ -134,6 +135,7 @@ interface KanbanBoardProps {
 
 const KanbanBoard = ({ onCandidateClick }: KanbanBoardProps) => {
   const [activeCandidate, setActiveCandidate] = useState<Candidate | null>(null);
+  const [showStageManager, setShowStageManager] = useState(false);
   const { notifyStageChange } = useNotifications();
   
   const [columns, setColumns] = useState<KanbanColumn[]>([
@@ -327,49 +329,103 @@ const KanbanBoard = ({ onCandidateClick }: KanbanBoardProps) => {
     return undefined;
   };
 
+  const handleStagesChange = (newStages: any[]) => {
+    // Mettre à jour les colonnes en fonction des nouvelles étapes
+    const updatedColumns = newStages.map(stage => {
+      const existingColumn = columns.find(col => col.id === stage.id);
+      return {
+        id: stage.id,
+        title: stage.title,
+        candidates: existingColumn ? existingColumn.candidates : []
+      };
+    });
+    setColumns(updatedColumns);
+  };
+
+  const pipelineStages = columns.map(col => ({
+    id: col.id,
+    title: col.title,
+    candidateCount: col.candidates.length
+  }));
+
+  if (showStageManager) {
+    return (
+      <div className="space-y-4">
+        <div className="flex items-center justify-between">
+          <h3 className="text-lg font-semibold">Processus de Recrutement</h3>
+          <Button
+            variant="outline"
+            onClick={() => setShowStageManager(false)}
+          >
+            Retour au Pipeline
+          </Button>
+        </div>
+        <PipelineStageManager
+          initialStages={pipelineStages}
+          onStagesChange={handleStagesChange}
+        />
+      </div>
+    );
+  }
+
   return (
-    <DndContext sensors={sensors} onDragStart={handleDragStart} onDragEnd={handleDragEnd}>
-      <div className="flex space-x-4 overflow-x-auto pb-4">
-        {columns.map((column) => (
-          <div key={column.id} className="flex-shrink-0 w-80">
-            <Card className="h-full">
-              <CardHeader className="pb-3">
-                <CardTitle className="text-sm font-medium text-gray-700 flex items-center justify-between">
-                  {column.title}
-                  <Badge variant="secondary" className="text-xs">
-                    {column.candidates.length}
-                  </Badge>
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="pt-0">
-                <DropZone id={column.id}>
-                  <SortableContext
-                    items={column.candidates.map(c => c.id)}
-                    strategy={verticalListSortingStrategy}
-                  >
-                    <div className="space-y-2">
-                      {column.candidates.map((candidate) => (
-                        <CandidateCard
-                          key={candidate.id}
-                          candidate={candidate}
-                          onViewDetails={onCandidateClick}
-                        />
-                      ))}
-                    </div>
-                  </SortableContext>
-                </DropZone>
-              </CardContent>
-            </Card>
-          </div>
-        ))}
+    <div className="space-y-4">
+      <div className="flex items-center justify-between">
+        <h3 className="text-lg font-semibold">Processus de Recrutement</h3>
+        <Button
+          variant="outline"
+          onClick={() => setShowStageManager(true)}
+        >
+          <Settings className="h-4 w-4 mr-2" />
+          Gérer les étapes
+        </Button>
       </div>
 
-      <DragOverlay>
-        {activeCandidate ? (
-          <CandidateCard candidate={activeCandidate} onViewDetails={() => {}} />
-        ) : null}
-      </DragOverlay>
-    </DndContext>
+      <DndContext sensors={sensors} onDragStart={handleDragStart} onDragEnd={handleDragEnd}>
+        <div className="overflow-x-auto pb-4 border rounded-lg bg-gray-50 p-4">
+          <div className="flex space-x-4 min-w-max">
+            {columns.map((column) => (
+              <div key={column.id} className="flex-shrink-0 w-80">
+                <Card className="h-full">
+                  <CardHeader className="pb-3">
+                    <CardTitle className="text-sm font-medium text-gray-700 flex items-center justify-between">
+                      {column.title}
+                      <Badge variant="secondary" className="text-xs">
+                        {column.candidates.length}
+                      </Badge>
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="pt-0">
+                    <DropZone id={column.id}>
+                      <SortableContext
+                        items={column.candidates.map(c => c.id)}
+                        strategy={verticalListSortingStrategy}
+                      >
+                        <div className="space-y-2">
+                          {column.candidates.map((candidate) => (
+                            <CandidateCard
+                              key={candidate.id}
+                              candidate={candidate}
+                              onViewDetails={onCandidateClick}
+                            />
+                          ))}
+                        </div>
+                      </SortableContext>
+                    </DropZone>
+                  </CardContent>
+                </Card>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <DragOverlay>
+          {activeCandidate ? (
+            <CandidateCard candidate={activeCandidate} onViewDetails={() => {}} />
+          ) : null}
+        </DragOverlay>
+      </DndContext>
+    </div>
   );
 };
 
