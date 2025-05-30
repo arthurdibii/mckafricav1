@@ -10,6 +10,8 @@ import ArticleDetail from "./pages/ArticleDetail";
 import Login from "./pages/Login";
 import AdminDashboard from "./pages/AdminDashboard";
 import AdminJobs from "./pages/AdminJobs";
+import AdminCandidates from "./pages/AdminCandidates";
+import AdminSettings from "./pages/AdminSettings";
 import JobPipeline from "./pages/JobPipeline";
 import NotFound from "./pages/NotFound";
 
@@ -30,6 +32,8 @@ const App = () => (
           {/* Routes d'administration */}
           <Route path="/admin" element={<AdminDashboard />} />
           <Route path="/admin/offres" element={<AdminJobs />} />
+          <Route path="/admin/candidats" element={<AdminCandidates />} />
+          <Route path="/admin/parametres" element={<AdminSettings />} />
           <Route path="/admin/offres/:id/pipeline" element={<JobPipeline />} />
           
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
