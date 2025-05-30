@@ -47,7 +47,7 @@ const AdminCandidates = () => {
   const [selectedLocation, setSelectedLocation] = useState('');
   const [selectedExperience, setSelectedExperience] = useState('');
   const [selectedJob, setSelectedJob] = useState('');
-  const [selectedCandidate, setSelectedCandidate] = useState<Candidate | null>(null);
+  const [selectedCandidate, setSelectedCandidate] = useState<any>(null);
   const [showCreateModal, setShowCreateModal] = useState(false);
 
   // Données simulées des candidats
