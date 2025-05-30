@@ -70,7 +70,7 @@ const CandidateDetailModal = ({ candidate, onClose }: CandidateDetailModalProps)
             'Communication': 4,
             'Motivation': 5,
             'Culture Fit': 4
-          },
+          } as Record<string, number>,
           comments: 'Candidat très motivé avec une excellente communication.'
         }
       ]
@@ -87,7 +87,7 @@ const CandidateDetailModal = ({ candidate, onClose }: CandidateDetailModalProps)
             'Compétences Techniques': 5,
             'Problem Solving': 4,
             'Architecture': 4
-          },
+          } as Record<string, number>,
           comments: 'Solides compétences techniques, bonne approche des problèmes.'
         },
         {
@@ -97,7 +97,7 @@ const CandidateDetailModal = ({ candidate, onClose }: CandidateDetailModalProps)
             'Code Quality': 4,
             'Best Practices': 5,
             'Collaboration': 4
-          },
+          } as Record<string, number>,
           comments: 'Code propre et respect des bonnes pratiques.'
         }
       ]
@@ -214,7 +214,7 @@ const CandidateDetailModal = ({ candidate, onClose }: CandidateDetailModalProps)
                             <div key={criterion} className="flex justify-between items-center">
                               <span className="text-sm">{criterion}:</span>
                               <div className="flex items-center">
-                                {renderStars(score)}
+                                {renderStars(score as number)}
                                 <span className="ml-1 text-sm">{score}/5</span>
                               </div>
                             </div>
