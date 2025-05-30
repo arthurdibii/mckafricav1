@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import AdminLayout from '@/components/AdminLayout';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -144,6 +143,16 @@ const AdminCandidates = () => {
     };
     setCandidates([...candidates, candidate]);
     setShowCreateModal(false);
+  };
+
+  // Adapter les données du candidat pour le modal
+  const adaptCandidateForModal = (candidate: Candidate) => {
+    return {
+      ...candidate,
+      name: `${candidate.firstName} ${candidate.lastName}`,
+      notes: '',
+      stage: 'candidature'
+    };
   };
 
   return (
@@ -363,7 +372,7 @@ const AdminCandidates = () => {
                         <Button 
                           size="sm" 
                           variant="outline"
-                          onClick={() => setSelectedCandidate(candidate)}
+                          onClick={() => setSelectedCandidate(adaptCandidateForModal(candidate))}
                         >
                           <Eye className="h-3 w-3 mr-1" />
                           Voir Profil
