@@ -1,16 +1,13 @@
-
 import React, { useState } from 'react';
 import {
   DndContext,
   DragEndEvent,
-  DragOverlay,
   DragStartEvent,
   PointerSensor,
   useSensor,
   useSensors,
 } from '@dnd-kit/core';
 import {
-  arrayMove,
   SortableContext,
   useSortable,
   verticalListSortingStrategy,
@@ -20,6 +17,8 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Star, Eye, MessageSquare } from 'lucide-react';
+import DropZone from './DropZone';
+import { useNotifications } from '@/hooks/useNotifications';
 
 interface Candidate {
   id: string;
@@ -77,7 +76,7 @@ const CandidateCard = ({ candidate, onViewDetails }: CandidateCardProps) => {
       {...listeners}
       className="cursor-grab active:cursor-grabbing"
     >
-      <Card className="mb-3 hover:shadow-md transition-shadow bg-white">
+      <Card className={`mb-3 hover:shadow-md transition-all duration-200 bg-white ${isDragging ? 'rotate-2 scale-105' : ''}`}>
         <CardContent className="p-4">
           <div className="flex justify-between items-start mb-2">
             <h4 className="font-medium text-sm">{candidate.name}</h4>
@@ -116,6 +115,7 @@ interface KanbanBoardProps {
 
 const KanbanBoard = ({ onCandidateClick }: KanbanBoardProps) => {
   const [activeCandidate, setActiveCandidate] = useState<Candidate | null>(null);
+  const { notifyStageChange } = useNotifications();
   
   const [columns, setColumns] = useState<KanbanColumn[]>([
     {
@@ -226,10 +226,8 @@ const KanbanBoard = ({ onCandidateClick }: KanbanBoardProps) => {
     const activeId = active.id as string;
     const overId = over.id as string;
 
-    // Déterminer la colonne de destination
     let targetColumnId = overId;
     if (!columns.find(col => col.id === overId)) {
-      // Si on drop sur une carte, trouver sa colonne
       const candidate = findCandidate(overId);
       if (candidate) {
         targetColumnId = candidate.stage;
@@ -242,21 +240,30 @@ const KanbanBoard = ({ onCandidateClick }: KanbanBoardProps) => {
     const sourceColumnId = activeCandidate.stage;
     
     if (sourceColumnId !== targetColumnId) {
-      // Déplacer entre colonnes
+      // Notification du changement d'étape
+      const sourceColumn = columns.find(col => col.id === sourceColumnId);
+      const targetColumn = columns.find(col => col.id === targetColumnId);
+      
+      if (sourceColumn && targetColumn) {
+        notifyStageChange(
+          activeCandidate.name,
+          sourceColumn.title,
+          targetColumn.title
+        );
+      }
+
       setColumns(prevColumns => {
         const newColumns = [...prevColumns];
         
-        // Retirer de la colonne source
-        const sourceColumn = newColumns.find(col => col.id === sourceColumnId);
-        if (sourceColumn) {
-          sourceColumn.candidates = sourceColumn.candidates.filter(c => c.id !== activeId);
+        const sourceCol = newColumns.find(col => col.id === sourceColumnId);
+        if (sourceCol) {
+          sourceCol.candidates = sourceCol.candidates.filter(c => c.id !== activeId);
         }
         
-        // Ajouter à la colonne destination
-        const targetColumn = newColumns.find(col => col.id === targetColumnId);
-        if (targetColumn) {
+        const targetCol = newColumns.find(col => col.id === targetColumnId);
+        if (targetCol) {
           const updatedCandidate = { ...activeCandidate, stage: targetColumnId };
-          targetColumn.candidates.push(updatedCandidate);
+          targetCol.candidates.push(updatedCandidate);
         }
         
         return newColumns;
@@ -289,23 +296,22 @@ const KanbanBoard = ({ onCandidateClick }: KanbanBoardProps) => {
                 </CardTitle>
               </CardHeader>
               <CardContent className="pt-0">
-                <SortableContext
-                  items={column.candidates.map(c => c.id)}
-                  strategy={verticalListSortingStrategy}
-                >
-                  <div 
-                    className="min-h-[200px] space-y-2"
-                    data-column-id={column.id}
+                <DropZone id={column.id}>
+                  <SortableContext
+                    items={column.candidates.map(c => c.id)}
+                    strategy={verticalListSortingStrategy}
                   >
-                    {column.candidates.map((candidate) => (
-                      <CandidateCard
-                        key={candidate.id}
-                        candidate={candidate}
-                        onViewDetails={onCandidateClick}
-                      />
-                    ))}
-                  </div>
-                </SortableContext>
+                    <div className="space-y-2">
+                      {column.candidates.map((candidate) => (
+                        <CandidateCard
+                          key={candidate.id}
+                          candidate={candidate}
+                          onViewDetails={onCandidateClick}
+                        />
+                      ))}
+                    </div>
+                  </SortableContext>
+                </DropZone>
               </CardContent>
             </Card>
           </div>

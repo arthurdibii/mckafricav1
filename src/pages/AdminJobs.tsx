@@ -1,64 +1,135 @@
-
 import React, { useState } from 'react';
 import AdminLayout from '@/components/AdminLayout';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
+import CreateJobModal from '@/components/CreateJobModal';
+import EditJobModal from '@/components/EditJobModal';
+import AssignRecruiterModal from '@/components/AssignRecruiterModal';
 import { 
   Plus, 
   Search, 
   Edit, 
   Trash2, 
   Eye, 
-  Users 
+  Users,
+  UserPlus
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useNotifications } from '@/hooks/useNotifications';
+
+interface Job {
+  id: string;
+  title: string;
+  location: string;
+  type: string;
+  status: string;
+  candidates: number;
+  createdDate: string;
+  description: string;
+  contractType: string;
+  requiredSkills: string[];
+  responsibilities: string;
+  profile: string;
+  salary: string;
+  experience: string;
+  assignedRecruiters: Array<{
+    id: string;
+    name: string;
+    email: string;
+    specialties: string[];
+  }>;
+}
 
 const AdminJobs = () => {
   const [searchTerm, setSearchTerm] = useState('');
+  const [createModalOpen, setCreateModalOpen] = useState(false);
+  const [editModalOpen, setEditModalOpen] = useState(false);
+  const [assignModalOpen, setAssignModalOpen] = useState(false);
+  const [selectedJob, setSelectedJob] = useState<Job | null>(null);
+  const { notifyRecruiterAssigned } = useNotifications();
 
-  // Données simulées des offres
-  const [jobs, setJobs] = useState([
+  const availableSkills = [
+    'Leadership', 'Finance', 'Stratégie', 'Gestion d\'équipe', 'Analyse financière',
+    'Budgétisation', 'Reporting', 'Conformité', 'Audit', 'Gestion des risques'
+  ];
+
+  const [jobs, setJobs] = useState<Job[]>([
     {
-      id: 1,
+      id: '1',
       title: "Directeur Financier",
       location: "Lagos, Nigeria",
       type: "CDI",
       status: "ouvert",
       candidates: 45,
       createdDate: "2024-01-15",
-      description: "Nous recherchons un Directeur Financier expérimenté..."
+      description: "Nous recherchons un Directeur Financier expérimenté...",
+      contractType: "CDI",
+      requiredSkills: ["Leadership", "Finance", "Stratégie"],
+      responsibilities: "Diriger l'équipe financière...",
+      profile: "Diplôme en finance...",
+      salary: "120 000 - 150 000 €",
+      experience: "10+ ans",
+      assignedRecruiters: [
+        {
+          id: '1',
+          name: 'Marie Kouassi',
+          email: 'marie.kouassi@mckafrica.com',
+          specialties: ['Finance', 'Executive Search']
+        }
+      ]
     },
     {
-      id: 2,
+      id: '2',
       title: "Head of Technology",
       location: "Le Cap, Afrique du Sud",
       type: "CDI",
       status: "ouvert",
       candidates: 32,
       createdDate: "2024-01-10",
-      description: "Poste de leadership technique dans une fintech..."
+      description: "Poste de leadership technique dans une fintech...",
+      contractType: "CDI",
+      requiredSkills: ["Leadership", "Technology"],
+      responsibilities: "Diriger l'équipe tech...",
+      profile: "Diplôme en informatique...",
+      salary: "100 000 - 130 000 €",
+      experience: "8+ ans",
+      assignedRecruiters: []
     },
     {
-      id: 3,
+      id: '3',
       title: "Responsable Développement Durable",
       location: "Casablanca, Maroc",
       type: "CDI",
       status: "fermé",
       candidates: 28,
       createdDate: "2024-01-05",
-      description: "Leader des initiatives de développement durable..."
+      description: "Leader des initiatives de développement durable...",
+      contractType: "CDI",
+      requiredSkills: ["Sustainability", "Leadership"],
+      responsibilities: "Développer la stratégie durable...",
+      profile: "Expérience en développement durable...",
+      salary: "80 000 - 100 000 €",
+      experience: "5+ ans",
+      assignedRecruiters: []
     },
     {
-      id: 4,
+      id: '4',
       title: "Consultant Senior",
       location: "Abidjan, Côte d'Ivoire",
       type: "CDI",
       status: "ouvert",
       candidates: 18,
       createdDate: "2024-01-20",
-      description: "Accompagner nos clients dans leur transformation..."
+      description: "Accompagner nos clients dans leur transformation...",
+      contractType: "CDI",
+      requiredSkills: ["Consulting", "Strategy"],
+      responsibilities: "Conseiller les clients...",
+      profile: "Expérience en conseil...",
+      salary: "70 000 - 90 000 €",
+      experience: "3+ ans",
+      assignedRecruiters: []
     }
   ]);
 
@@ -67,10 +138,49 @@ const AdminJobs = () => {
     job.location.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  const handleDeleteJob = (jobId: number) => {
+  const handleCreateJob = (jobData: Omit<Job, 'id' | 'candidates' | 'createdDate' | 'assignedRecruiters'>) => {
+    const newJob: Job = {
+      ...jobData,
+      id: Date.now().toString(),
+      candidates: 0,
+      createdDate: new Date().toISOString().split('T')[0],
+      assignedRecruiters: []
+    };
+    setJobs([newJob, ...jobs]);
+    setCreateModalOpen(false);
+  };
+
+  const handleEditJob = (updatedJob: Job) => {
+    setJobs(jobs.map(job => job.id === updatedJob.id ? updatedJob : job));
+    setEditModalOpen(false);
+    setSelectedJob(null);
+  };
+
+  const handleDeleteJob = (jobId: string) => {
     if (window.confirm('Êtes-vous sûr de vouloir supprimer cette offre ?')) {
       setJobs(jobs.filter(job => job.id !== jobId));
     }
+  };
+
+  const handleAssignRecruiter = (recruiterId: string, notes: string) => {
+    if (!selectedJob) return;
+
+    const recruiter = {
+      id: recruiterId,
+      name: recruiterId === '1' ? 'Marie Kouassi' : recruiterId === '2' ? 'Jean Baptiste' : 'Fatou Diallo',
+      email: recruiterId === '1' ? 'marie.kouassi@mckafrica.com' : recruiterId === '2' ? 'jean.baptiste@mckafrica.com' : 'fatou.diallo@mckafrica.com',
+      specialties: recruiterId === '1' ? ['Finance', 'Executive Search'] : recruiterId === '2' ? ['Technology', 'Engineering'] : ['HR', 'Operations']
+    };
+
+    setJobs(jobs.map(job => 
+      job.id === selectedJob.id 
+        ? { ...job, assignedRecruiters: [...job.assignedRecruiters, recruiter] }
+        : job
+    ));
+
+    notifyRecruiterAssigned(recruiter.name, selectedJob.title);
+    setAssignModalOpen(false);
+    setSelectedJob(null);
   };
 
   return (
@@ -85,12 +195,13 @@ const AdminJobs = () => {
               Gérez toutes vos offres d'emploi et suivez les candidatures
             </p>
           </div>
-          <Link to="/admin/offres/creer">
-            <Button className="bg-mck-blue-500 hover:bg-mck-blue-600">
-              <Plus className="h-4 w-4 mr-2" />
-              Créer une offre
-            </Button>
-          </Link>
+          <Button 
+            onClick={() => setCreateModalOpen(true)}
+            className="bg-mck-blue-500 hover:bg-mck-blue-600"
+          >
+            <Plus className="h-4 w-4 mr-2" />
+            Créer une offre
+          </Button>
         </div>
 
         {/* Barre de recherche */}
@@ -134,27 +245,53 @@ const AdminJobs = () => {
                     <p className="text-gray-600 mb-4">
                       {job.description.substring(0, 100)}...
                     </p>
-                    <div className="flex items-center space-x-2">
-                      <Users className="h-4 w-4 text-gray-400" />
-                      <span className="text-sm text-gray-600">
-                        {job.candidates} candidat{job.candidates > 1 ? 's' : ''}
-                      </span>
+                    <div className="flex items-center space-x-4">
+                      <div className="flex items-center space-x-2">
+                        <Users className="h-4 w-4 text-gray-400" />
+                        <span className="text-sm text-gray-600">
+                          {job.candidates} candidat{job.candidates > 1 ? 's' : ''}
+                        </span>
+                      </div>
+                      {job.assignedRecruiters.length > 0 && (
+                        <div className="flex items-center space-x-2">
+                          <UserPlus className="h-4 w-4 text-mck-blue-500" />
+                          <span className="text-sm text-mck-blue-600">
+                            {job.assignedRecruiters.length} recruteur{job.assignedRecruiters.length > 1 ? 's' : ''} affecté{job.assignedRecruiters.length > 1 ? 's' : ''}
+                          </span>
+                        </div>
+                      )}
                     </div>
                   </div>
 
                   <div className="flex items-center space-x-2 ml-6">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => {
+                        setSelectedJob(job);
+                        setAssignModalOpen(true);
+                      }}
+                    >
+                      <UserPlus className="h-4 w-4 mr-1" />
+                      Affecter
+                    </Button>
                     <Link to={`/admin/offres/${job.id}/pipeline`}>
                       <Button variant="outline" size="sm">
                         <Eye className="h-4 w-4 mr-1" />
                         Pipeline
                       </Button>
                     </Link>
-                    <Link to={`/admin/offres/${job.id}/modifier`}>
-                      <Button variant="outline" size="sm">
-                        <Edit className="h-4 w-4 mr-1" />
-                        Modifier
-                      </Button>
-                    </Link>
+                    <Button 
+                      variant="outline" 
+                      size="sm"
+                      onClick={() => {
+                        setSelectedJob(job);
+                        setEditModalOpen(true);
+                      }}
+                    >
+                      <Edit className="h-4 w-4 mr-1" />
+                      Modifier
+                    </Button>
                     <Button 
                       variant="outline" 
                       size="sm"
@@ -175,6 +312,40 @@ const AdminJobs = () => {
           <div className="text-center py-12">
             <p className="text-gray-500">Aucune offre trouvée</p>
           </div>
+        )}
+
+        {/* Modales */}
+        <CreateJobModal
+          open={createModalOpen}
+          onClose={() => setCreateModalOpen(false)}
+          onSubmit={handleCreateJob}
+          availableSkills={availableSkills}
+        />
+
+        {selectedJob && (
+          <EditJobModal
+            open={editModalOpen}
+            onClose={() => {
+              setEditModalOpen(false);
+              setSelectedJob(null);
+            }}
+            onSubmit={handleEditJob}
+            availableSkills={availableSkills}
+            job={selectedJob}
+          />
+        )}
+
+        {selectedJob && (
+          <AssignRecruiterModal
+            open={assignModalOpen}
+            onClose={() => {
+              setAssignModalOpen(false);
+              setSelectedJob(null);
+            }}
+            onAssign={handleAssignRecruiter}
+            jobTitle={selectedJob.title}
+            currentRecruiters={selectedJob.assignedRecruiters}
+          />
         )}
       </div>
     </AdminLayout>
