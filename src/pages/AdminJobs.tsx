@@ -39,6 +39,7 @@ interface Job {
     name: string;
     email: string;
     specialties: string[];
+    coefficient?: number;
   }>;
 }
 
@@ -76,7 +77,8 @@ const AdminJobs = () => {
           id: '1',
           name: 'Marie Kouassi',
           email: 'marie.kouassi@mckafrica.com',
-          specialties: ['Finance', 'Executive Search']
+          specialties: ['Finance', 'Executive Search'],
+          coefficient: 1.2
         }
       ]
     },
@@ -162,14 +164,15 @@ const AdminJobs = () => {
     }
   };
 
-  const handleAssignRecruiter = (recruiterId: string, notes: string) => {
+  const handleAssignRecruiter = (recruiterId: string, coefficient: number, notes: string) => {
     if (!selectedJob) return;
 
     const recruiter = {
       id: recruiterId,
       name: recruiterId === '1' ? 'Marie Kouassi' : recruiterId === '2' ? 'Jean Baptiste' : 'Fatou Diallo',
       email: recruiterId === '1' ? 'marie.kouassi@mckafrica.com' : recruiterId === '2' ? 'jean.baptiste@mckafrica.com' : 'fatou.diallo@mckafrica.com',
-      specialties: recruiterId === '1' ? ['Finance', 'Executive Search'] : recruiterId === '2' ? ['Technology', 'Engineering'] : ['HR', 'Operations']
+      specialties: recruiterId === '1' ? ['Finance', 'Executive Search'] : recruiterId === '2' ? ['Technology', 'Engineering'] : ['HR', 'Operations'],
+      coefficient: coefficient
     };
 
     setJobs(jobs.map(job => 

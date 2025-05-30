@@ -10,6 +10,7 @@ import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
+import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { X } from 'lucide-react';
 
@@ -18,12 +19,13 @@ interface Recruiter {
   name: string;
   email: string;
   specialties: string[];
+  coefficient?: number;
 }
 
 interface AssignRecruiterModalProps {
   open: boolean;
   onClose: () => void;
-  onAssign: (recruiterId: string, notes: string) => void;
+  onAssign: (recruiterId: string, coefficient: number, notes: string) => void;
   jobTitle: string;
   currentRecruiters: Recruiter[];
 }
@@ -36,6 +38,7 @@ const AssignRecruiterModal = ({
   currentRecruiters 
 }: AssignRecruiterModalProps) => {
   const [selectedRecruiterId, setSelectedRecruiterId] = useState('');
+  const [coefficient, setCoefficient] = useState(1);
   const [notes, setNotes] = useState('');
 
   // Données simulées des recruteurs disponibles
@@ -44,28 +47,40 @@ const AssignRecruiterModal = ({
       id: '1',
       name: 'Marie Kouassi',
       email: 'marie.kouassi@mckafrica.com',
-      specialties: ['Finance', 'Executive Search']
+      specialties: ['Finance', 'Executive Search'],
+      coefficient: 1.2
     },
     {
       id: '2',
       name: 'Jean Baptiste',
       email: 'jean.baptiste@mckafrica.com',
-      specialties: ['Technology', 'Engineering']
+      specialties: ['Technology', 'Engineering'],
+      coefficient: 1.0
     },
     {
       id: '3',
       name: 'Fatou Diallo',
       email: 'fatou.diallo@mckafrica.com',
-      specialties: ['HR', 'Operations']
+      specialties: ['HR', 'Operations'],
+      coefficient: 0.8
     }
   ];
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (selectedRecruiterId) {
-      onAssign(selectedRecruiterId, notes);
+    if (selectedRecruiterId && coefficient > 0) {
+      onAssign(selectedRecruiterId, coefficient, notes);
       setSelectedRecruiterId('');
+      setCoefficient(1);
       setNotes('');
+    }
+  };
+
+  const handleRecruiterChange = (recruiterId: string) => {
+    setSelectedRecruiterId(recruiterId);
+    const recruiter = availableRecruiters.find(r => r.id === recruiterId);
+    if (recruiter && recruiter.coefficient) {
+      setCoefficient(recruiter.coefficient);
     }
   };
 
@@ -98,6 +113,11 @@ const AssignRecruiterModal = ({
                             {specialty}
                           </Badge>
                         ))}
+                        {recruiter.coefficient && (
+                          <Badge variant="outline" className="text-xs">
+                            Coeff. {recruiter.coefficient}x
+                          </Badge>
+                        )}
                       </div>
                     </div>
                     <Button
@@ -118,7 +138,7 @@ const AssignRecruiterModal = ({
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
               <Label htmlFor="recruiter">Ajouter un recruteur</Label>
-              <Select value={selectedRecruiterId} onValueChange={setSelectedRecruiterId}>
+              <Select value={selectedRecruiterId} onValueChange={handleRecruiterChange}>
                 <SelectTrigger>
                   <SelectValue placeholder="Sélectionner un recruteur" />
                 </SelectTrigger>
@@ -130,13 +150,29 @@ const AssignRecruiterModal = ({
                       <div className="flex flex-col">
                         <span>{recruiter.name}</span>
                         <span className="text-xs text-gray-500">
-                          {recruiter.specialties.join(', ')}
+                          {recruiter.specialties.join(', ')} • Coeff. {recruiter.coefficient}x
                         </span>
                       </div>
                     </SelectItem>
                   ))}
                 </SelectContent>
               </Select>
+            </div>
+
+            <div>
+              <Label htmlFor="coefficient">Coefficient de recrutement</Label>
+              <Input
+                id="coefficient"
+                type="number"
+                step="0.1"
+                min="0.1"
+                value={coefficient}
+                onChange={(e) => setCoefficient(parseFloat(e.target.value) || 1)}
+                required
+              />
+              <p className="text-xs text-gray-500 mt-1">
+                Coefficient appliqué aux performances pour cette affectation
+              </p>
             </div>
 
             <div>
@@ -157,7 +193,7 @@ const AssignRecruiterModal = ({
               <Button 
                 type="submit" 
                 className="bg-mck-blue-500 hover:bg-mck-blue-600"
-                disabled={!selectedRecruiterId}
+                disabled={!selectedRecruiterId || coefficient <= 0}
               >
                 Affecter le recruteur
               </Button>
