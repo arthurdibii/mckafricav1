@@ -3,6 +3,7 @@ import {
   DndContext,
   DragEndEvent,
   DragStartEvent,
+  DragOverlay,
   PointerSensor,
   useSensor,
   useSensors,
