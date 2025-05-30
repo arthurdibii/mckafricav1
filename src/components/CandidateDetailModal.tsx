@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Dialog,
   DialogContent,
@@ -8,6 +8,7 @@ import {
 } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import { Textarea } from '@/components/ui/textarea';
 import { 
   Phone, 
   Mail, 
@@ -15,22 +16,39 @@ import {
   Calendar, 
   FileText,
   Star,
-  User
+  User,
+  ChevronDown,
+  ChevronUp,
+  Award
 } from 'lucide-react';
+
+interface EvaluationAxis {
+  name: string;
+  score: number;
+  comment: string;
+}
+
+interface Evaluator {
+  id: string;
+  name: string;
+  role: string;
+  coefficient: number;
+  globalScore: number;
+  comment: string;
+  axes: EvaluationAxis[];
+}
 
 interface Candidate {
   id: string;
-  firstName: string;
-  lastName: string;
+  name: string;
   email: string;
   phone: string;
-  currentTitle: string;
-  skills: string[];
-  availability: string;
-  location: string;
-  experience: number;
-  appliedJobs: string[];
   score: number;
+  notes: string;
+  stage: string;
+  ranking?: number;
+  globalScore?: number;
+  evaluators?: Evaluator[];
 }
 
 interface CandidateDetailModalProps {
@@ -39,74 +57,96 @@ interface CandidateDetailModalProps {
 }
 
 const CandidateDetailModal = ({ candidate, onClose }: CandidateDetailModalProps) => {
+  const [expandedEvaluator, setExpandedEvaluator] = useState<string | null>(null);
+  const [editingComment, setEditingComment] = useState<{evaluatorId: string, axisName: string} | null>(null);
+  const [tempComment, setTempComment] = useState('');
+
   if (!candidate) return null;
 
-  const getInitials = (firstName: string, lastName: string) => {
-    return `${firstName.charAt(0)}${lastName.charAt(0)}`.toUpperCase();
+  // Données simulées des évaluateurs
+  const evaluators: Evaluator[] = candidate.evaluators || [
+    {
+      id: 'eval1',
+      name: 'Marie Kouassi',
+      role: 'RH Manager',
+      coefficient: 2,
+      globalScore: 4.2,
+      comment: 'Candidat très prometteur avec une excellente motivation',
+      axes: [
+        { name: 'Communication', score: 4, comment: 'Très bonne expression orale et écrite' },
+        { name: 'Motivation', score: 5, comment: 'Motivation exceptionnelle pour le poste' },
+        { name: 'Culture Fit', score: 4, comment: 'Bonne adéquation avec nos valeurs' },
+        { name: 'Leadership', score: 3, comment: 'Potentiel de leadership à développer' }
+      ]
+    },
+    {
+      id: 'eval2',
+      name: 'Jean Diabaté',
+      role: 'Tech Lead',
+      coefficient: 3,
+      globalScore: 4.5,
+      comment: 'Excellentes compétences techniques',
+      axes: [
+        { name: 'Compétences Techniques', score: 5, comment: 'Maîtrise parfaite des technologies requises' },
+        { name: 'Problem Solving', score: 4, comment: 'Bonne approche analytique des problèmes' },
+        { name: 'Architecture', score: 4, comment: 'Solide compréhension des principes architecturaux' },
+        { name: 'Innovation', score: 5, comment: 'Propose des solutions créatives' }
+      ]
+    },
+    {
+      id: 'eval3',
+      name: 'Sarah Bamba',
+      role: 'Senior Developer',
+      coefficient: 2,
+      globalScore: 4.0,
+      comment: 'Bon profil technique avec de bonnes pratiques',
+      axes: [
+        { name: 'Code Quality', score: 4, comment: 'Code propre et bien structuré' },
+        { name: 'Best Practices', score: 5, comment: 'Excellent respect des bonnes pratiques' },
+        { name: 'Collaboration', score: 4, comment: 'Travaille bien en équipe' },
+        { name: 'Mentorat', score: 3, comment: 'Capacité de transmission à améliorer' }
+      ]
+    }
+  ];
+
+  // Calcul de la note globale pondérée
+  const calculateWeightedScore = () => {
+    const totalWeight = evaluators.reduce((sum, evaluator) => sum + evaluator.coefficient, 0);
+    const weightedSum = evaluators.reduce((sum, evaluator) => sum + (evaluator.globalScore * evaluator.coefficient), 0);
+    return (weightedSum / totalWeight).toFixed(1);
   };
 
-  const renderStars = (score: number) => {
+  const renderStars = (score: number, size: 'sm' | 'md' = 'md') => {
+    const sizeClass = size === 'sm' ? 'h-3 w-3' : 'h-4 w-4';
     return Array.from({ length: 5 }, (_, i) => (
       <Star
         key={i}
-        className={`h-4 w-4 ${
+        className={`${sizeClass} ${
           i < Math.floor(score) ? 'text-yellow-400 fill-current' : 'text-gray-300'
         }`}
       />
     ));
   };
 
-  // Données simulées des évaluations
-  const evaluations = [
-    {
-      id: '1',
-      interviewType: 'Entretien RH',
-      date: '2024-01-15',
-      evaluators: [
-        {
-          name: 'Marie Kouassi',
-          role: 'RH Manager',
-          scores: {
-            'Communication': 4,
-            'Motivation': 5,
-            'Culture Fit': 4
-          } as Record<string, number>,
-          comments: 'Candidat très motivé avec une excellente communication.'
-        }
-      ]
-    },
-    {
-      id: '2',
-      interviewType: 'Entretien Technique',
-      date: '2024-01-18',
-      evaluators: [
-        {
-          name: 'Jean Diabaté',
-          role: 'Tech Lead',
-          scores: {
-            'Compétences Techniques': 5,
-            'Problem Solving': 4,
-            'Architecture': 4
-          } as Record<string, number>,
-          comments: 'Solides compétences techniques, bonne approche des problèmes.'
-        },
-        {
-          name: 'Sarah Bamba',
-          role: 'Senior Developer',
-          scores: {
-            'Code Quality': 4,
-            'Best Practices': 5,
-            'Collaboration': 4
-          } as Record<string, number>,
-          comments: 'Code propre et respect des bonnes pratiques.'
-        }
-      ]
-    }
-  ];
+  const handleCommentEdit = (evaluatorId: string, axisName: string, currentComment: string) => {
+    setEditingComment({ evaluatorId, axisName });
+    setTempComment(currentComment);
+  };
+
+  const handleCommentSave = () => {
+    // Ici on sauvegarderait le commentaire
+    console.log('Sauvegarde commentaire:', editingComment, tempComment);
+    setEditingComment(null);
+    setTempComment('');
+  };
+
+  const toggleEvaluator = (evaluatorId: string) => {
+    setExpandedEvaluator(expandedEvaluator === evaluatorId ? null : evaluatorId);
+  };
 
   return (
     <Dialog open={!!candidate} onOpenChange={onClose}>
-      <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+      <DialogContent className="max-w-5xl max-h-[90vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle>Profil du Candidat</DialogTitle>
         </DialogHeader>
@@ -115,15 +155,15 @@ const CandidateDetailModal = ({ candidate, onClose }: CandidateDetailModalProps)
           {/* En-tête du profil */}
           <div className="flex items-start space-x-6">
             <div className="w-20 h-20 bg-mck-blue-500 text-white rounded-full flex items-center justify-center text-2xl font-bold">
-              {getInitials(candidate.firstName, candidate.lastName)}
+              {candidate.name.split(' ').map(n => n.charAt(0)).join('').toUpperCase()}
             </div>
             
             <div className="flex-1">
               <h2 className="text-2xl font-bold text-gray-900">
-                {candidate.firstName} {candidate.lastName}
+                {candidate.name}
               </h2>
               <p className="text-lg text-mck-blue-600 font-medium mb-2">
-                {candidate.currentTitle}
+                Candidat - {candidate.stage.replace('-', ' ').toUpperCase()}
               </p>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-600">
@@ -135,22 +175,6 @@ const CandidateDetailModal = ({ candidate, onClose }: CandidateDetailModalProps)
                   <Phone className="h-4 w-4 mr-2" />
                   {candidate.phone}
                 </div>
-                <div className="flex items-center">
-                  <MapPin className="h-4 w-4 mr-2" />
-                  {candidate.location}
-                </div>
-                <div className="flex items-center">
-                  <Calendar className="h-4 w-4 mr-2" />
-                  {candidate.experience} ans d'expérience
-                </div>
-              </div>
-              
-              <div className="flex items-center mt-3">
-                <span className="mr-2 text-sm font-medium">Score global:</span>
-                <div className="flex items-center space-x-1">
-                  {renderStars(candidate.score)}
-                  <span className="ml-2 text-sm font-medium">{candidate.score}/5</span>
-                </div>
               </div>
             </div>
             
@@ -159,74 +183,122 @@ const CandidateDetailModal = ({ candidate, onClose }: CandidateDetailModalProps)
                 <FileText className="h-4 w-4 mr-2" />
                 Télécharger CV
               </Button>
+            </div>
+          </div>
+
+          {/* Note Globale */}
+          <div className="bg-gray-50 rounded-lg p-4">
+            <h3 className="text-lg font-semibold mb-3 flex items-center">
+              <Award className="h-5 w-5 mr-2 text-yellow-500" />
+              Note Globale Pondérée
+            </h3>
+            <div className="flex items-center space-x-4">
+              <div className="text-3xl font-bold text-mck-blue-600">
+                {calculateWeightedScore()}/5
+              </div>
+              <div className="flex items-center">
+                {renderStars(parseFloat(calculateWeightedScore()))}
+              </div>
               <div className="text-sm text-gray-600">
-                Disponibilité: <span className="font-medium">{candidate.availability}</span>
+                Basée sur {evaluators.length} évaluations
               </div>
             </div>
           </div>
 
-          {/* Compétences */}
+          {/* Évaluations détaillées */}
           <div>
-            <h3 className="text-lg font-semibold mb-3">Compétences</h3>
-            <div className="flex flex-wrap gap-2">
-              {candidate.skills.map((skill) => (
-                <Badge key={skill} className="bg-mck-green-100 text-mck-blue-700">
-                  {skill}
-                </Badge>
-              ))}
-            </div>
-          </div>
-
-          {/* Offres postulées */}
-          <div>
-            <h3 className="text-lg font-semibold mb-3">Offres postulées</h3>
-            <div className="flex flex-wrap gap-2">
-              {candidate.appliedJobs.map((job) => (
-                <Badge key={job} variant="outline" className="border-mck-blue-500 text-mck-blue-600">
-                  {job}
-                </Badge>
-              ))}
-            </div>
-          </div>
-
-          {/* Évaluations des entretiens */}
-          <div>
-            <h3 className="text-lg font-semibold mb-4">Évaluations des Entretiens</h3>
-            <div className="space-y-4">
-              {evaluations.map((evaluation) => (
-                <div key={evaluation.id} className="border rounded-lg p-4">
-                  <div className="flex justify-between items-center mb-3">
-                    <h4 className="font-semibold text-gray-900">{evaluation.interviewType}</h4>
-                    <span className="text-sm text-gray-600">{evaluation.date}</span>
-                  </div>
-                  
-                  <div className="space-y-3">
-                    {evaluation.evaluators.map((evaluator, index) => (
-                      <div key={index} className="bg-gray-50 rounded-lg p-3">
-                        <div className="flex items-center mb-2">
-                          <User className="h-4 w-4 mr-2 text-gray-600" />
-                          <span className="font-medium">{evaluator.name}</span>
-                          <span className="text-sm text-gray-600 ml-2">({evaluator.role})</span>
+            <h3 className="text-lg font-semibold mb-4">Évaluations par Membre</h3>
+            <div className="space-y-3">
+              {evaluators.map((evaluator) => (
+                <div key={evaluator.id} className="border rounded-lg">
+                  {/* En-tête évaluateur */}
+                  <div 
+                    className="p-4 cursor-pointer hover:bg-gray-50 transition-colors"
+                    onClick={() => toggleEvaluator(evaluator.id)}
+                  >
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center space-x-3">
+                        <User className="h-5 w-5 text-gray-600" />
+                        <div>
+                          <div className="font-medium">{evaluator.name}</div>
+                          <div className="text-sm text-gray-600">{evaluator.role}</div>
                         </div>
-                        
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-3">
-                          {Object.entries(evaluator.scores).map(([criterion, score]) => (
-                            <div key={criterion} className="flex justify-between items-center">
-                              <span className="text-sm">{criterion}:</span>
-                              <div className="flex items-center">
-                                {renderStars(score as number)}
-                                <span className="ml-1 text-sm">{score}/5</span>
+                        <Badge className="bg-blue-100 text-blue-800">
+                          Coeff. {evaluator.coefficient}
+                        </Badge>
+                      </div>
+                      
+                      <div className="flex items-center space-x-4">
+                        <div className="text-right">
+                          <div className="font-semibold">{evaluator.globalScore}/5</div>
+                          <div className="flex items-center space-x-1">
+                            {renderStars(evaluator.globalScore, 'sm')}
+                          </div>
+                        </div>
+                        {expandedEvaluator === evaluator.id ? 
+                          <ChevronUp className="h-5 w-5" /> : 
+                          <ChevronDown className="h-5 w-5" />
+                        }
+                      </div>
+                    </div>
+                    
+                    <div className="mt-2 text-sm text-gray-700 italic">
+                      "{evaluator.comment}"
+                    </div>
+                  </div>
+
+                  {/* Détails des axes d'évaluation */}
+                  {expandedEvaluator === evaluator.id && (
+                    <div className="border-t bg-gray-50 p-4">
+                      <h5 className="font-medium mb-3">Évaluation par Axes</h5>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        {evaluator.axes.map((axis, index) => (
+                          <div key={index} className="bg-white rounded-lg p-3 border">
+                            <div className="flex justify-between items-start mb-2">
+                              <span className="font-medium text-sm">{axis.name}</span>
+                              <div className="flex items-center space-x-1">
+                                {renderStars(axis.score, 'sm')}
+                                <span className="text-sm ml-1">{axis.score}/5</span>
                               </div>
                             </div>
-                          ))}
-                        </div>
-                        
-                        <div className="text-sm text-gray-700 italic">
-                          "{evaluator.comments}"
-                        </div>
+                            
+                            <div className="text-xs text-gray-600">
+                              {editingComment?.evaluatorId === evaluator.id && 
+                               editingComment?.axisName === axis.name ? (
+                                <div className="space-y-2">
+                                  <Textarea
+                                    value={tempComment}
+                                    onChange={(e) => setTempComment(e.target.value)}
+                                    className="text-xs min-h-[60px]"
+                                    placeholder="Commentaire sur cette évaluation..."
+                                  />
+                                  <div className="flex space-x-2">
+                                    <Button size="sm" onClick={handleCommentSave}>
+                                      Sauvegarder
+                                    </Button>
+                                    <Button 
+                                      size="sm" 
+                                      variant="outline"
+                                      onClick={() => setEditingComment(null)}
+                                    >
+                                      Annuler
+                                    </Button>
+                                  </div>
+                                </div>
+                              ) : (
+                                <div 
+                                  className="cursor-pointer hover:bg-gray-100 p-1 rounded"
+                                  onClick={() => handleCommentEdit(evaluator.id, axis.name, axis.comment)}
+                                >
+                                  {axis.comment || "Cliquez pour ajouter un commentaire"}
+                                </div>
+                              )}
+                            </div>
+                          </div>
+                        ))}
                       </div>
-                    ))}
-                  </div>
+                    </div>
+                  )}
                 </div>
               ))}
             </div>
