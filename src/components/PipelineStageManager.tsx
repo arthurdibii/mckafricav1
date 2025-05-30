@@ -18,6 +18,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Plus, X, GripVertical } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
+import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 
 interface PipelineStage {
   id: string;
@@ -51,19 +52,19 @@ const SortableStage = ({ stage, onDelete, canDelete }: SortableStageProps) => {
     <div
       ref={setNodeRef}
       style={style}
-      className="flex-shrink-0 w-80 bg-white border rounded-lg p-4 relative group"
+      className="flex-shrink-0 w-72 sm:w-80 bg-white border rounded-lg p-4 relative group"
     >
       <div className="flex items-center justify-between mb-2">
-        <div className="flex items-center space-x-2">
+        <div className="flex items-center space-x-2 min-w-0 flex-1">
           <div
             {...attributes}
             {...listeners}
-            className="cursor-grab active:cursor-grabbing p-1 hover:bg-gray-100 rounded"
+            className="cursor-grab active:cursor-grabbing p-1 hover:bg-gray-100 rounded shrink-0"
           >
             <GripVertical className="h-4 w-4 text-gray-400" />
           </div>
-          <h3 className="font-medium text-gray-700">{stage.title}</h3>
-          <Badge variant="secondary" className="text-xs">
+          <h3 className="font-medium text-gray-700 truncate">{stage.title}</h3>
+          <Badge variant="secondary" className="text-xs shrink-0">
             {stage.candidateCount}
           </Badge>
         </div>
@@ -72,7 +73,7 @@ const SortableStage = ({ stage, onDelete, canDelete }: SortableStageProps) => {
             variant="ghost"
             size="sm"
             onClick={() => onDelete(stage.id)}
-            className="opacity-0 group-hover:opacity-100 transition-opacity h-6 w-6 p-0 text-red-500 hover:text-red-700 hover:bg-red-50"
+            className="opacity-0 group-hover:opacity-100 transition-opacity h-6 w-6 p-0 text-red-500 hover:text-red-700 hover:bg-red-50 shrink-0"
           >
             <X className="h-3 w-3" />
           </Button>
@@ -146,7 +147,7 @@ const PipelineStageManager = ({ initialStages, onStagesChange }: PipelineStageMa
 
   return (
     <div className="space-y-4">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <h3 className="text-lg font-semibold">Configuration du Pipeline</h3>
         <Button
           onClick={() => setIsAdding(true)}
@@ -159,48 +160,51 @@ const PipelineStageManager = ({ initialStages, onStagesChange }: PipelineStageMa
       </div>
 
       <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
-        <div className="overflow-x-auto pb-4">
-          <div className="flex space-x-4 min-w-max">
-            <SortableContext items={stages.map(s => s.id)} strategy={horizontalListSortingStrategy}>
-              {stages.map((stage) => (
-                <SortableStage
-                  key={stage.id}
-                  stage={stage}
-                  onDelete={handleDeleteStage}
-                  canDelete={stages.length > 2}
-                />
-              ))}
-            </SortableContext>
-
-            {isAdding && (
-              <div className="flex-shrink-0 w-80 bg-white border-2 border-dashed border-mck-blue-300 rounded-lg p-4">
-                <div className="space-y-2">
-                  <Input
-                    placeholder="Nom de la nouvelle étape"
-                    value={newStageName}
-                    onChange={(e) => setNewStageName(e.target.value)}
-                    onKeyPress={(e) => e.key === 'Enter' && handleAddStage()}
-                    autoFocus
+        <div className="w-full border rounded-lg bg-gray-50 p-4">
+          <ScrollArea className="w-full">
+            <div className="flex space-x-4 min-w-max pb-4">
+              <SortableContext items={stages.map(s => s.id)} strategy={horizontalListSortingStrategy}>
+                {stages.map((stage) => (
+                  <SortableStage
+                    key={stage.id}
+                    stage={stage}
+                    onDelete={handleDeleteStage}
+                    canDelete={stages.length > 2}
                   />
-                  <div className="flex space-x-2">
-                    <Button size="sm" onClick={handleAddStage}>
-                      Ajouter
-                    </Button>
-                    <Button
-                      size="sm"
-                      variant="outline"
-                      onClick={() => {
-                        setIsAdding(false);
-                        setNewStageName('');
-                      }}
-                    >
-                      Annuler
-                    </Button>
+                ))}
+              </SortableContext>
+
+              {isAdding && (
+                <div className="flex-shrink-0 w-72 sm:w-80 bg-white border-2 border-dashed border-mck-blue-300 rounded-lg p-4">
+                  <div className="space-y-2">
+                    <Input
+                      placeholder="Nom de la nouvelle étape"
+                      value={newStageName}
+                      onChange={(e) => setNewStageName(e.target.value)}
+                      onKeyPress={(e) => e.key === 'Enter' && handleAddStage()}
+                      autoFocus
+                    />
+                    <div className="flex space-x-2">
+                      <Button size="sm" onClick={handleAddStage}>
+                        Ajouter
+                      </Button>
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        onClick={() => {
+                          setIsAdding(false);
+                          setNewStageName('');
+                        }}
+                      >
+                        Annuler
+                      </Button>
+                    </div>
                   </div>
                 </div>
-              </div>
-            )}
-          </div>
+              )}
+            </div>
+            <ScrollBar orientation="horizontal" />
+          </ScrollArea>
         </div>
       </DndContext>
     </div>

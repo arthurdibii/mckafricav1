@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import {
   DndContext,
@@ -22,6 +21,7 @@ import { Star, Eye, MessageSquare, Medal, Settings } from 'lucide-react';
 import DropZone from './DropZone';
 import PipelineStageManager from './PipelineStageManager';
 import { useNotifications } from '@/hooks/useNotifications';
+import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 
 interface Candidate {
   id: string;
@@ -370,11 +370,12 @@ const KanbanBoard = ({ onCandidateClick }: KanbanBoardProps) => {
 
   return (
     <div className="space-y-4">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <h3 className="text-lg font-semibold">Processus de Recrutement</h3>
         <Button
           variant="outline"
           onClick={() => setShowStageManager(true)}
+          size="sm"
         >
           <Settings className="h-4 w-4 mr-2" />
           Gérer les étapes
@@ -382,41 +383,44 @@ const KanbanBoard = ({ onCandidateClick }: KanbanBoardProps) => {
       </div>
 
       <DndContext sensors={sensors} onDragStart={handleDragStart} onDragEnd={handleDragEnd}>
-        <div className="overflow-x-auto pb-4 border rounded-lg bg-gray-50 p-4">
-          <div className="flex space-x-4 min-w-max">
-            {columns.map((column) => (
-              <div key={column.id} className="flex-shrink-0 w-80">
-                <Card className="h-full">
-                  <CardHeader className="pb-3">
-                    <CardTitle className="text-sm font-medium text-gray-700 flex items-center justify-between">
-                      {column.title}
-                      <Badge variant="secondary" className="text-xs">
-                        {column.candidates.length}
-                      </Badge>
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent className="pt-0">
-                    <DropZone id={column.id}>
-                      <SortableContext
-                        items={column.candidates.map(c => c.id)}
-                        strategy={verticalListSortingStrategy}
-                      >
-                        <div className="space-y-2">
-                          {column.candidates.map((candidate) => (
-                            <CandidateCard
-                              key={candidate.id}
-                              candidate={candidate}
-                              onViewDetails={onCandidateClick}
-                            />
-                          ))}
-                        </div>
-                      </SortableContext>
-                    </DropZone>
-                  </CardContent>
-                </Card>
-              </div>
-            ))}
-          </div>
+        <div className="w-full border rounded-lg bg-gray-50 p-4">
+          <ScrollArea className="w-full">
+            <div className="flex space-x-4 min-w-max pb-4">
+              {columns.map((column) => (
+                <div key={column.id} className="flex-shrink-0 w-72 sm:w-80">
+                  <Card className="h-full">
+                    <CardHeader className="pb-3">
+                      <CardTitle className="text-sm font-medium text-gray-700 flex items-center justify-between">
+                        <span className="truncate mr-2">{column.title}</span>
+                        <Badge variant="secondary" className="text-xs shrink-0">
+                          {column.candidates.length}
+                        </Badge>
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent className="pt-0">
+                      <DropZone id={column.id}>
+                        <SortableContext
+                          items={column.candidates.map(c => c.id)}
+                          strategy={verticalListSortingStrategy}
+                        >
+                          <div className="space-y-2 min-h-[200px]">
+                            {column.candidates.map((candidate) => (
+                              <CandidateCard
+                                key={candidate.id}
+                                candidate={candidate}
+                                onViewDetails={onCandidateClick}
+                              />
+                            ))}
+                          </div>
+                        </SortableContext>
+                      </DropZone>
+                    </CardContent>
+                  </Card>
+                </div>
+              ))}
+            </div>
+            <ScrollBar orientation="horizontal" />
+          </ScrollArea>
         </div>
 
         <DragOverlay>
