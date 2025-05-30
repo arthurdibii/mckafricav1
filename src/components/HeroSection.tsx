@@ -1,11 +1,8 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
-
 const HeroSection = () => {
-  return (
-    <section id="accueil" className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-mck-blue-50 to-white overflow-hidden">
+  return <section id="accueil" className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-mck-blue-50 to-white overflow-hidden">
       {/* Éléments décoratifs en arrière-plan */}
       <div className="absolute inset-0 bg-gradient-to-r from-mck-blue-500/5 to-mck-green-500/5"></div>
       <div className="absolute top-20 right-20 w-72 h-72 bg-mck-green-500/10 rounded-full blur-3xl"></div>
@@ -23,7 +20,7 @@ const HeroSection = () => {
             Transformez votre
             <span className="text-mck-blue-500"> stratégie RH</span>
             <br />
-            avec <span className="text-mck-blue-600">McK Africa</span>
+            avec <span className="text-mck-blue-600">mcK Africa</span>
           </h1>
 
           {/* Sous-titre */}
@@ -60,8 +57,6 @@ const HeroSection = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default HeroSection;
