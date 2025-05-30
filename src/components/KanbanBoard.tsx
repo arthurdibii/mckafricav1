@@ -55,14 +55,14 @@ const KanbanBoard = ({ onCandidateClick }: KanbanBoardProps) => {
 
   if (showStageManager) {
     return (
-      <div className="space-y-4 sm:space-y-6">
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-          <h3 className="text-lg sm:text-xl font-semibold">Processus de Recrutement</h3>
+      <div className="space-y-3 sm:space-y-4 lg:space-y-6">
+        <div className="flex flex-col space-y-3 sm:flex-row sm:items-center sm:justify-between sm:space-y-0 gap-3 sm:gap-4">
+          <h3 className="text-base sm:text-lg lg:text-xl font-semibold">Processus de Recrutement</h3>
           <Button
             variant="outline"
             onClick={() => setShowStageManager(false)}
             size="sm"
-            className="w-full sm:w-auto"
+            className="w-full sm:w-auto text-sm"
           >
             Retour au Pipeline
           </Button>
@@ -76,28 +76,40 @@ const KanbanBoard = ({ onCandidateClick }: KanbanBoardProps) => {
   }
 
   return (
-    <div className="space-y-4 sm:space-y-6">
+    <div className="space-y-3 sm:space-y-4 lg:space-y-6">
       {/* Titre fixe + Bouton de gestion - Responsive */}
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-        <h3 className="text-lg sm:text-xl font-semibold">Processus de Recrutement</h3>
+      <div className="flex flex-col space-y-3 sm:flex-row sm:items-center sm:justify-between sm:space-y-0 gap-3 sm:gap-4">
+        <h3 className="text-base sm:text-lg lg:text-xl font-semibold">Processus de Recrutement</h3>
         <Button
           variant="outline"
           onClick={() => setShowStageManager(true)}
           size="sm"
-          className="w-full sm:w-auto"
+          className="w-full sm:w-auto text-sm"
         >
-          <Settings className="h-4 w-4 mr-2" />
+          <Settings className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
           Gérer les étapes
         </Button>
       </div>
 
       {/* Container Kanban avec scroll horizontal responsive */}
       <DndContext sensors={sensors} onDragStart={handleDragStart} onDragEnd={handleDragEnd}>
-        <div className="w-full border rounded-lg bg-gray-50 p-3 sm:p-4 lg:p-6">
-          {/* Zone de scroll horizontal avec scrollbar masquée */}
-          <div className="overflow-x-auto overflow-y-hidden scrollbar-hide pb-2">
-            {/* Container flex avec largeur minimale pour forcer le scroll */}
-            <div className="flex space-x-3 sm:space-x-4 lg:space-x-6 min-w-max">
+        <div className="w-full border rounded-lg bg-gray-50 p-2 sm:p-3 lg:p-4">
+          {/* Zone de scroll horizontal optimisée */}
+          <div 
+            className="overflow-x-auto overflow-y-visible pb-2"
+            style={{
+              scrollbarWidth: 'thin',
+              scrollbarColor: '#CBD5E1 #F1F5F9'
+            }}
+          >
+            {/* Container flex avec largeur minimale calculée dynamiquement */}
+            <div 
+              className="flex space-x-2 sm:space-x-3 lg:space-x-4"
+              style={{
+                minWidth: `${columns.length * 280}px`,
+                width: 'max-content'
+              }}
+            >
               {columns.map((column) => (
                 <KanbanColumn
                   key={column.id}
