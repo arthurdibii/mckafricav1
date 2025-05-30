@@ -9,7 +9,6 @@ import {
 } from '@dnd-kit/core';
 import { Button } from '@/components/ui/button';
 import { Settings } from 'lucide-react';
-import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 import KanbanColumn from './KanbanColumn';
 import CandidateCard from './CandidateCard';
 import PipelineStageManager from './PipelineStageManager';
@@ -76,6 +75,7 @@ const KanbanBoard = ({ onCandidateClick }: KanbanBoardProps) => {
 
   return (
     <div className="space-y-4">
+      {/* Titre fixe + Bouton de gestion - Ne scroll pas */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <h3 className="text-lg font-semibold">Processus de Recrutement</h3>
         <Button
@@ -88,10 +88,20 @@ const KanbanBoard = ({ onCandidateClick }: KanbanBoardProps) => {
         </Button>
       </div>
 
+      {/* Container Kanban avec scroll horizontal uniquement */}
       <DndContext sensors={sensors} onDragStart={handleDragStart} onDragEnd={handleDragEnd}>
         <div className="w-full border rounded-lg bg-gray-50 p-4">
-          <ScrollArea className="w-full">
-            <div className="flex space-x-4 min-w-max pb-4">
+          {/* Zone de scroll horizontal avec scrollbar masquée */}
+          <div 
+            className="overflow-x-auto overflow-y-hidden scrollbar-hide"
+            style={{
+              scrollBehavior: 'smooth',
+              scrollbarWidth: 'none', /* Firefox */
+              msOverflowStyle: 'none', /* Internet Explorer 10+ */
+            }}
+          >
+            {/* Container flex avec largeur minimale pour forcer le scroll */}
+            <div className="flex space-x-4 min-w-max pb-2">
               {columns.map((column) => (
                 <KanbanColumn
                   key={column.id}
@@ -102,8 +112,7 @@ const KanbanBoard = ({ onCandidateClick }: KanbanBoardProps) => {
                 />
               ))}
             </div>
-            <ScrollBar orientation="horizontal" />
-          </ScrollArea>
+          </div>
         </div>
 
         <DragOverlay>
@@ -112,6 +121,13 @@ const KanbanBoard = ({ onCandidateClick }: KanbanBoardProps) => {
           ) : null}
         </DragOverlay>
       </DndContext>
+
+      {/* Style pour masquer la scrollbar sur WebKit */}
+      <style jsx>{`
+        .scrollbar-hide::-webkit-scrollbar {
+          display: none;
+        }
+      `}</style>
     </div>
   );
 };

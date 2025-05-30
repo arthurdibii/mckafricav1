@@ -56,36 +56,38 @@ const JobPipeline = () => {
             </div>
           </div>
 
-          {/* Statistiques rapides */}
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-            <Card>
-              <CardContent className="p-4">
-                <div className="text-xl sm:text-2xl font-bold text-mck-blue-600">8</div>
-                <div className="text-xs sm:text-sm text-gray-600">Nouvelles candidatures</div>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardContent className="p-4">
-                <div className="text-xl sm:text-2xl font-bold text-orange-600">5</div>
-                <div className="text-xs sm:text-sm text-gray-600">En entretien</div>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardContent className="p-4">
-                <div className="text-xl sm:text-2xl font-bold text-green-600">2</div>
-                <div className="text-xs sm:text-sm text-gray-600">Offres en cours</div>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardContent className="p-4">
-                <div className="text-xl sm:text-2xl font-bold text-purple-600">4.2/5</div>
-                <div className="text-xs sm:text-sm text-gray-600">Score moyen</div>
-              </CardContent>
-            </Card>
+          {/* Statistiques rapides - Container avec hauteur fixe et responsive */}
+          <div className="min-h-[120px] lg:min-h-[100px]">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 auto-rows-fr">
+              <Card className="min-w-0">
+                <CardContent className="p-3 sm:p-4">
+                  <div className="text-lg sm:text-xl lg:text-2xl font-bold text-mck-blue-600 truncate">8</div>
+                  <div className="text-xs sm:text-sm text-gray-600 leading-tight">Nouvelles candidatures</div>
+                </CardContent>
+              </Card>
+              <Card className="min-w-0">
+                <CardContent className="p-3 sm:p-4">
+                  <div className="text-lg sm:text-xl lg:text-2xl font-bold text-orange-600 truncate">5</div>
+                  <div className="text-xs sm:text-sm text-gray-600 leading-tight">En entretien</div>
+                </CardContent>
+              </Card>
+              <Card className="min-w-0">
+                <CardContent className="p-3 sm:p-4">
+                  <div className="text-lg sm:text-xl lg:text-2xl font-bold text-green-600 truncate">2</div>
+                  <div className="text-xs sm:text-sm text-gray-600 leading-tight">Offres en cours</div>
+                </CardContent>
+              </Card>
+              <Card className="min-w-0">
+                <CardContent className="p-3 sm:p-4">
+                  <div className="text-lg sm:text-xl lg:text-2xl font-bold text-purple-600 truncate">4.2/5</div>
+                  <div className="text-xs sm:text-sm text-gray-600 leading-tight">Score moyen</div>
+                </CardContent>
+              </Card>
+            </div>
           </div>
 
-          {/* Kanban Board - Container avec scroll horizontal limité */}
-          <div className="w-full">
+          {/* Kanban Board - Titre fixe + Container avec scroll horizontal uniquement */}
+          <div className="w-full space-y-4">
             <KanbanBoard onCandidateClick={handleCandidateClick} />
           </div>
 
