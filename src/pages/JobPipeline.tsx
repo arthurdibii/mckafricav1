@@ -38,56 +38,78 @@ const JobPipeline = () => {
 
   return (
     <AdminLayout>
-      <div className="max-w-full overflow-hidden">
-        <div className="space-y-6 px-4 sm:px-6 lg:px-8">
-          {/* En-tête */}
-          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
-            <div className="min-w-0 flex-1">
-              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2 truncate">
-                Pipeline - {jobData.title}
-              </h2>
-              <div className="flex flex-wrap items-center gap-2 sm:gap-4 text-sm text-gray-600">
-                <span className="truncate">{jobData.location}</span>
-                <span>{jobData.type}</span>
-                <Badge className="bg-green-100 text-green-800 shrink-0">
-                  {jobData.totalCandidates} candidats
-                </Badge>
+      <div className="min-h-screen bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6 lg:py-8">
+          {/* En-tête responsive */}
+          <div className="mb-6 lg:mb-8">
+            <div className="flex flex-col space-y-4 lg:flex-row lg:items-center lg:justify-between lg:space-y-0">
+              <div className="min-w-0 flex-1">
+                <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 mb-2 truncate">
+                  Pipeline - {jobData.title}
+                </h1>
+                <div className="flex flex-wrap items-center gap-2 sm:gap-3 lg:gap-4 text-sm text-gray-600">
+                  <span className="truncate">{jobData.location}</span>
+                  <span className="hidden sm:inline">•</span>
+                  <span>{jobData.type}</span>
+                  <Badge className="bg-green-100 text-green-800 text-xs px-2 py-1">
+                    {jobData.totalCandidates} candidats
+                  </Badge>
+                </div>
               </div>
             </div>
           </div>
 
-          {/* Statistiques rapides - Container avec hauteur fixe et responsive */}
-          <div className="min-h-[120px] lg:min-h-[100px]">
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 auto-rows-fr">
-              <Card className="min-w-0">
-                <CardContent className="p-3 sm:p-4">
-                  <div className="text-lg sm:text-xl lg:text-2xl font-bold text-mck-blue-600 truncate">8</div>
-                  <div className="text-xs sm:text-sm text-gray-600 leading-tight">Nouvelles candidatures</div>
+          {/* Statistiques rapides - Responsive grid */}
+          <div className="mb-6 lg:mb-8">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-6">
+              <Card className="overflow-hidden">
+                <CardContent className="p-3 sm:p-4 lg:p-6">
+                  <div className="text-lg sm:text-xl lg:text-2xl xl:text-3xl font-bold text-mck-blue-600 mb-1">
+                    8
+                  </div>
+                  <div className="text-xs sm:text-sm lg:text-base text-gray-600 leading-tight">
+                    Nouvelles candidatures
+                  </div>
                 </CardContent>
               </Card>
-              <Card className="min-w-0">
-                <CardContent className="p-3 sm:p-4">
-                  <div className="text-lg sm:text-xl lg:text-2xl font-bold text-orange-600 truncate">5</div>
-                  <div className="text-xs sm:text-sm text-gray-600 leading-tight">En entretien</div>
+              
+              <Card className="overflow-hidden">
+                <CardContent className="p-3 sm:p-4 lg:p-6">
+                  <div className="text-lg sm:text-xl lg:text-2xl xl:text-3xl font-bold text-orange-600 mb-1">
+                    5
+                  </div>
+                  <div className="text-xs sm:text-sm lg:text-base text-gray-600 leading-tight">
+                    En entretien
+                  </div>
                 </CardContent>
               </Card>
-              <Card className="min-w-0">
-                <CardContent className="p-3 sm:p-4">
-                  <div className="text-lg sm:text-xl lg:text-2xl font-bold text-green-600 truncate">2</div>
-                  <div className="text-xs sm:text-sm text-gray-600 leading-tight">Offres en cours</div>
+              
+              <Card className="overflow-hidden">
+                <CardContent className="p-3 sm:p-4 lg:p-6">
+                  <div className="text-lg sm:text-xl lg:text-2xl xl:text-3xl font-bold text-green-600 mb-1">
+                    2
+                  </div>
+                  <div className="text-xs sm:text-sm lg:text-base text-gray-600 leading-tight">
+                    Offres en cours
+                  </div>
                 </CardContent>
               </Card>
-              <Card className="min-w-0">
-                <CardContent className="p-3 sm:p-4">
-                  <div className="text-lg sm:text-xl lg:text-2xl font-bold text-purple-600 truncate">4.2/5</div>
-                  <div className="text-xs sm:text-sm text-gray-600 leading-tight">Score moyen</div>
+              
+              <Card className="overflow-hidden">
+                <CardContent className="p-3 sm:p-4 lg:p-6">
+                  <div className="text-lg sm:text-xl lg:text-2xl xl:text-3xl font-bold text-purple-600 mb-1">
+                    4.2/5
+                  </div>
+                  <div className="text-xs sm:text-sm lg:text-base text-gray-600 leading-tight">
+                    Score moyen
+                  </div>
                 </CardContent>
               </Card>
             </div>
           </div>
 
-          {/* Kanban Board - Titre fixe + Container avec scroll horizontal uniquement */}
-          <div className="w-full space-y-4">
+          {/* Kanban Board responsive */}
+          <div className="w-full">
             <KanbanBoard onCandidateClick={handleCandidateClick} />
           </div>
 

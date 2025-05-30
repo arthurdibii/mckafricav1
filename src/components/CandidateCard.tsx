@@ -43,7 +43,7 @@ const CandidateCard = ({ candidate, onViewDetails }: CandidateCardProps) => {
     return Array.from({ length: 5 }, (_, i) => (
       <Star
         key={i}
-        className={`h-3 w-3 ${
+        className={`h-3 w-3 sm:h-4 sm:w-4 ${
           i < score ? 'text-yellow-400 fill-current' : 'text-gray-300'
         }`}
       />
@@ -66,14 +66,14 @@ const CandidateCard = ({ candidate, onViewDetails }: CandidateCardProps) => {
       {...listeners}
       className="cursor-grab active:cursor-grabbing"
     >
-      <Card className={`mb-3 hover:shadow-md transition-all duration-200 bg-white ${isDragging ? 'rotate-2 scale-105' : ''}`}>
-        <CardContent className="p-4">
+      <Card className={`mb-2 sm:mb-3 hover:shadow-md transition-all duration-200 bg-white ${isDragging ? 'rotate-2 scale-105' : ''}`}>
+        <CardContent className="p-3 sm:p-4">
           <div className="flex justify-between items-start mb-2">
-            <div className="flex items-center space-x-2">
-              <h4 className="font-medium text-sm">{candidate.name}</h4>
+            <div className="flex items-center space-x-2 min-w-0 flex-1">
+              <h4 className="font-medium text-sm sm:text-base truncate">{candidate.name}</h4>
               {candidate.ranking && (
-                <Badge className={`text-xs px-2 py-1 ${getRankingColor(candidate.ranking)}`}>
-                  <Medal className="h-3 w-3 mr-1" />
+                <Badge className={`text-xs px-1.5 sm:px-2 py-0.5 sm:py-1 shrink-0 ${getRankingColor(candidate.ranking)}`}>
+                  <Medal className="h-3 w-3 mr-0.5 sm:mr-1" />
                   #{candidate.ranking}
                 </Badge>
               )}
@@ -85,20 +85,20 @@ const CandidateCard = ({ candidate, onViewDetails }: CandidateCardProps) => {
                 e.stopPropagation();
                 onViewDetails(candidate);
               }}
-              className="h-6 w-6 p-0"
+              className="h-6 w-6 sm:h-8 sm:w-8 p-0 shrink-0"
             >
-              <Eye className="h-3 w-3" />
+              <Eye className="h-3 w-3 sm:h-4 sm:w-4" />
             </Button>
           </div>
           
-          <p className="text-xs text-gray-600 mb-2">{candidate.email}</p>
+          <p className="text-xs sm:text-sm text-gray-600 mb-2 truncate">{candidate.email}</p>
           
           <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-1">
+            <div className="flex items-center space-x-0.5 sm:space-x-1">
               {renderStars(candidate.score)}
             </div>
             {candidate.notes && (
-              <MessageSquare className="h-3 w-3 text-gray-400" />
+              <MessageSquare className="h-3 w-3 sm:h-4 sm:w-4 text-gray-400 shrink-0" />
             )}
           </div>
         </CardContent>

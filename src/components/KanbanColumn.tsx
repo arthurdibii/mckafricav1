@@ -26,23 +26,23 @@ interface KanbanColumnProps {
 
 const KanbanColumn = ({ id, title, candidates, onCandidateClick }: KanbanColumnProps) => {
   return (
-    <div className="flex-shrink-0 w-72 sm:w-80">
+    <div className="flex-shrink-0 w-64 sm:w-72 lg:w-80 xl:w-84">
       <Card className="h-full">
-        <CardHeader className="pb-3">
-          <CardTitle className="text-sm font-medium text-gray-700 flex items-center justify-between">
-            <span className="truncate mr-2">{title}</span>
-            <Badge variant="secondary" className="text-xs shrink-0">
+        <CardHeader className="pb-3 px-3 sm:px-4 pt-3 sm:pt-4">
+          <CardTitle className="text-sm sm:text-base font-medium text-gray-700 flex items-center justify-between">
+            <span className="truncate mr-2 leading-tight">{title}</span>
+            <Badge variant="secondary" className="text-xs shrink-0 px-2 py-1">
               {candidates.length}
             </Badge>
           </CardTitle>
         </CardHeader>
-        <CardContent className="pt-0">
+        <CardContent className="pt-0 px-3 sm:px-4 pb-3 sm:pb-4">
           <DropZone id={id}>
             <SortableContext
               items={candidates.map(c => c.id)}
               strategy={verticalListSortingStrategy}
             >
-              <div className="space-y-2 min-h-[200px]">
+              <div className="space-y-2 sm:space-y-3 min-h-[200px] sm:min-h-[250px] lg:min-h-[300px]">
                 {candidates.map((candidate) => (
                   <CandidateCard
                     key={candidate.id}
