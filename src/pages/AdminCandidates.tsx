@@ -114,19 +114,19 @@ const AdminCandidates = () => {
     const matchesSkills = selectedSkills.length === 0 || 
       selectedSkills.some(skill => candidate.skills.includes(skill));
 
-    const matchesAvailability = !selectedAvailability || 
+    const matchesAvailability = !selectedAvailability || selectedAvailability === 'all' || 
       candidate.availability === selectedAvailability;
 
-    const matchesLocation = !selectedLocation || 
+    const matchesLocation = !selectedLocation || selectedLocation === 'all' || 
       candidate.location.includes(selectedLocation);
 
-    const matchesExperience = !selectedExperience || 
+    const matchesExperience = !selectedExperience || selectedExperience === 'all' || 
       (selectedExperience === '0-2' && candidate.experience <= 2) ||
       (selectedExperience === '3-5' && candidate.experience >= 3 && candidate.experience <= 5) ||
       (selectedExperience === '6-10' && candidate.experience >= 6 && candidate.experience <= 10) ||
       (selectedExperience === '10+' && candidate.experience > 10);
 
-    const matchesJob = !selectedJob || 
+    const matchesJob = !selectedJob || selectedJob === 'all' || 
       candidate.appliedJobs.includes(selectedJob);
 
     return matchesSearch && matchesSkills && matchesAvailability && 
@@ -194,7 +194,7 @@ const AdminCandidates = () => {
                   <SelectValue placeholder="Disponibilité" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="">Toutes</SelectItem>
+                  <SelectItem value="all">Toutes</SelectItem>
                   <SelectItem value="Immédiate">Immédiate</SelectItem>
                   <SelectItem value="Sous 1 mois">Sous 1 mois</SelectItem>
                   <SelectItem value="Sous 3 mois">Sous 3 mois</SelectItem>
@@ -207,7 +207,7 @@ const AdminCandidates = () => {
                   <SelectValue placeholder="Localisation" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="">Toutes</SelectItem>
+                  <SelectItem value="all">Toutes</SelectItem>
                   <SelectItem value="Abidjan">Abidjan</SelectItem>
                   <SelectItem value="Lagos">Lagos</SelectItem>
                   <SelectItem value="Casablanca">Casablanca</SelectItem>
@@ -221,7 +221,7 @@ const AdminCandidates = () => {
                   <SelectValue placeholder="Expérience" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="">Toute expérience</SelectItem>
+                  <SelectItem value="all">Toute expérience</SelectItem>
                   <SelectItem value="0-2">0-2 ans</SelectItem>
                   <SelectItem value="3-5">3-5 ans</SelectItem>
                   <SelectItem value="6-10">6-10 ans</SelectItem>
@@ -269,7 +269,7 @@ const AdminCandidates = () => {
                     <SelectValue placeholder="Sélectionner une offre" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="">Toutes les offres</SelectItem>
+                    <SelectItem value="all">Toutes les offres</SelectItem>
                     {availableJobs.map((job) => (
                       <SelectItem key={job} value={job}>{job}</SelectItem>
                     ))}
