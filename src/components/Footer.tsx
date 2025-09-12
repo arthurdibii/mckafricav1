@@ -11,14 +11,14 @@ const Footer = () => {
           {/* Logo et description */}
           <div className="md:col-span-1">
             <div className="mb-4">
-              <img 
-                src="/lovable-uploads/97df0f49-9381-4123-b527-f4fa3f43c655.png" 
-                alt="McK Africa" 
+              <img
+                src="/lovable-uploads/97df0f49-9381-4123-b527-f4fa3f43c655.png"
+                alt="McK Africa"
                 className="h-10 w-auto filter brightness-0 invert"
               />
             </div>
             <p className="text-gray-300 mb-6 leading-relaxed">
-              Le cabinet de conseil en recrutement de référence en Afrique. 
+              Le cabinet de conseil en recrutement de référence en Afrique.
               Nous connectons les talents exceptionnels aux opportunités transformatrices.
             </p>
             <div className="flex space-x-4">
@@ -65,7 +65,7 @@ const Footer = () => {
               <li><a href="#" className="hover:text-white transition-colors">Carrières chez McK</a></li>
               <li><a href="#" className="hover:text-white transition-colors">Centre d'Aide</a></li>
             </ul>
-            
+
             <div className="space-y-2 text-sm text-gray-400">
               <p>📧 contact@mckafrica.com</p>
               <p>📞 +234 1 234 5678</p>

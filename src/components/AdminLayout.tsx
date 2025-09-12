@@ -4,10 +4,10 @@ import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import UserProfile from '@/components/UserProfile';
-import { 
-  LayoutDashboard, 
-  FileText, 
-  Users, 
+import {
+  LayoutDashboard,
+  FileText,
+  Users,
   Settings,
   Home,
   Menu,
@@ -55,17 +55,17 @@ const AdminLayout = ({ children }: AdminLayoutProps) => {
         )}
         {(!sidebarCollapsed || mobile) ? (
           <Link to="/" className="flex items-center">
-            <img 
-              src="/lovable-uploads/97df0f49-9381-4123-b527-f4fa3f43c655.png" 
-              alt="McK Africa" 
+            <img
+              src="/lovable-uploads/97df0f49-9381-4123-b527-f4fa3f43c655.png"
+              alt="McK Africa"
               className="h-8 sm:h-10 w-auto"
             />
           </Link>
         ) : (
           <div className="flex justify-center">
-            <img 
-              src="/lovable-uploads/97df0f49-9381-4123-b527-f4fa3f43c655.png" 
-              alt="McK Africa" 
+            <img
+              src="/lovable-uploads/97df0f49-9381-4123-b527-f4fa3f43c655.png"
+              alt="McK Africa"
               className="h-6 w-6 object-contain"
             />
           </div>
@@ -80,17 +80,16 @@ const AdminLayout = ({ children }: AdminLayoutProps) => {
         {sidebarItems.map((item) => {
           const Icon = item.icon;
           const isActive = location.pathname === item.path;
-          
+
           return (
             <Link
               key={item.path}
               to={item.path}
               onClick={() => mobile && setMobileMenuOpen(false)}
-              className={`flex items-center ${(sidebarCollapsed && !mobile) ? 'justify-center px-2' : 'space-x-2 sm:space-x-3 px-3'} py-2 sm:py-3 rounded-lg transition-colors ${
-                isActive 
-                  ? 'bg-mck-blue-500 text-white' 
+              className={`flex items-center ${(sidebarCollapsed && !mobile) ? 'justify-center px-2' : 'space-x-2 sm:space-x-3 px-3'} py-2 sm:py-3 rounded-lg transition-colors ${isActive
+                  ? 'bg-mck-blue-500 text-white'
                   : 'text-gray-700 hover:bg-gray-100'
-              }`}
+                }`}
               title={(sidebarCollapsed && !mobile) ? item.label : undefined}
             >
               <Icon className="h-4 w-4 sm:h-5 sm:w-5 flex-shrink-0" />
@@ -105,8 +104,8 @@ const AdminLayout = ({ children }: AdminLayoutProps) => {
       {/* Footer de la sidebar */}
       <div className="p-2 sm:p-4 border-t">
         <Link to="/" onClick={() => mobile && setMobileMenuOpen(false)}>
-          <Button 
-            variant="outline" 
+          <Button
+            variant="outline"
             className={`${(sidebarCollapsed && !mobile) ? 'w-8 h-8 p-0' : 'w-full justify-start'} text-sm`}
             title={(sidebarCollapsed && !mobile) ? 'Retour au site' : undefined}
           >
@@ -148,7 +147,7 @@ const AdminLayout = ({ children }: AdminLayoutProps) => {
             >
               <Menu className="h-5 w-5" />
             </Button>
-            
+
             {/* Desktop collapse button */}
             <Button
               variant="ghost"
@@ -158,12 +157,12 @@ const AdminLayout = ({ children }: AdminLayoutProps) => {
             >
               {sidebarCollapsed ? <Menu className="h-5 w-5" /> : <ChevronLeft className="h-5 w-5" />}
             </Button>
-            
+
             <h1 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-900 truncate">
               Administration McK Africa
             </h1>
           </div>
-          
+
           {/* Profil utilisateur */}
           <div className="flex-shrink-0">
             <UserProfile user={currentUser} />

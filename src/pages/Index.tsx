@@ -3,10 +3,8 @@ import React from 'react';
 import Navigation from '../components/Navigation';
 import HeroSection from '../components/HeroSection';
 import ServicesSection from '../components/ServicesSection';
-import AboutSection from '../components/AboutSection';
-import JobBoardSection from '../components/JobBoardSection';
+import FeaturedJobsSection from '../components/FeaturedJobsSection';
 import InsightsSection from '../components/InsightsSection';
-import ContactSection from '../components/ContactSection';
 import Footer from '../components/Footer';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
@@ -31,7 +29,7 @@ const Index = () => {
     <div className="min-h-screen bg-white">
       {/* Navigation fixe en haut */}
       <Navigation />
-      
+
       {/* Bouton d'accès temporaire au dashboard */}
       <div className="fixed bottom-4 right-4 z-50">
         <Link to="/admin">
@@ -41,28 +39,22 @@ const Index = () => {
           </Button>
         </Link>
       </div>
-      
+
       {/* Contenu principal avec espacement pour la navigation fixe */}
       <main className="pt-16">
         {/* Section principale avec appel à l'action */}
         <HeroSection />
-        
+
         {/* Présentation des services */}
         <ServicesSection />
-        
-        {/* À propos du cabinet et équipe */}
-        <AboutSection />
-        
+
         {/* Plateforme d'offres d'emploi */}
-        <JobBoardSection />
-        
+        <FeaturedJobsSection />
+
         {/* Articles et insights */}
         <InsightsSection />
-        
-        {/* Formulaire de contact */}
-        <ContactSection />
       </main>
-      
+
       {/* Footer avec liens et informations */}
       <Footer />
     </div>

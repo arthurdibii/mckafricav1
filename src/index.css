@@ -1,7 +1,49 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Police Nata Sans */
+@font-face {
+  font-family: "Nata Sans";
+  src: url("/Font Nata Sans/NataSans-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Nata Sans";
+  src: url("/Font Nata Sans/NataSans-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Nata Sans";
+  src: url("/Font Nata Sans/NataSans-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Nata Sans";
+  src: url("/Font Nata Sans/NataSans-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Nata Sans";
+  src: url("/Font Nata Sans/NataSans-ExtraBold.ttf") format("truetype");
+  font-weight: 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Nata Sans";
+  src: url("/Font Nata Sans/NataSans-Black.ttf") format("truetype");
+  font-weight: 900;
+  font-style: normal;
+}
 
 @layer base {
   :root {
@@ -109,7 +151,7 @@
     /* Internet Explorer 10+ */
     -ms-overflow-style: none;
   }
-  
+
   .scrollbar-hide::-webkit-scrollbar {
     /* WebKit */
     display: none;
@@ -118,7 +160,7 @@
   /* Styles pour scrollbar fine visible sur le Kanban */
   .kanban-scroll {
     scrollbar-width: thin;
-    scrollbar-color: #CBD5E1 #F1F5F9;
+    scrollbar-color: #cbd5e1 #f1f5f9;
   }
 
   .kanban-scroll::-webkit-scrollbar {
@@ -126,17 +168,17 @@
   }
 
   .kanban-scroll::-webkit-scrollbar-track {
-    background: #F1F5F9;
+    background: #f1f5f9;
     border-radius: 4px;
   }
 
   .kanban-scroll::-webkit-scrollbar-thumb {
-    background: #CBD5E1;
+    background: #cbd5e1;
     border-radius: 4px;
   }
 
   .kanban-scroll::-webkit-scrollbar-thumb:hover {
-    background: #94A3B8;
+    background: #94a3b8;
   }
 
   /* Amélioration du touch sur mobile */
@@ -156,4 +198,25 @@
   .kanban-tablet {
     padding: 0.75rem;
   }
+}
+
+/* Animation zoom continu pour le slider hero */
+@keyframes continuousZoom {
+  0%,
+  100% {
+    transform: scale(1.1);
+  }
+  50% {
+    transform: scale(1.15);
+  }
+}
+
+/* Masquer la scrollbar pour le scroll horizontal des tags mobile */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
 }

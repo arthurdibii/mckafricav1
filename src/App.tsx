@@ -6,6 +6,9 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
+import About from "./pages/About";
+import Contact from "./pages/Contact";
+import Emplois from "./pages/Emplois";
 import JobDetail from "./pages/JobDetail";
 import ArticleDetail from "./pages/ArticleDetail";
 import Login from "./pages/Login";
@@ -26,17 +29,20 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
+          <Route path="/apropos" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/emplois" element={<Emplois />} />
           <Route path="/emploi/:id" element={<JobDetail />} />
           <Route path="/article/:id" element={<ArticleDetail />} />
           <Route path="/connexion" element={<Login />} />
-          
+
           {/* Routes d'administration */}
           <Route path="/admin" element={<AdminDashboard />} />
           <Route path="/admin/offres" element={<AdminJobs />} />
           <Route path="/admin/candidats" element={<AdminCandidates />} />
           <Route path="/admin/parametres" element={<AdminSettings />} />
           <Route path="/admin/offres/:id/pipeline" element={<JobPipeline />} />
-          
+
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

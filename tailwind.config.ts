@@ -1,5 +1,6 @@
 
 import type { Config } from "tailwindcss";
+import tailwindcssAnimate from "tailwindcss-animate";
 
 export default {
 	darkMode: ["class"],
@@ -63,30 +64,30 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				// Couleurs principales McK Africa basées sur le logo
+				// Couleurs principales McK Africa
 				'mck-blue': {
-					50: '#e6f3ff',
-					100: '#b3d9ff',
-					200: '#80bfff',
-					300: '#4da6ff',
-					400: '#1a8cff',
-					500: '#0077cc', // Couleur principale du logo McK
-					600: '#006bb8',
-					700: '#005fa3',
-					800: '#00528f',
-					900: '#00467a'
+					50: '#e6f4f8',
+					100: '#b3dde8',
+					200: '#80c6d8',
+					300: '#4dafc8',
+					400: '#1a98b8',
+					500: '#00719D', // Couleur primaire McK
+					600: '#00658d',
+					700: '#00597d',
+					800: '#004d6d',
+					900: '#00415d'
 				},
 				'mck-green': {
-					50: '#f0f9ff',
-					100: '#e0f2fe',
-					200: '#bae6fd',
-					300: '#7dd3fc',
-					400: '#38bdf8',
-					500: '#8bc34a', // Couleur verte du logo McK
-					600: '#7cb342',
-					700: '#689f38',
-					800: '#558b2f',
-					900: '#33691e'
+					50: '#f8fce6',
+					100: '#eef5b3',
+					200: '#e4ee80',
+					300: '#dae74d',
+					400: '#d0e01a',
+					500: '#C9D045', // Couleur secondaire McK
+					600: '#b5bb3e',
+					700: '#a1a637',
+					800: '#8d9130',
+					900: '#797c29'
 				}
 			},
 			borderRadius: {
@@ -138,5 +139,5 @@ export default {
 			}
 		}
 	},
-	plugins: [require("tailwindcss-animate")],
+	plugins: [tailwindcssAnimate],
 } satisfies Config;
