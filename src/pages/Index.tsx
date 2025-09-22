@@ -2,9 +2,9 @@
 import React from 'react';
 import Navigation from '../components/Navigation';
 import HeroSection from '../components/HeroSection';
+import MissionsEventsSection from '../components/MissionsEventsSection';
 import ServicesSection from '../components/ServicesSection';
 import FeaturedJobsSection from '../components/FeaturedJobsSection';
-import InsightsSection from '../components/InsightsSection';
 import Footer from '../components/Footer';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
@@ -45,14 +45,14 @@ const Index = () => {
         {/* Section principale avec appel à l'action */}
         <HeroSection />
 
-        {/* Présentation des services */}
+        {/* Présentation des services - Nos Expertises */}
         <ServicesSection />
+
+        {/* Section missions et événements */}
+        <MissionsEventsSection />
 
         {/* Plateforme d'offres d'emploi */}
         <FeaturedJobsSection />
-
-        {/* Articles et insights */}
-        <InsightsSection />
       </main>
 
       {/* Footer avec liens et informations */}

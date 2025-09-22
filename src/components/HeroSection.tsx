@@ -38,7 +38,7 @@ const HeroSection = () => {
     },
     {
       id: 4,
-      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1926&q=80',
+      image: 'https://unsplash.com/fr/photos/personnes-debout-a-linterieur-du-batiment-de-la-ville-3fPXt37X6UQ&auto=format&fit=crop&w=1920&q=80',
       tag: 'IT',
       title: 'Leadership et',
       subtitle: 'Développement',
@@ -56,7 +56,7 @@ const HeroSection = () => {
     },
     {
       id: 6,
-      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1920&auto=format&fit=crop',
+      image: 'https://unsplash.com/fr/photos/personnes-debout-a-linterieur-du-batiment-de-la-ville-3fPXt37X6UQ',
       tag: 'Système de Management de la performance',
       title: 'Performance',
       subtitle: 'Optimisée et',
@@ -144,7 +144,7 @@ const HeroSection = () => {
   };
 
   return (
-    <section id="accueil" className="relative min-h-[85vh] md:min-h-[85vh] lg:min-h-[80vh] flex items-center justify-center lg:justify-start lg:items-start lg:pt-32 overflow-hidden -mt-16 pt-16">
+    <section id="accueil" className="relative min-h-[85vh] md:min-h-[85vh] lg:min-h-[80vh] grid grid-rows-[1fr_auto] lg:grid-rows-[auto_1fr_auto] lg:pt-32 overflow-hidden -mt-16 pt-16">
       {/* Slides avec effet zoom */}
       {slides.map((slide, index) => (
         <div
@@ -163,102 +163,108 @@ const HeroSection = () => {
       {/* Overlay pour améliorer la lisibilité */}
       <div className="absolute inset-0 bg-black/40"></div>
 
-      {/* Éléments décoratifs en arrière-plan */}
+      {/* Éléments décoratifs en arrière-plan - optimisés pour grid */}
       <div className="absolute inset-0 bg-gradient-to-r from-mck-blue-500/10 to-mck-green-500/10"></div>
-      <div className="absolute top-20 right-20 w-72 h-72 bg-mck-green-500/10 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-20 left-20 w-96 h-96 bg-mck-blue-500/10 rounded-full blur-3xl"></div>
+      <div className="absolute top-10 right-10 md:top-20 md:right-20 w-48 h-48 md:w-72 md:h-72 bg-mck-green-500/10 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-10 left-10 md:bottom-20 md:left-20 w-64 h-64 md:w-96 md:h-96 bg-mck-blue-500/10 rounded-full blur-3xl"></div>
 
-      {/* Contenu du slide actuel */}
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-left lg:mt-0 lg:mx-0 lg:ml-16 lg:pl-32">
-        <div className="animate-fade-in lg:ml-0 lg:pl-0 lg:max-w-none lg:w-full">
-          <div className="lg:ml-0 lg:pl-0">
-            {/* Tag pillule */}
-            <div className="mb-6">
-              <span className="inline-block bg-mck-green-500/20 backdrop-blur-sm border border-mck-green-400/30 text-mck-green-400 px-4 py-2 rounded-full text-sm font-medium">
-                {slides[currentSlide].tag}
-              </span>
-            </div>
-
-            {/* Titre principal */}
-            <h1 className="text-3xl md:text-6xl lg:text-6xl font-medium text-white mb-6 leading-tight" style={{ fontFamily: 'Nata Sans, sans-serif' }}>
-              {slides[currentSlide].title} <br />
-              <span className="text-mck-green-400">{slides[currentSlide].subtitle}</span>
-              <br />
-              {slides[currentSlide].subtitle2 && (
-                <span className="text-mck-green-400">{slides[currentSlide].subtitle2}</span>
-              )}
-            </h1>
-
-            {/* Sous-titre */}
-            <p className="text-xl font-thin md:text-2xl text-gray-200 mb-12 max-w-4xl leading-relaxed">
-              {slides[currentSlide].description}
-            </p>
-
-            {/* Bouton d'action */}
-            <div className="flex justify-start items-center mb-16">
-              <Button size="lg" className="bg-white hover:bg-gray-50 text-black px-8 py-4 text-lg rounded-full flex items-center gap-3 group shadow-lg">
-                Contactez-nous
-                <div className="bg-mck-green-500 rounded-full p-2 group-hover:bg-mck-green-600 transition-colors">
-                  <ArrowRight className="h-5 w-5 text-white group-hover:translate-x-1 transition-transform" />
-                </div>
-              </Button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Tags avec scroll horizontal sur toutes les tailles d'écran */}
-      <div className="absolute bottom-6 w-full">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 lg:ml-16 lg:pl-32">
-          <div
-            ref={scrollContainerRef}
-            className="flex items-center space-x-4 overflow-x-auto scrollbar-hide py-4"
-            style={{ scrollSnapType: 'x mandatory' }}
-          >
-            {slides.map((slide, index) => (
-              <div
-                key={index}
-                className="flex items-center flex-shrink-0"
-                data-tag-index={index}
-                style={{ scrollSnapAlign: 'center' }}
-              >
-                <button
-                  onClick={() => goToSlide(index)}
-                  onMouseEnter={() => setIsAutoPlaying(false)}
-                  onMouseLeave={() => setIsAutoPlaying(true)}
-                  className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 whitespace-nowrap ${currentSlide === index
-                    ? 'bg-mck-green-500/20 border border-mck-green-400/30 text-mck-green-400 backdrop-blur-sm scale-105'
-                    : 'bg-white/10 border border-white/20 text-white/70 hover:bg-white/20 hover:text-white'
-                    }`}
-                >
-                  {slide.tag}
-                </button>
-
-                {/* Petite barre de progression individuelle */}
-                {index < slides.length - 1 && (
-                  <div className="w-8 md:w-12 h-0.5 bg-white/20 mx-2 md:mx-4 relative">
-                    <div
-                      className="absolute h-full bg-mck-green-400 transition-all duration-300"
-                      style={{
-                        width: index < currentSlide ? '100%' :
-                          index === currentSlide ? `${progress}%` : '0%'
-                      }}
-                    />
+      {/* Zone de contenu principal - utilise la grille */}
+      <div className="relative z-10 grid grid-rows-[1fr_auto] h-full w-full">
+        {/* Contenu principal centré verticalement et aligné à gauche */}
+        <div className="flex items-center justify-start overflow-hidden">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-20 w-full min-w-0">
+            <div className="opacity-100 transition-opacity duration-700">
+              <div className="flex flex-col items-start space-y-3 sm:space-y-4 min-w-0 max-w-full">
+                {/* Tag pillule */}
+                <div className="w-full max-w-full">
+                  <div className="bg-mck-green-500/20 backdrop-blur-sm border border-mck-green-400/30 text-mck-green-400 px-3 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-medium break-words text-center max-w-fit">
+                    {slides[currentSlide].tag}
                   </div>
-                )}
+                </div>
+
+                {/* Titre principal */}
+                <h1 className="text-xl sm:text-2xl md:text-4xl lg:text-5xl font-medium text-white leading-tight text-left max-w-full break-words" style={{ fontFamily: 'Nata Sans, sans-serif' }}>
+                  {slides[currentSlide].title} <br />
+                  <span className="text-mck-green-400">{slides[currentSlide].subtitle}</span>
+                  <br />
+                  {slides[currentSlide].subtitle2 && (
+                    <span className="text-mck-green-400">{slides[currentSlide].subtitle2}</span>
+                  )}
+                </h1>
+
+                {/* Sous-titre */}
+                <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-200 w-full max-w-96 sm:max-w-52 md:max-w-2xl lg:max-w-3xl leading-relaxed text-left line-clamp-2 ">
+                  {slides[currentSlide].description}
+                </p>
+
+                {/* Bouton d'action */}
+                <div className="pt-4">
+                  <Button size="lg" className="bg-white hover:bg-gray-50 text-black px-6 py-3 text-base rounded-full flex items-center gap-3 group shadow-lg">
+                    Contactez-nous
+                    <div className="bg-mck-green-500 rounded-full p-2 group-hover:bg-mck-green-600 transition-colors">
+                      <ArrowRight className="h-4 w-4 text-white group-hover:translate-x-1 transition-transform" />
+                    </div>
+                  </Button>
+                </div>
               </div>
-            ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Tags avec scroll horizontal sur toutes les tailles d'écran */}
+        <div className="pt-4 md:pt-8 lg:pt-12 pb-8 md:pb-12 lg:pb-16">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-20">
+            <div
+              ref={scrollContainerRef}
+              className="flex items-center space-x-2 sm:space-x-4 overflow-x-auto scrollbar-hide py-4 -mx-2 px-2"
+              style={{ scrollSnapType: 'x mandatory' }}
+            >
+              {slides.map((slide, index) => (
+                <div
+                  key={index}
+                  className="flex items-center flex-shrink-0"
+                  data-tag-index={index}
+                  style={{ scrollSnapAlign: 'center' }}
+                >
+                  <button
+                    onClick={() => goToSlide(index)}
+                    onMouseEnter={() => setIsAutoPlaying(false)}
+                    onMouseLeave={() => setIsAutoPlaying(true)}
+                    className={`px-2 sm:px-3 md:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 whitespace-nowrap max-w-[120px] sm:max-w-none truncate ${currentSlide === index
+                      ? 'bg-mck-green-500/20 border border-mck-green-400/30 text-mck-green-400 backdrop-blur-sm scale-105'
+                      : 'bg-white/10 border border-white/20 text-white/70 hover:bg-white/20 hover:text-white'
+                      }`}
+                    title={slide.tag}
+                  >
+                    {slide.tag}
+                  </button>
+
+                  {/* Petite barre de progression individuelle */}
+                  {index < slides.length - 1 && (
+                    <div className="w-8 md:w-12 h-0.5 bg-white/20 mx-2 md:mx-4 relative">
+                      <div
+                        className="absolute h-full bg-mck-green-400 transition-all duration-300"
+                        style={{
+                          width: index < currentSlide ? '100%' :
+                            index === currentSlide ? `${progress}%` : '0%'
+                        }}
+                      />
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Bouton scroll animé */}
-      <div className="absolute bottom-8 right-8">
+      {/* Bouton scroll animé - optimisé pour grid */}
+      <div className="absolute bottom-4 right-4 md:bottom-8 md:right-8">
         <button
           onClick={scrollToNextSection}
-          className="bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full p-3 transition-all duration-300 group"
+          className="bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full p-2 md:p-3 transition-all duration-300 group"
         >
-          <ChevronDown className="h-6 w-6 text-white group-hover:translate-y-1 transition-transform animate-bounce" />
+          <ChevronDown className="h-5 w-5 md:h-6 md:w-6 text-white group-hover:translate-y-1 transition-transform animate-bounce" />
         </button>
       </div>
     </section>

@@ -9,6 +9,7 @@ import Index from "./pages/Index";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Emplois from "./pages/Emplois";
+import Insights from "./pages/Insights";
 import JobDetail from "./pages/JobDetail";
 import ArticleDetail from "./pages/ArticleDetail";
 import Login from "./pages/Login";
@@ -32,6 +33,7 @@ const App = () => (
           <Route path="/apropos" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/emplois" element={<Emplois />} />
+          <Route path="/insights" element={<Insights />} />
           <Route path="/emploi/:id" element={<JobDetail />} />
           <Route path="/article/:id" element={<ArticleDetail />} />
           <Route path="/connexion" element={<Login />} />

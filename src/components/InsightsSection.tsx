@@ -12,7 +12,7 @@ const InsightsSection = () => {
       id: 1,
       title: "L'avenir du recrutement en Afrique : tendances 2025",
       excerpt: "Une analyse approfondie des transformations du marché du travail africain et des nouvelles attentes des talents...",
-      author: "Marie Kouadio",
+      author: "Hippolyte K.",
       readTime: "8 min",
       category: "Tendances",
       date: "15 mai 2025",
@@ -22,7 +22,7 @@ const InsightsSection = () => {
       id: 2,
       title: "Intelligence Artificielle et recrutement : opportunités et défis",
       excerpt: "Comment l'IA révolutionne les processus de recrutement tout en préservant l'aspect humain de la sélection...",
-      author: "Jean-Baptiste Nkomo",
+      author: "Abdoul SAKO",
       readTime: "6 min",
       category: "Innovation",
       date: "10 mai 2025",
@@ -32,7 +32,7 @@ const InsightsSection = () => {
       id: 3,
       title: "Rétention des talents : stratégies gagnantes pour les entreprises africaines",
       excerpt: "Les meilleures pratiques pour fidéliser les hauts potentiels dans un contexte de forte mobilité...",
-      author: "Fatima Al-Rashid",
+      author: "Mohamed KABA",
       readTime: "5 min",
       category: "Stratégie RH",
       date: "5 mai 2025",
@@ -52,7 +52,7 @@ const InsightsSection = () => {
             Nos <span className="text-mck-blue-600">Insights</span>
           </h2>
           <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
-            Décryptage des tendances, analyses de marché et conseils d'experts 
+            Décryptage des tendances, analyses de marché et conseils d'experts
             pour anticiper l'évolution du recrutement en Afrique.
           </p>
         </div>
@@ -83,17 +83,17 @@ const InsightsSection = () => {
                       {insights.find(insight => insight.featured)?.category}
                     </Badge>
                   </div>
-                  
+
                   <Link to={`/article/${insights.find(insight => insight.featured)?.id}`}>
                     <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 mb-4 hover:text-mck-blue-600 transition-colors cursor-pointer leading-tight">
                       {insights.find(insight => insight.featured)?.title}
                     </h3>
                   </Link>
-                  
+
                   <p className="text-gray-600 mb-6 text-base sm:text-lg leading-relaxed">
                     {insights.find(insight => insight.featured)?.excerpt}
                   </p>
-                  
+
                   <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                     <div className="flex flex-wrap items-center text-sm text-gray-500 gap-1">
                       <span className="font-medium">Par {insights.find(insight => insight.featured)?.author}</span>
@@ -137,7 +137,7 @@ const InsightsSection = () => {
                 <p className="text-gray-600 leading-relaxed flex-grow">
                   {insight.excerpt}
                 </p>
-                
+
                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between pt-4 border-t border-gray-100 gap-4">
                   <div className="text-sm text-gray-500">
                     <p className="font-medium">{insight.author}</p>
@@ -160,12 +160,12 @@ const InsightsSection = () => {
             Restez informé de nos dernières publications
           </h3>
           <p className="text-gray-600 mb-8 max-w-2xl mx-auto text-sm sm:text-base">
-            Recevez chaque mois notre newsletter avec les dernières tendances du recrutement, 
+            Recevez chaque mois notre newsletter avec les dernières tendances du recrutement,
             nos analyses de marché et conseils d'experts.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
-            <input 
-              type="email" 
+            <input
+              type="email"
               placeholder="Votre email professionnel"
               className="flex-1 px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-mck-blue-600 text-sm sm:text-base"
             />

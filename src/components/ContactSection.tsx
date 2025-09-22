@@ -31,10 +31,10 @@ const ContactSection = () => {
         {/* En-tête */}
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            Contactez <span className="text-mck-blue-600">McK Africa</span>
+            Contactez <span className="text-mck-blue-600">mcK Africa</span>
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Prêt à transformer votre stratégie RH ? Nos experts sont là pour vous accompagner. 
+            Prêt à transformer votre stratégie RH ? Nos experts sont là pour vous accompagner.
             Parlons de vos défis et trouvons ensemble les solutions adaptées.
           </p>
         </div>
@@ -47,30 +47,16 @@ const ContactSection = () => {
                 <CardTitle className="text-xl text-mck-blue-600">Nos Bureaux</CardTitle>
               </CardHeader>
               <CardContent className="space-y-6">
+
                 <div>
-                  <h4 className="font-semibold text-gray-900 mb-2">🇳🇬 Siège Social - Lagos</h4>
+                  <h4 className="font-semibold text-gray-900 mb-2">🇲Bureau de Côte d'Ivoire</h4>
                   <p className="text-gray-600 text-sm">
-                    Victoria Island Business District<br />
-                    1004 Lagos, Nigeria<br />
-                    +234 1 234 5678
-                  </p>
-                </div>
-                
-                <div>
-                  <h4 className="font-semibold text-gray-900 mb-2">🇿🇦 Bureau du Cap</h4>
-                  <p className="text-gray-600 text-sm">
-                    Waterfront District<br />
-                    8001 Le Cap, Afrique du Sud<br />
-                    +27 21 123 4567
-                  </p>
-                </div>
-                
-                <div>
-                  <h4 className="font-semibold text-gray-900 mb-2">🇲🇦 Bureau de Casablanca</h4>
-                  <p className="text-gray-600 text-sm">
-                    Quartier des Affaires<br />
-                    20000 Casablanca, Maroc<br />
-                    +212 5 22 12 34 56
+
+                    info@mckafrica.com<br />
+                    +225 27 22 20 45 07 +225 07 07 20 17 65<br />
+                    Cocody - Riviéra, Abidjan - Cote d'Ivoire<br />
+                    BP 526 Abidjan Cidex 03<br />
+
                   </p>
                 </div>
               </CardContent>
@@ -116,7 +102,7 @@ const ContactSection = () => {
                         placeholder="Votre nom et prénom"
                       />
                     </div>
-                    
+
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">
                         Entreprise *
@@ -143,7 +129,7 @@ const ContactSection = () => {
                         placeholder="votre.email@entreprise.com"
                       />
                     </div>
-                    
+
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">
                         Téléphone
@@ -189,8 +175,8 @@ const ContactSection = () => {
                   </div>
 
                   <div className="flex justify-end">
-                    <Button 
-                      type="submit" 
+                    <Button
+                      type="submit"
                       size="lg"
                       className="bg-mck-blue-600 hover:bg-mck-blue-700 px-8"
                     >
@@ -207,7 +193,7 @@ const ContactSection = () => {
         <div className="mt-16 bg-mck-blue-600 text-white p-12 rounded-2xl text-center">
           <h3 className="text-2xl font-bold mb-4">Besoin urgent d'un recrutement ?</h3>
           <p className="text-mck-blue-100 mb-8 max-w-2xl mx-auto">
-            Pour les demandes urgentes, contactez directement notre équipe. 
+            Pour les demandes urgentes, contactez directement notre équipe.
             Nous nous engageons à vous répondre sous 2h en jours ouvrés.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

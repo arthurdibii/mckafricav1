@@ -60,10 +60,10 @@ const JobBoardSection = () => {
   // Filtrage des offres
   const filteredJobs = jobOffers.filter(job => {
     const matchesSearch = job.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         job.company.toLowerCase().includes(searchTerm.toLowerCase());
+      job.company.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesCountry = selectedCountry === 'all' || selectedCountry === '' || job.location.includes(selectedCountry);
     const matchesSector = selectedSector === 'all' || selectedSector === '' || job.sector === selectedSector;
-    
+
     return matchesSearch && matchesCountry && matchesSector;
   });
 
@@ -73,10 +73,10 @@ const JobBoardSection = () => {
         {/* En-tête */}
         <div className="text-center mb-12">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            Offres d'<span className="text-mck-blue-600">Emploi</span>
+            Nos Recrutements <span className="text-mck-blue-600">Exécutifs</span>
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Découvrez les meilleures opportunités de carrière avec les entreprises 
+            Découvrez les meilleures opportunités de carrière avec les entreprises
             les plus innovantes d'Afrique.
           </p>
         </div>
@@ -156,7 +156,7 @@ const JobBoardSection = () => {
               </CardHeader>
               <CardContent className="space-y-4">
                 <p className="text-gray-600">{job.description}</p>
-                
+
                 <div className="flex flex-wrap gap-2">
                   {job.tags.map((tag, index) => (
                     <Badge key={index} variant="secondary" className="bg-mck-blue-50 text-mck-blue-700">

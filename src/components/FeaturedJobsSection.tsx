@@ -7,20 +7,44 @@ import { ChevronLeft, ChevronRight, MapPin, Clock, Calendar } from 'lucide-react
 
 const FeaturedJobsSection = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isTransitioning, setIsTransitioning] = useState(true);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const autoScrollRef = useRef<NodeJS.Timeout | null>(null);
 
+  // Fonction pour vérifier si une offre est expirée
+  const isJobExpired = (deadline: string): boolean => {
+    try {
+      // Convertir la date française en format ISO
+      const [day, month, year] = deadline.split(' ');
+      const monthNames = {
+        'Janvier': '01', 'Février': '02', 'Mars': '03', 'Avril': '04',
+        'Mai': '05', 'Juin': '06', 'Juillet': '07', 'Août': '08',
+        'Septembre': '09', 'Octobre': '10', 'Novembre': '11', 'Décembre': '12'
+      };
+
+      const monthNumber = monthNames[month as keyof typeof monthNames];
+      if (!monthNumber) return false;
+
+      const deadlineDate = new Date(`${year}-${monthNumber}-${day.padStart(2, '0')}`);
+      const today = new Date();
+      today.setHours(0, 0, 0, 0); // Reset time to start of day
+
+      return deadlineDate < today;
+    } catch (error) {
+      console.error('Erreur lors du parsing de la date:', deadline, error);
+      return false;
+    }
+  };
+
   // Données des emplois en vedette (triées du plus récent au moins récent)
-  const featuredJobs = [
+  const allFeaturedJobs = [
     {
       id: 1,
       title: "Directeur Financier",
       company: "Groupe Bancaire International",
-      location: "Lagos, Nigeria",
+      location: "Abidjan, Côte d'Ivoire",
       type: "CDI",
       postedDate: "Il y a 1 jour",
-      deadline: "30 Mars 2024",
+      deadline: "30 Mars 2026",
       gradient: "from-purple-500 to-blue-600",
       tags: ["Leadership", "Finance", "Strategy"]
     },
@@ -28,10 +52,10 @@ const FeaturedJobsSection = () => {
       id: 2,
       title: "Head of Technology",
       company: "Fintech Innovation",
-      location: "Le Cap, Afrique du Sud",
+      location: "Yamoussoukro, Côte d'Ivoire",
       type: "CDI",
       postedDate: "Il y a 2 jours",
-      deadline: "25 Mars 2024",
+      deadline: "25 Mars 2026",
       gradient: "from-blue-500 to-cyan-600",
       tags: ["Tech Leadership", "Fintech", "Innovation"]
     },
@@ -39,10 +63,10 @@ const FeaturedJobsSection = () => {
       id: 3,
       title: "Responsable Développement Durable",
       company: "Multinationale Énergie",
-      location: "Casablanca, Maroc",
+      location: "San-Pédro, Côte d'Ivoire",
       type: "CDI",
       postedDate: "Il y a 3 jours",
-      deadline: "15 Mars 2024",
+      deadline: "15 Mars 2026",
       gradient: "from-green-500 to-teal-600",
       tags: ["Sustainability", "Energy", "CSR"]
     },
@@ -50,10 +74,10 @@ const FeaturedJobsSection = () => {
       id: 4,
       title: "Directeur Marketing",
       company: "Startup EdTech",
-      location: "Nairobi, Kenya",
+      location: "Bouaké, Côte d'Ivoire",
       type: "CDI",
       postedDate: "Il y a 5 jours",
-      deadline: "20 Mars 2024",
+      deadline: "20 Mars 2026",
       gradient: "from-orange-500 to-red-600",
       tags: ["Marketing", "EdTech", "Growth"]
     },
@@ -64,25 +88,36 @@ const FeaturedJobsSection = () => {
       location: "Abidjan, Côte d'Ivoire",
       type: "CDI",
       postedDate: "Il y a 1 semaine",
-      deadline: "25 Mars 2024",
+      deadline: "25 Mars 2026",
       gradient: "from-indigo-500 to-purple-600",
       tags: ["Consulting", "Strategy", "Leadership"]
+    },
+    // Ajout d'une offre expirée pour tester la logique
+    {
+      id: 6,
+      title: "Directeur des Opérations",
+      company: "Entreprise Logistique",
+      location: "Abidjan, Côte d'Ivoire",
+      type: "CDI",
+      postedDate: "Il y a 2 semaines",
+      deadline: "15 Janvier 2024", // Date expirée pour test
+      gradient: "from-gray-400 to-gray-600",
+      tags: ["Operations", "Logistics", "Management"]
     }
   ];
 
+  // Filtrer les offres non expirées
+  const featuredJobs = allFeaturedJobs.filter(job => !isJobExpired(job.deadline));
+
   const itemWidth = 336; // Largeur de chaque carte (320px) + marge (16px)
-  const maxIndex = featuredJobs.length - 1;
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // Créer un tableau infini en dupliquant les emplois
-  const infiniteJobs = [...featuredJobs, ...featuredJobs, ...featuredJobs];
-
-  // Défilement automatique avec boucle infinie
+  // Défilement automatique simplifié
   useEffect(() => {
     const startAutoScroll = () => {
       autoScrollRef.current = setInterval(() => {
         setCurrentIndex((prevIndex) => {
-          return prevIndex + 1;
+          return (prevIndex + 1) % featuredJobs.length;
         });
       }, 4000); // Change toutes les 4 secondes
     };
@@ -94,40 +129,34 @@ const FeaturedJobsSection = () => {
         clearInterval(autoScrollRef.current);
       }
     };
-  }, []);
-
-  // Gérer la transition infinie
-  useEffect(() => {
-    if (currentIndex >= featuredJobs.length) {
-      const timer = setTimeout(() => {
-        setIsTransitioning(false);
-        setCurrentIndex(0);
-        setTimeout(() => {
-          setIsTransitioning(true);
-        }, 50);
-      }, 500);
-      return () => clearTimeout(timer);
-    }
-  }, [currentIndex, featuredJobs.length]);
+  }, [featuredJobs.length]);
 
   // Arrêter le défilement automatique lors de l'interaction manuelle
   const stopAutoScroll = () => {
     if (autoScrollRef.current) {
       clearInterval(autoScrollRef.current);
+      autoScrollRef.current = null;
     }
   };
 
   // Reprendre le défilement automatique après interaction
   const resumeAutoScroll = () => {
-    stopAutoScroll();
-    setTimeout(() => {
-      autoScrollRef.current = setInterval(() => {
-        setCurrentIndex((prevIndex) => {
-          const nextIndex = prevIndex >= maxIndex ? 0 : prevIndex + 1;
-          return nextIndex;
-        });
-      }, 4000);
-    }, 5000); // Reprend après 5 secondes
+    stopAutoScroll(); // S'assurer qu'aucun timer n'est actif
+
+    // Utiliser un timeout pour reprendre après 3 secondes
+    const timeoutId = setTimeout(() => {
+      // Vérifier qu'aucun timer n'est déjà actif avant d'en créer un nouveau
+      if (!autoScrollRef.current) {
+        autoScrollRef.current = setInterval(() => {
+          setCurrentIndex((prevIndex) => {
+            return (prevIndex + 1) % featuredJobs.length;
+          });
+        }, 4000);
+      }
+    }, 3000); // Reprend après 3 secondes (réduit de 5 à 3)
+
+    // Nettoyer le timeout si le composant est démonté
+    return () => clearTimeout(timeoutId);
   };
 
   const scrollToIndex = (index: number) => {
@@ -137,21 +166,17 @@ const FeaturedJobsSection = () => {
   };
 
   const scrollLeft = () => {
-    if (currentIndex > 0) {
-      setCurrentIndex(currentIndex - 1);
-    } else {
-      setIsTransitioning(false);
-      setCurrentIndex(featuredJobs.length - 1);
-      setTimeout(() => {
-        setIsTransitioning(true);
-      }, 50);
-    }
+    setCurrentIndex((prevIndex) => {
+      return prevIndex === 0 ? featuredJobs.length - 1 : prevIndex - 1;
+    });
     stopAutoScroll();
     resumeAutoScroll();
   };
 
   const scrollRight = () => {
-    setCurrentIndex(currentIndex + 1);
+    setCurrentIndex((prevIndex) => {
+      return (prevIndex + 1) % featuredJobs.length;
+    });
     stopAutoScroll();
     resumeAutoScroll();
   };
@@ -162,7 +187,7 @@ const FeaturedJobsSection = () => {
         {/* En-tête */}
         <div className="text-center mb-12 px-4 sm:px-6 lg:px-8">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            Nos Emplois en <span className="text-mck-blue-600">Vedette</span>
+            Nos Recrutements <span className="text-mck-blue-600">Exécutifs</span>
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
             Découvrez les opportunités les plus récentes et les plus attractives
@@ -200,14 +225,14 @@ const FeaturedJobsSection = () => {
           >
             <div
               ref={containerRef}
-              className={`flex ${isTransitioning ? 'transition-transform duration-500 ease-in-out' : ''} pl-4`}
+              className="flex transition-transform duration-500 ease-in-out pl-4"
               style={{
                 transform: `translateX(-${currentIndex * itemWidth}px)`,
-                width: `${infiniteJobs.length * itemWidth}px`
+                width: `${featuredJobs.length * itemWidth}px`
               }}
             >
-              {infiniteJobs.map((job, index) => (
-                <div key={`${job.id}-${Math.floor(index / featuredJobs.length)}`} className="flex-shrink-0 w-80 mr-4">
+              {featuredJobs.map((job, index) => (
+                <div key={job.id} className="flex-shrink-0 w-80 mr-4">
                   <Card className="h-full bg-white hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border-0 shadow-lg overflow-hidden rounded-2xl flex flex-col">
                     {/* Header avec gradient */}
                     <div className={`bg-gradient-to-r ${job.gradient} p-6 text-white relative overflow-hidden`}>
