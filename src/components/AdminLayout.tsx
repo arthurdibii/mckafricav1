@@ -1,9 +1,10 @@
 
-import React, { useState } from 'react';
+import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import UserProfile from '@/components/UserProfile';
+import { useUIStore } from '@/stores';
 import {
   LayoutDashboard,
   FileText,
@@ -21,8 +22,15 @@ interface AdminLayoutProps {
 
 const AdminLayout = ({ children }: AdminLayoutProps) => {
   const location = useLocation();
-  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  // Utilisation du store UI Zustand
+  const {
+    sidebarCollapsed,
+    mobileMenuOpen,
+    setSidebarCollapsed,
+    setMobileMenuOpen,
+    toggleSidebar
+  } = useUIStore();
 
   // Données simulées de l'utilisateur connecté
   const currentUser = {
@@ -87,8 +95,8 @@ const AdminLayout = ({ children }: AdminLayoutProps) => {
               to={item.path}
               onClick={() => mobile && setMobileMenuOpen(false)}
               className={`flex items-center ${(sidebarCollapsed && !mobile) ? 'justify-center px-2' : 'space-x-2 sm:space-x-3 px-3'} py-2 sm:py-3 rounded-lg transition-colors ${isActive
-                  ? 'bg-mck-blue-500 text-white'
-                  : 'text-gray-700 hover:bg-gray-100'
+                ? 'bg-mck-blue-500 text-white'
+                : 'text-gray-700 hover:bg-gray-100'
                 }`}
               title={(sidebarCollapsed && !mobile) ? item.label : undefined}
             >
@@ -152,7 +160,7 @@ const AdminLayout = ({ children }: AdminLayoutProps) => {
             <Button
               variant="ghost"
               size="sm"
-              onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
+              onClick={toggleSidebar}
               className="hidden lg:flex text-gray-600 hover:text-gray-900 p-1"
             >
               {sidebarCollapsed ? <Menu className="h-5 w-5" /> : <ChevronLeft className="h-5 w-5" />}

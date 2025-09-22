@@ -3,6 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Link } from 'react-router-dom';
+import Navigation from '@/components/Navigation';
 
 const Insights = () => {
   // Articles et insights
@@ -44,6 +45,7 @@ const Insights = () => {
 
   return (
     <div className="min-h-screen bg-white">
+      <Navigation />
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-mck-blue-50 to-mck-gold-50 py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
