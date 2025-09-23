@@ -48,10 +48,10 @@ const InsightsSection = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* En-tête */}
         <div className="text-center mb-16">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-black mb-6">
             Nos <span className="text-mck-blue-600">Insights</span>
           </h2>
-          <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-lg sm:text-xl text-black max-w-3xl mx-auto">
             Décryptage des tendances, analyses de marché et conseils d'experts
             pour anticiper l'évolution du recrutement en Afrique.
           </p>
@@ -85,17 +85,17 @@ const InsightsSection = () => {
                   </div>
 
                   <Link to={`/article/${insights.find(insight => insight.featured)?.id}`}>
-                    <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 mb-4 hover:text-mck-blue-600 transition-colors cursor-pointer leading-tight">
+                    <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-black mb-4 hover:text-mck-blue-600 transition-colors cursor-pointer leading-tight">
                       {insights.find(insight => insight.featured)?.title}
                     </h3>
                   </Link>
 
-                  <p className="text-gray-600 mb-6 text-base sm:text-lg leading-relaxed">
+                  <p className="text-black mb-6 text-base sm:text-lg leading-relaxed">
                     {insights.find(insight => insight.featured)?.excerpt}
                   </p>
 
                   <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-                    <div className="flex flex-wrap items-center text-sm text-gray-500 gap-1">
+                    <div className="flex flex-wrap items-center text-sm text-black gap-1">
                       <span className="font-medium">Par {insights.find(insight => insight.featured)?.author}</span>
                       <span className="hidden sm:inline mx-2">•</span>
                       <span>{insights.find(insight => insight.featured)?.date}</span>
@@ -128,18 +128,18 @@ const InsightsSection = () => {
                   </Badge>
                 </div>
                 <Link to={`/article/${insight.id}`}>
-                  <CardTitle className="text-lg sm:text-xl font-bold text-gray-900 hover:text-mck-blue-600 transition-colors leading-tight cursor-pointer">
+                  <CardTitle className="text-lg sm:text-xl font-bold text-black hover:text-mck-blue-600 transition-colors leading-tight cursor-pointer">
                     {insight.title}
                   </CardTitle>
                 </Link>
               </CardHeader>
               <CardContent className="space-y-4 flex-grow flex flex-col">
-                <p className="text-gray-600 leading-relaxed flex-grow">
+                <p className="text-black leading-relaxed flex-grow">
                   {insight.excerpt}
                 </p>
 
                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between pt-4 border-t border-gray-100 gap-4">
-                  <div className="text-sm text-gray-500">
+                  <div className="text-sm text-black">
                     <p className="font-medium">{insight.author}</p>
                     <p>{insight.date} • {insight.readTime} de lecture</p>
                   </div>
@@ -156,10 +156,10 @@ const InsightsSection = () => {
 
         {/* Newsletter */}
         <div className="bg-mck-blue-50 p-8 sm:p-12 rounded-2xl text-center">
-          <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4">
+          <h3 className="text-xl sm:text-2xl font-bold text-black mb-4">
             Restez informé de nos dernières publications
           </h3>
-          <p className="text-gray-600 mb-8 max-w-2xl mx-auto text-sm sm:text-base">
+          <p className="text-black mb-8 max-w-2xl mx-auto text-sm sm:text-base">
             Recevez chaque mois notre newsletter avec les dernières tendances du recrutement,
             nos analyses de marché et conseils d'experts.
           </p>

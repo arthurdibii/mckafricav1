@@ -109,7 +109,7 @@ const Navigation = () => {
             <button
               onClick={() => setIsOpen(!isOpen)}
               className={`p-2 rounded-md transition-colors duration-200 ${!isHomePage || isScrolled
-                ? 'text-gray-700 hover:text-mck-blue-500 hover:bg-gray-100'
+                ? 'text-black hover:text-mck-blue-500 hover:bg-gray-100'
                 : 'text-white hover:text-mck-green-400 hover:bg-white/10'
                 }`}
               aria-label="Menu"
@@ -147,7 +147,7 @@ const Navigation = () => {
                     <a
                       href={item.href}
                       className={`px-3 py-3 text-base font-medium transition-colors duration-200 flex items-center gap-1 hover:border-b-2 hover:border-mck-green-500 whitespace-nowrap ${!isHomePage || isScrolled
-                        ? 'text-gray-700 hover:text-mck-blue-500'
+                        ? 'text-black hover:text-mck-blue-500'
                         : 'text-white hover:text-mck-green-400'
                         }`}
                     >
@@ -173,7 +173,7 @@ const Navigation = () => {
                             <div className="space-y-2 lg:space-y-3">
                               <div>
                                 <div className="flex items-center justify-between mb-1">
-                                  <Link to="/human-capital?tab=management-executive-recruitment" className="text-xs lg:text-sm font-medium text-gray-900 hover:text-mck-green-500 transition-colors duration-200 flex-1 pr-2">Management & Executive Recruitment</Link>
+                                  <Link to="/human-capital?tab=management-executive-recruitment" className="text-xs lg:text-sm font-medium text-black hover:text-mck-green-500 transition-colors duration-200 flex-1 pr-2">Management & Executive Recruitment</Link>
                                   <button
                                     onClick={() => toggleSubSection('managementRecruitment')}
                                     className="text-mck-blue-500 hover:text-mck-green-500 transition-colors duration-200 flex-shrink-0"
@@ -182,12 +182,12 @@ const Navigation = () => {
                                   </button>
                                 </div>
                                 <div className={`transition-all duration-300 overflow-hidden ${expandedSubSections.managementRecruitment ? 'max-h-32 opacity-100' : 'max-h-0 opacity-0'}`}>
-                                  <p className="text-xs text-gray-600 leading-relaxed">Recherche et sélection de cadres dirigeants et managers expérimentés pour des postes stratégiques</p>
+                                  <p className="text-xs text-black leading-relaxed">Recherche et sélection de cadres dirigeants et managers expérimentés pour des postes stratégiques</p>
                                 </div>
                               </div>
                               <div>
                                 <div className="flex items-center justify-between mb-1">
-                                  <Link to="/human-capital?tab=human-capital-advisory" className="text-xs lg:text-sm font-medium text-gray-900 hover:text-mck-green-500 transition-colors duration-200 flex-1 pr-2">Human Capital Advisory</Link>
+                                  <Link to="/human-capital?tab=human-capital-advisory" className="text-xs lg:text-sm font-medium text-black hover:text-mck-green-500 transition-colors duration-200 flex-1 pr-2">Human Capital Advisory</Link>
                                   <button
                                     onClick={() => toggleSubSection('humanCapitalAdvisory')}
                                     className="text-mck-blue-500 hover:text-mck-green-500 transition-colors duration-200 flex-shrink-0"
@@ -196,12 +196,12 @@ const Navigation = () => {
                                   </button>
                                 </div>
                                 <div className={`transition-all duration-300 overflow-hidden ${expandedSubSections.humanCapitalAdvisory ? 'max-h-32 opacity-100' : 'max-h-0 opacity-0'}`}>
-                                  <p className="text-xs text-gray-600 leading-relaxed">Diagnostic organisationnel RH, Design et mise en oeuvre de politiques de Gestion des talents, Formation, Rémunération, Culture d'Entreprise</p>
+                                  <p className="text-xs text-black leading-relaxed">Diagnostic organisationnel RH, Design et mise en oeuvre de politiques de Gestion des talents, Formation, Rémunération, Culture d'Entreprise</p>
                                 </div>
                               </div>
                               <div>
                                 <div className="flex items-center justify-between mb-1">
-                                  <Link to="/human-capital?tab=development-programs" className="text-xs lg:text-sm font-medium text-gray-900 hover:text-mck-green-500 transition-colors duration-200 flex-1 pr-2">Development Programs & Executive Certification</Link>
+                                  <Link to="/human-capital?tab=development-programs" className="text-xs lg:text-sm font-medium text-black hover:text-mck-green-500 transition-colors duration-200 flex-1 pr-2">Development Programs & Executive Certification</Link>
                                   <button
                                     onClick={() => toggleSubSection('developmentPrograms')}
                                     className="text-mck-blue-500 hover:text-mck-green-500 transition-colors duration-200 flex-shrink-0"
@@ -210,7 +210,7 @@ const Navigation = () => {
                                   </button>
                                 </div>
                                 <div className={`transition-all duration-300 overflow-hidden ${expandedSubSections.developmentPrograms ? 'max-h-32 opacity-100' : 'max-h-0 opacity-0'}`}>
-                                  <p className="text-xs text-gray-600 leading-relaxed">Programmes Certifiants Exécutif en partenariat avec des institutions académiques, Programmes de développement sur mesure</p>
+                                  <p className="text-xs text-black leading-relaxed">Programmes Certifiants Exécutif en partenariat avec des institutions académiques, Programmes de développement sur mesure</p>
                                 </div>
                               </div>
                             </div>
@@ -222,7 +222,7 @@ const Navigation = () => {
                             <div className="space-y-2 lg:space-y-3">
                               <div>
                                 <div className="flex items-center justify-between mb-1">
-                                  <Link to="/strategie-performance?tab=performance-organisations" className="text-xs lg:text-sm font-medium text-gray-900 hover:text-mck-green-500 transition-colors duration-200 flex-1 pr-2">Performance des Organisations</Link>
+                                  <Link to="/strategie-performance?tab=performance-organisations" className="text-xs lg:text-sm font-medium text-black hover:text-mck-green-500 transition-colors duration-200 flex-1 pr-2">Performance des Organisations</Link>
                                   <button
                                     onClick={() => toggleSubSection('performanceOrganisations')}
                                     className="text-mck-blue-500 hover:text-mck-green-500 transition-colors duration-200 flex-shrink-0"
@@ -231,12 +231,12 @@ const Navigation = () => {
                                   </button>
                                 </div>
                                 <div className={`transition-all duration-300 overflow-hidden ${expandedSubSections.performanceOrganisations ? 'max-h-32 opacity-100' : 'max-h-0 opacity-0'}`}>
-                                  <p className="text-xs text-gray-600 leading-relaxed">Performance opérationnelle, Optimisation des lignes d'activités, des revenus et coûts, Qualité service</p>
+                                  <p className="text-xs text-black leading-relaxed">Performance opérationnelle, Optimisation des lignes d'activités, des revenus et coûts, Qualité service</p>
                                 </div>
                               </div>
                               <div>
                                 <div className="flex items-center justify-between mb-1">
-                                  <Link to="/strategie-performance?tab=transformation-organisations" className="text-xs lg:text-sm font-medium text-gray-900 hover:text-mck-green-500 transition-colors duration-200 flex-1 pr-2">Transformation des Organisations</Link>
+                                  <Link to="/strategie-performance?tab=transformation-organisations" className="text-xs lg:text-sm font-medium text-black hover:text-mck-green-500 transition-colors duration-200 flex-1 pr-2">Transformation des Organisations</Link>
                                   <button
                                     onClick={() => toggleSubSection('transformationOrganisations')}
                                     className="text-mck-blue-500 hover:text-mck-green-500 transition-colors duration-200 flex-shrink-0"
@@ -245,7 +245,7 @@ const Navigation = () => {
                                   </button>
                                 </div>
                                 <div className={`transition-all duration-300 overflow-hidden ${expandedSubSections.transformationOrganisations ? 'max-h-32 opacity-100' : 'max-h-0 opacity-0'}`}>
-                                  <p className="text-xs text-gray-600 leading-relaxed">Conduite de Changement, Revue et Re-engineering de Process et Procédures, Culture d'entreprise</p>
+                                  <p className="text-xs text-black leading-relaxed">Conduite de Changement, Revue et Re-engineering de Process et Procédures, Culture d'entreprise</p>
                                 </div>
                               </div>
                             </div>
@@ -253,7 +253,7 @@ const Navigation = () => {
                             <div className="space-y-2 lg:space-y-3">
                               <div>
                                 <div className="flex items-center justify-between mb-1">
-                                  <Link to="/technologie-innovation?tab=market-intelligence" className="text-xs lg:text-sm font-medium text-gray-900 hover:text-mck-green-500 transition-colors duration-200 flex-1 pr-2">Market Intelligence</Link>
+                                  <Link to="/technologie-innovation?tab=market-intelligence" className="text-xs lg:text-sm font-medium text-black hover:text-mck-green-500 transition-colors duration-200 flex-1 pr-2">Market Intelligence</Link>
                                   <button
                                     onClick={() => toggleSubSection('marketIntelligence')}
                                     className="text-mck-blue-500 hover:text-mck-green-500 transition-colors duration-200 flex-shrink-0"
@@ -262,12 +262,12 @@ const Navigation = () => {
                                   </button>
                                 </div>
                                 <div className={`transition-all duration-300 overflow-hidden ${expandedSubSections.marketIntelligence ? 'max-h-32 opacity-100' : 'max-h-0 opacity-0'}`}>
-                                  <p className="text-xs text-gray-600 leading-relaxed">Big Data, Data Mining & Data Analytics, Veille & Innovations, Benchmarks & Baromètres de Marchés</p>
+                                  <p className="text-xs text-black leading-relaxed">Big Data, Data Mining & Data Analytics, Veille & Innovations, Benchmarks & Baromètres de Marchés</p>
                                 </div>
                               </div>
                               <div>
                                 <div className="flex items-center justify-between mb-1">
-                                  <Link to="/technologie-innovation?tab=it-solutions" className="text-xs lg:text-sm font-medium text-gray-900 hover:text-mck-green-500 transition-colors duration-200 flex-1 pr-2">IT Solutions</Link>
+                                  <Link to="/technologie-innovation?tab=it-solutions" className="text-xs lg:text-sm font-medium text-black hover:text-mck-green-500 transition-colors duration-200 flex-1 pr-2">IT Solutions</Link>
                                   <button
                                     onClick={() => toggleSubSection('itSolutions')}
                                     className="text-mck-blue-500 hover:text-mck-green-500 transition-colors duration-200 flex-shrink-0"
@@ -276,7 +276,7 @@ const Navigation = () => {
                                   </button>
                                 </div>
                                 <div className={`transition-all duration-300 overflow-hidden ${expandedSubSections.itSolutions ? 'max-h-32 opacity-100' : 'max-h-0 opacity-0'}`}>
-                                  <p className="text-xs text-gray-600 leading-relaxed">Conseil et Assistance Technologie/Digital, Automatisation Processus, Gouvernance et Sécurité IT</p>
+                                  <p className="text-xs text-black leading-relaxed">Conseil et Assistance Technologie/Digital, Automatisation Processus, Gouvernance et Sécurité IT</p>
                                 </div>
                               </div>
                             </div>
@@ -288,7 +288,7 @@ const Navigation = () => {
                             <div className="space-y-2 lg:space-y-3">
                               <div>
                                 <div className="flex items-center justify-between mb-1">
-                                  <Link to="/employabilite-jeunes?tab=evaluation-competences" className="text-xs lg:text-sm font-medium text-gray-900 hover:text-mck-green-500 transition-colors duration-200 flex-1 pr-2">Évaluation des compétences (DISEC)</Link>
+                                  <Link to="/employabilite-jeunes?tab=evaluation-competences" className="text-xs lg:text-sm font-medium text-black hover:text-mck-green-500 transition-colors duration-200 flex-1 pr-2">Évaluation des compétences (DISEC)</Link>
                                   <button
                                     onClick={() => toggleSubSection('evaluationCompetences')}
                                     className="text-mck-blue-500 hover:text-mck-green-500 transition-colors duration-200 flex-shrink-0"
@@ -297,12 +297,12 @@ const Navigation = () => {
                                   </button>
                                 </div>
                                 <div className={`transition-all duration-300 overflow-hidden ${expandedSubSections.evaluationCompetences ? 'max-h-32 opacity-100' : 'max-h-0 opacity-0'}`}>
-                                  <p className="text-xs text-gray-600 leading-relaxed">Diagnostic et évaluation des compétences techniques et comportementales</p>
+                                  <p className="text-xs text-black leading-relaxed">Diagnostic et évaluation des compétences techniques et comportementales</p>
                                 </div>
                               </div>
                               <div>
                                 <div className="flex items-center justify-between mb-1">
-                                  <Link to="/employabilite-jeunes?tab=developpement-competences" className="text-xs lg:text-sm font-medium text-gray-900 hover:text-mck-green-500 transition-colors duration-200 flex-1 pr-2">Développement des compétences</Link>
+                                  <Link to="/employabilite-jeunes?tab=developpement-competences" className="text-xs lg:text-sm font-medium text-black hover:text-mck-green-500 transition-colors duration-200 flex-1 pr-2">Développement des compétences</Link>
                                   <button
                                     onClick={() => toggleSubSection('developpementCompetences')}
                                     className="text-mck-blue-500 hover:text-mck-green-500 transition-colors duration-200 flex-shrink-0"
@@ -311,12 +311,12 @@ const Navigation = () => {
                                   </button>
                                 </div>
                                 <div className={`transition-all duration-300 overflow-hidden ${expandedSubSections.developpementCompetences ? 'max-h-32 opacity-100' : 'max-h-0 opacity-0'}`}>
-                                  <p className="text-xs text-gray-600 leading-relaxed">JEDE-eX, iWorkshop</p>
+                                  <p className="text-xs text-black leading-relaxed">JEDE-eX, iWorkshop</p>
                                 </div>
                               </div>
                               <div>
                                 <div className="flex items-center justify-between mb-1">
-                                  <Link to="/employabilite-jeunes?tab=insertion-professionnelle" className="text-xs lg:text-sm font-medium text-gray-900 hover:text-mck-green-500 transition-colors duration-200 flex-1 pr-2">Insertion Professionnelle</Link>
+                                  <Link to="/employabilite-jeunes?tab=insertion-professionnelle" className="text-xs lg:text-sm font-medium text-black hover:text-mck-green-500 transition-colors duration-200 flex-1 pr-2">Insertion Professionnelle</Link>
                                   <button
                                     onClick={() => toggleSubSection('insertionProfessionnelle')}
                                     className="text-mck-blue-500 hover:text-mck-green-500 transition-colors duration-200 flex-shrink-0"
@@ -325,7 +325,7 @@ const Navigation = () => {
                                   </button>
                                 </div>
                                 <div className={`transition-all duration-300 overflow-hidden ${expandedSubSections.insertionProfessionnelle ? 'max-h-32 opacity-100' : 'max-h-0 opacity-0'}`}>
-                                  <p className="text-xs text-gray-600 leading-relaxed">inPec-Hub, eLiT Time, SAJEDE, GEO</p>
+                                  <p className="text-xs text-black leading-relaxed">inPec-Hub, eLiT Time, SAJEDE, GEO</p>
                                 </div>
                               </div>
                             </div>
@@ -333,7 +333,7 @@ const Navigation = () => {
                             <div className="space-y-2 lg:space-y-3">
                               <div>
                                 <div className="flex items-center justify-between mb-1">
-                                  <Link to="/sourcing-interim?tab=travail-temporaire" className="text-xs lg:text-sm font-medium text-gray-900 hover:text-mck-green-500 transition-colors duration-200 flex-1 pr-2">Travail Temporaire & Sous-Traitance</Link>
+                                  <Link to="/sourcing-interim?tab=travail-temporaire" className="text-xs lg:text-sm font-medium text-black hover:text-mck-green-500 transition-colors duration-200 flex-1 pr-2">Travail Temporaire & Sous-Traitance</Link>
                                   <button
                                     onClick={() => toggleSubSection('travailTemporaire')}
                                     className="text-mck-blue-500 hover:text-mck-green-500 transition-colors duration-200 flex-shrink-0"
@@ -342,12 +342,12 @@ const Navigation = () => {
                                   </button>
                                 </div>
                                 <div className={`transition-all duration-300 overflow-hidden ${expandedSubSections.travailTemporaire ? 'max-h-32 opacity-100' : 'max-h-0 opacity-0'}`}>
-                                  <p className="text-xs text-gray-600 leading-relaxed">Solutions de staffing temporaire et sous-traitance de services</p>
+                                  <p className="text-xs text-black leading-relaxed">Solutions de staffing temporaire et sous-traitance de services</p>
                                 </div>
                               </div>
                               <div>
                                 <div className="flex items-center justify-between mb-1">
-                                  <Link to="/sourcing-interim?tab=recrutement-expert" className="text-xs lg:text-sm font-medium text-gray-900 hover:text-mck-green-500 transition-colors duration-200 flex-1 pr-2">Recrutement Expert métier</Link>
+                                  <Link to="/sourcing-interim?tab=recrutement-expert" className="text-xs lg:text-sm font-medium text-black hover:text-mck-green-500 transition-colors duration-200 flex-1 pr-2">Recrutement Expert métier</Link>
                                   <button
                                     onClick={() => toggleSubSection('recrutementExpert')}
                                     className="text-mck-blue-500 hover:text-mck-green-500 transition-colors duration-200 flex-shrink-0"
@@ -356,12 +356,12 @@ const Navigation = () => {
                                   </button>
                                 </div>
                                 <div className={`transition-all duration-300 overflow-hidden ${expandedSubSections.recrutementExpert ? 'max-h-32 opacity-100' : 'max-h-0 opacity-0'}`}>
-                                  <p className="text-xs text-gray-600 leading-relaxed">Low & Middle Management</p>
+                                  <p className="text-xs text-black leading-relaxed">Low & Middle Management</p>
                                 </div>
                               </div>
                               <div>
                                 <div className="flex items-center justify-between mb-1">
-                                  <Link to="/sourcing-interim?tab=administration-rh" className="text-xs lg:text-sm font-medium text-gray-900 hover:text-mck-green-500 transition-colors duration-200 flex-1 pr-2">Administration RH</Link>
+                                  <Link to="/sourcing-interim?tab=administration-rh" className="text-xs lg:text-sm font-medium text-black hover:text-mck-green-500 transition-colors duration-200 flex-1 pr-2">Administration RH</Link>
                                   <button
                                     onClick={() => toggleSubSection('administrationRH')}
                                     className="text-mck-blue-500 hover:text-mck-green-500 transition-colors duration-200 flex-shrink-0"
@@ -370,7 +370,7 @@ const Navigation = () => {
                                   </button>
                                 </div>
                                 <div className={`transition-all duration-300 overflow-hidden ${expandedSubSections.administrationRH ? 'max-h-32 opacity-100' : 'max-h-0 opacity-0'}`}>
-                                  <p className="text-xs text-gray-600 leading-relaxed">Externalisation paie, on site</p>
+                                  <p className="text-xs text-black leading-relaxed">Externalisation paie, on site</p>
                                 </div>
                               </div>
                             </div>

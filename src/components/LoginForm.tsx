@@ -86,10 +86,10 @@ const LoginForm = ({ onClose }: LoginFormProps) => {
               className="h-12 w-auto mx-auto"
             />
           </div>
-          <CardTitle className="text-2xl font-bold text-gray-900">
+          <CardTitle className="text-2xl font-bold text-black">
             Connexion à votre espace
           </CardTitle>
-          <p className="text-gray-600 mt-2">
+          <p className="text-black mt-2">
             Accédez à votre compte McK Africa
           </p>
         </CardHeader>
@@ -174,9 +174,9 @@ const LoginForm = ({ onClose }: LoginFormProps) => {
                   onClick={() => setShowPassword(!showPassword)}
                 >
                   {showPassword ? (
-                    <EyeOff className="h-4 w-4 text-gray-400" />
+                    <EyeOff className="h-4 w-4 text-gray-800" />
                   ) : (
-                    <Eye className="h-4 w-4 text-gray-400" />
+                    <Eye className="h-4 w-4 text-gray-800" />
                   )}
                 </Button>
               </div>
@@ -190,7 +190,7 @@ const LoginForm = ({ onClose }: LoginFormProps) => {
                   type="checkbox"
                   className="h-4 w-4 text-mck-blue-600 focus:ring-mck-blue-500 border-gray-300 rounded"
                 />
-                <Label htmlFor="remember" className="ml-2 text-sm text-gray-700">
+                <Label htmlFor="remember" className="ml-2 text-sm text-black">
                   Se souvenir de moi
                 </Label>
               </div>
@@ -211,7 +211,7 @@ const LoginForm = ({ onClose }: LoginFormProps) => {
 
             {/* Liens d'inscription */}
             <div className="text-center space-y-2">
-              <p className="text-sm text-gray-600">
+              <p className="text-sm text-black">
                 Vous n'avez pas encore de compte ?
               </p>
               <div className="space-y-1">

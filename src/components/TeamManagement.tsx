@@ -67,7 +67,7 @@ const TeamManagement = () => {
       <div className="flex justify-between items-center">
         <div>
           <h3 className="text-lg font-semibold">Gestion de l'Équipe</h3>
-          <p className="text-gray-600">Gérez les membres de votre équipe et leurs coefficients</p>
+          <p className="text-black">Gérez les membres de votre équipe et leurs coefficients</p>
         </div>
         <Button 
           onClick={() => setInviteModalOpen(true)}
@@ -99,9 +99,9 @@ const TeamManagement = () => {
                         {member.status === 'active' ? 'Actif' : 'En attente'}
                       </Badge>
                     </div>
-                    <p className="text-sm text-gray-600">{member.email}</p>
+                    <p className="text-sm text-black">{member.email}</p>
                     <div className="flex items-center space-x-2 mt-1">
-                      <span className="text-sm text-gray-500">{member.role}</span>
+                      <span className="text-sm text-black">{member.role}</span>
                       <Badge variant="outline" className="text-xs">
                         Coeff. {member.coefficient}x
                       </Badge>

@@ -44,10 +44,10 @@ const JobPipeline = () => {
           <div className="mb-6 lg:mb-8">
             <div className="flex flex-col space-y-4 lg:flex-row lg:items-center lg:justify-between lg:space-y-0">
               <div className="min-w-0 flex-1">
-                <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 mb-2 truncate">
+                <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold text-black mb-2 truncate">
                   Pipeline - {jobData.title}
                 </h1>
-                <div className="flex flex-wrap items-center gap-2 sm:gap-3 lg:gap-4 text-sm text-gray-600">
+                <div className="flex flex-wrap items-center gap-2 sm:gap-3 lg:gap-4 text-sm text-black">
                   <span className="truncate">{jobData.location}</span>
                   <span className="hidden sm:inline">•</span>
                   <span>{jobData.type}</span>
@@ -67,7 +67,7 @@ const JobPipeline = () => {
                   <div className="text-lg sm:text-xl lg:text-2xl xl:text-3xl font-bold text-mck-blue-600 mb-1">
                     8
                   </div>
-                  <div className="text-xs sm:text-sm lg:text-base text-gray-600 leading-tight">
+                  <div className="text-xs sm:text-sm lg:text-base text-black leading-tight">
                     Nouvelles candidatures
                   </div>
                 </CardContent>
@@ -78,7 +78,7 @@ const JobPipeline = () => {
                   <div className="text-lg sm:text-xl lg:text-2xl xl:text-3xl font-bold text-orange-600 mb-1">
                     5
                   </div>
-                  <div className="text-xs sm:text-sm lg:text-base text-gray-600 leading-tight">
+                  <div className="text-xs sm:text-sm lg:text-base text-black leading-tight">
                     En entretien
                   </div>
                 </CardContent>
@@ -89,7 +89,7 @@ const JobPipeline = () => {
                   <div className="text-lg sm:text-xl lg:text-2xl xl:text-3xl font-bold text-green-600 mb-1">
                     2
                   </div>
-                  <div className="text-xs sm:text-sm lg:text-base text-gray-600 leading-tight">
+                  <div className="text-xs sm:text-sm lg:text-base text-black leading-tight">
                     Offres en cours
                   </div>
                 </CardContent>
@@ -100,7 +100,7 @@ const JobPipeline = () => {
                   <div className="text-lg sm:text-xl lg:text-2xl xl:text-3xl font-bold text-purple-600 mb-1">
                     4.2/5
                   </div>
-                  <div className="text-xs sm:text-sm lg:text-base text-gray-600 leading-tight">
+                  <div className="text-xs sm:text-sm lg:text-base text-black leading-tight">
                     Score moyen
                   </div>
                 </CardContent>

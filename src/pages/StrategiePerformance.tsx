@@ -118,7 +118,7 @@ const StrategiePerformance = () => {
                   onClick={() => setActiveTab(tab.id)}
                   className={`flex items-center space-x-2 px-6 py-3 rounded-lg font-medium transition-all duration-200 ${activeTab === tab.id
                     ? 'bg-mck-blue-600 text-white shadow-lg'
-                    : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-200'
+                    : 'bg-white text-black hover:bg-gray-100 border border-gray-200'
                     }`}
                 >
                   <IconComponent className="w-5 h-5" />
@@ -143,18 +143,18 @@ const StrategiePerformance = () => {
                     <currentTab.icon className="w-6 h-6 text-purple-600" />
                   </div>
                 </div>
-                <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                <h2 className="text-3xl md:text-4xl font-bold text-black mb-4">
                   {currentTab.title}
                 </h2>
-                <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                <p className="text-xl text-black max-w-3xl mx-auto">
                   {currentTab.description}
                 </p>
               </div>
 
               {/* Vue d'ensemble */}
               <div className="bg-gradient-to-r from-purple-50 to-mck-blue-50 rounded-2xl p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">Vue d'ensemble</h3>
-                <p className="text-lg text-gray-700 leading-relaxed">
+                <h3 className="text-2xl font-bold text-black mb-4">Vue d'ensemble</h3>
+                <p className="text-lg text-black leading-relaxed">
                   {currentTab.content.overview}
                 </p>
               </div>
@@ -174,7 +174,7 @@ const StrategiePerformance = () => {
                       {currentTab.content.services.map((service, index) => (
                         <li key={index} className="flex items-start space-x-3">
                           <CheckCircle className="w-5 h-5 text-purple-600 mt-0.5 flex-shrink-0" />
-                          <span className="text-gray-700">{service}</span>
+                          <span className="text-black">{service}</span>
                         </li>
                       ))}
                     </ul>
@@ -194,7 +194,7 @@ const StrategiePerformance = () => {
                       {currentTab.content.benefits.map((benefit, index) => (
                         <li key={index} className="flex items-start space-x-3">
                           <CheckCircle className="w-5 h-5 text-orange-500 mt-0.5 flex-shrink-0" />
-                          <span className="text-gray-700">{benefit}</span>
+                          <span className="text-black">{benefit}</span>
                         </li>
                       ))}
                     </ul>
@@ -204,7 +204,7 @@ const StrategiePerformance = () => {
 
               {/* Méthodologie */}
               <div className="bg-white border border-gray-200 rounded-2xl p-8 shadow-lg">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">
+                <h3 className="text-2xl font-bold text-black mb-6 text-center">
                   Notre Méthodologie
                 </h3>
                 <div className="grid md:grid-cols-4 gap-6">
@@ -212,29 +212,29 @@ const StrategiePerformance = () => {
                     <div className="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center mx-auto mb-4">
                       <span className="text-purple-600 font-bold text-lg">1</span>
                     </div>
-                    <h4 className="font-semibold text-gray-900 mb-2">Diagnostic</h4>
-                    <p className="text-sm text-gray-600">Analyse approfondie de la situation actuelle</p>
+                    <h4 className="font-semibold text-black mb-2">Diagnostic</h4>
+                    <p className="text-sm text-black">Analyse approfondie de la situation actuelle</p>
                   </div>
                   <div className="text-center">
                     <div className="w-12 h-12 bg-mck-blue-100 rounded-xl flex items-center justify-center mx-auto mb-4">
                       <span className="text-mck-blue-600 font-bold text-lg">2</span>
                     </div>
-                    <h4 className="font-semibold text-gray-900 mb-2">Stratégie</h4>
-                    <p className="text-sm text-gray-600">Définition de la feuille de route</p>
+                    <h4 className="font-semibold text-black mb-2">Stratégie</h4>
+                    <p className="text-sm text-black">Définition de la feuille de route</p>
                   </div>
                   <div className="text-center">
                     <div className="w-12 h-12 bg-mck-gold-100 rounded-xl flex items-center justify-center mx-auto mb-4">
                       <span className="text-mck-gold-600 font-bold text-lg">3</span>
                     </div>
-                    <h4 className="font-semibold text-gray-900 mb-2">Mise en œuvre</h4>
-                    <p className="text-sm text-gray-600">Déploiement des solutions</p>
+                    <h4 className="font-semibold text-black mb-2">Mise en œuvre</h4>
+                    <p className="text-sm text-black">Déploiement des solutions</p>
                   </div>
                   <div className="text-center">
                     <div className="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center mx-auto mb-4">
                       <span className="text-green-600 font-bold text-lg">4</span>
                     </div>
-                    <h4 className="font-semibold text-gray-900 mb-2">Suivi</h4>
-                    <p className="text-sm text-gray-600">Mesure des résultats et ajustements</p>
+                    <h4 className="font-semibold text-black mb-2">Suivi</h4>
+                    <p className="text-sm text-black">Mesure des résultats et ajustements</p>
                   </div>
                 </div>
               </div>

@@ -191,10 +191,10 @@ const AdminJobs = () => {
       <div className="space-y-6">
         <div className="flex justify-between items-center">
           <div>
-            <h2 className="text-3xl font-bold text-gray-900 mb-2">
+            <h2 className="text-3xl font-bold text-black mb-2">
               Gestion des Offres d'Emploi
             </h2>
-            <p className="text-gray-600">
+            <p className="text-black">
               Gérez toutes vos offres d'emploi et suivez les candidatures
             </p>
           </div>
@@ -211,7 +211,7 @@ const AdminJobs = () => {
         <Card>
           <CardContent className="p-6">
             <div className="relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-800 h-4 w-4" />
               <Input
                 placeholder="Rechercher par titre ou localisation..."
                 value={searchTerm}
@@ -230,28 +230,28 @@ const AdminJobs = () => {
                 <div className="flex items-center justify-between">
                   <div className="flex-1">
                     <div className="flex items-center space-x-4 mb-2">
-                      <h3 className="text-xl font-semibold text-gray-900">
+                      <h3 className="text-xl font-semibold text-black">
                         {job.title}
                       </h3>
                       <Badge 
                         variant={job.status === 'ouvert' ? 'default' : 'secondary'}
-                        className={job.status === 'ouvert' ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800'}
+                        className={job.status === 'ouvert' ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-black'}
                       >
                         {job.status}
                       </Badge>
                     </div>
-                    <div className="flex items-center space-x-6 text-sm text-gray-600 mb-3">
+                    <div className="flex items-center space-x-6 text-sm text-black mb-3">
                       <span>{job.location}</span>
                       <span>{job.type}</span>
                       <span>Créée le {new Date(job.createdDate).toLocaleDateString('fr-FR')}</span>
                     </div>
-                    <p className="text-gray-600 mb-4">
+                    <p className="text-black mb-4">
                       {job.description.substring(0, 100)}...
                     </p>
                     <div className="flex items-center space-x-4">
                       <div className="flex items-center space-x-2">
-                        <Users className="h-4 w-4 text-gray-400" />
-                        <span className="text-sm text-gray-600">
+                        <Users className="h-4 w-4 text-gray-800" />
+                        <span className="text-sm text-black">
                           {job.candidates} candidat{job.candidates > 1 ? 's' : ''}
                         </span>
                       </div>
@@ -313,7 +313,7 @@ const AdminJobs = () => {
 
         {filteredJobs.length === 0 && (
           <div className="text-center py-12">
-            <p className="text-gray-500">Aucune offre trouvée</p>
+            <p className="text-black">Aucune offre trouvée</p>
           </div>
         )}
 

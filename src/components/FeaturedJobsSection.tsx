@@ -112,16 +112,41 @@ const FeaturedJobsSection = () => {
   const itemWidth = 336; // Largeur de chaque carte (320px) + marge (16px)
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // Défilement automatique simplifié
+  // Pour le scroll infini, on duplique les éléments
+  const duplicatedJobs = [...featuredJobs, ...featuredJobs, ...featuredJobs];
+  const totalJobs = duplicatedJobs.length;
+  const originalLength = featuredJobs.length;
+
+  // Défilement automatique avec scroll infini
   useEffect(() => {
     const startAutoScroll = () => {
       autoScrollRef.current = setInterval(() => {
         setCurrentIndex((prevIndex) => {
-          return (prevIndex + 1) % featuredJobs.length;
+          const nextIndex = prevIndex + 1;
+          // Si on atteint la fin du deuxième set, on revient au début du deuxième set
+          if (nextIndex >= originalLength * 2) {
+            // Reset sans transition pour créer l'illusion du scroll infini
+            setTimeout(() => {
+              if (containerRef.current) {
+                containerRef.current.style.transition = 'none';
+                setCurrentIndex(originalLength);
+                // Remettre la transition après le reset
+                setTimeout(() => {
+                  if (containerRef.current) {
+                    containerRef.current.style.transition = 'transform 500ms ease-in-out';
+                  }
+                }, 50);
+              }
+            }, 500);
+            return nextIndex;
+          }
+          return nextIndex;
         });
       }, 4000); // Change toutes les 4 secondes
     };
 
+    // Commencer au milieu du premier set dupliqué pour permettre le scroll dans les deux directions
+    setCurrentIndex(originalLength);
     startAutoScroll();
 
     return () => {
@@ -129,7 +154,7 @@ const FeaturedJobsSection = () => {
         clearInterval(autoScrollRef.current);
       }
     };
-  }, [featuredJobs.length]);
+  }, [featuredJobs.length, originalLength]);
 
   // Arrêter le défilement automatique lors de l'interaction manuelle
   const stopAutoScroll = () => {
@@ -160,14 +185,32 @@ const FeaturedJobsSection = () => {
   };
 
   const scrollToIndex = (index: number) => {
-    setCurrentIndex(index);
+    // Ajuster l'index pour pointer vers le bon élément dans le set du milieu
+    setCurrentIndex(originalLength + index);
     stopAutoScroll();
     resumeAutoScroll();
   };
 
   const scrollLeft = () => {
     setCurrentIndex((prevIndex) => {
-      return prevIndex === 0 ? featuredJobs.length - 1 : prevIndex - 1;
+      const newIndex = prevIndex - 1;
+      // Si on va en dessous du premier set, on passe au dernier élément du deuxième set
+      if (newIndex < 0) {
+        // Reset sans transition
+        setTimeout(() => {
+          if (containerRef.current) {
+            containerRef.current.style.transition = 'none';
+            setCurrentIndex(originalLength * 2 - 1);
+            setTimeout(() => {
+              if (containerRef.current) {
+                containerRef.current.style.transition = 'transform 500ms ease-in-out';
+              }
+            }, 50);
+          }
+        }, 500);
+        return newIndex;
+      }
+      return newIndex;
     });
     stopAutoScroll();
     resumeAutoScroll();
@@ -175,7 +218,23 @@ const FeaturedJobsSection = () => {
 
   const scrollRight = () => {
     setCurrentIndex((prevIndex) => {
-      return (prevIndex + 1) % featuredJobs.length;
+      const nextIndex = prevIndex + 1;
+      // Si on atteint la fin du deuxième set, on revient au début du deuxième set
+      if (nextIndex >= originalLength * 2) {
+        setTimeout(() => {
+          if (containerRef.current) {
+            containerRef.current.style.transition = 'none';
+            setCurrentIndex(originalLength);
+            setTimeout(() => {
+              if (containerRef.current) {
+                containerRef.current.style.transition = 'transform 500ms ease-in-out';
+              }
+            }, 50);
+          }
+        }, 500);
+        return nextIndex;
+      }
+      return nextIndex;
     });
     stopAutoScroll();
     resumeAutoScroll();
@@ -186,12 +245,11 @@ const FeaturedJobsSection = () => {
       <div className="w-full">
         {/* En-tête */}
         <div className="text-center mb-12 px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+          <h2 className="text-4xl md:text-5xl font-bold text-black mb-6">
             Nos Recrutements <span className="text-mck-blue-600">Exécutifs</span>
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
-            Découvrez les opportunités les plus récentes et les plus attractives
-            sélectionnées par nos experts en recrutement.
+          <p className="text-xl text-black max-w-3xl mx-auto mb-8">
+            Découvrez les opportunités les plus récentes et les plus attractives.
           </p>
         </div>
 
@@ -228,11 +286,11 @@ const FeaturedJobsSection = () => {
               className="flex transition-transform duration-500 ease-in-out pl-4"
               style={{
                 transform: `translateX(-${currentIndex * itemWidth}px)`,
-                width: `${featuredJobs.length * itemWidth}px`
+                width: `${duplicatedJobs.length * itemWidth}px`
               }}
             >
-              {featuredJobs.map((job, index) => (
-                <div key={job.id} className="flex-shrink-0 w-80 mr-4">
+              {duplicatedJobs.map((job, index) => (
+                <div key={`${job.id}-${index}`} className="flex-shrink-0 w-80 mr-4">
                   <Card className="h-full bg-white hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border-0 shadow-lg overflow-hidden rounded-2xl flex flex-col">
                     {/* Header avec gradient */}
                     <div className={`bg-gradient-to-r ${job.gradient} p-6 text-white relative overflow-hidden`}>
@@ -257,17 +315,17 @@ const FeaturedJobsSection = () => {
                     <CardContent className="p-6 space-y-4 flex-1 flex flex-col">
                       {/* Informations de base */}
                       <div className="space-y-3 flex-1">
-                        <div className="flex items-center text-gray-600">
+                        <div className="flex items-center text-black">
                           <MapPin className="h-4 w-4 mr-2 text-mck-blue-500" />
                           <span className="text-sm">{job.location}</span>
                         </div>
 
-                        <div className="flex items-center text-gray-600">
+                        <div className="flex items-center text-black">
                           <Calendar className="h-4 w-4 mr-2 text-red-500" />
                           <span className="text-sm font-medium text-red-600">Deadline: {job.deadline}</span>
                         </div>
 
-                        <div className="flex items-center text-gray-500">
+                        <div className="flex items-center text-black">
                           <Clock className="h-4 w-4 mr-2" />
                           <span className="text-xs">{job.postedDate}</span>
                         </div>
@@ -313,18 +371,22 @@ const FeaturedJobsSection = () => {
 
           {/* Indicateurs de pagination */}
           <div className="flex justify-center mt-8 space-x-2">
-            {featuredJobs.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => scrollToIndex(index)}
-                className={`w-3 h-3 rounded-full transition-all duration-200 ${index === (currentIndex % featuredJobs.length)
-                  ? 'bg-mck-blue-600 scale-125'
-                  : 'bg-gray-300 hover:bg-mck-blue-300'
-                  }`}
-                onMouseEnter={stopAutoScroll}
-                onMouseLeave={resumeAutoScroll}
-              />
-            ))}
+            {featuredJobs.map((_, index) => {
+              // Calculer l'index actuel dans le contexte des éléments originaux
+              const normalizedCurrentIndex = currentIndex % originalLength;
+              return (
+                <button
+                  key={index}
+                  onClick={() => scrollToIndex(index)}
+                  className={`w-3 h-3 rounded-full transition-all duration-200 ${index === normalizedCurrentIndex
+                    ? 'bg-mck-blue-600 scale-125'
+                    : 'bg-gray-300 hover:bg-mck-blue-300'
+                    }`}
+                  onMouseEnter={stopAutoScroll}
+                  onMouseLeave={resumeAutoScroll}
+                />
+              );
+            })}
           </div>
         </div>
 

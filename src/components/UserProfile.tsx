@@ -37,10 +37,10 @@ const UserProfile = ({ user }: UserProfileProps) => {
             )}
           </div>
           <div className="text-left">
-            <div className="text-sm font-medium text-gray-900">
+            <div className="text-sm font-medium text-black">
               {user.firstName} {user.lastName}
             </div>
-            <div className="text-xs text-gray-500">
+            <div className="text-xs text-black">
               {user.role}
             </div>
           </div>

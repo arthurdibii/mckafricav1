@@ -79,7 +79,7 @@ const AdminLayout = ({ children }: AdminLayoutProps) => {
           </div>
         )}
         {(!sidebarCollapsed || mobile) && (
-          <p className="text-xs sm:text-sm text-gray-600 mt-2">Dashboard Admin</p>
+          <p className="text-xs sm:text-sm text-black mt-2">Dashboard Admin</p>
         )}
       </div>
 
@@ -96,7 +96,7 @@ const AdminLayout = ({ children }: AdminLayoutProps) => {
               onClick={() => mobile && setMobileMenuOpen(false)}
               className={`flex items-center ${(sidebarCollapsed && !mobile) ? 'justify-center px-2' : 'space-x-2 sm:space-x-3 px-3'} py-2 sm:py-3 rounded-lg transition-colors ${isActive
                 ? 'bg-mck-blue-500 text-white'
-                : 'text-gray-700 hover:bg-gray-100'
+                : 'text-black hover:bg-gray-100'
                 }`}
               title={(sidebarCollapsed && !mobile) ? item.label : undefined}
             >
@@ -151,7 +151,7 @@ const AdminLayout = ({ children }: AdminLayoutProps) => {
               variant="ghost"
               size="sm"
               onClick={() => setMobileMenuOpen(true)}
-              className="lg:hidden text-gray-600 hover:text-gray-900 p-1"
+              className="lg:hidden text-black hover:text-black p-1"
             >
               <Menu className="h-5 w-5" />
             </Button>
@@ -161,12 +161,12 @@ const AdminLayout = ({ children }: AdminLayoutProps) => {
               variant="ghost"
               size="sm"
               onClick={toggleSidebar}
-              className="hidden lg:flex text-gray-600 hover:text-gray-900 p-1"
+              className="hidden lg:flex text-black hover:text-black p-1"
             >
               {sidebarCollapsed ? <Menu className="h-5 w-5" /> : <ChevronLeft className="h-5 w-5" />}
             </Button>
 
-            <h1 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-900 truncate">
+            <h1 className="text-lg sm:text-xl lg:text-2xl font-bold text-black truncate">
               Administration McK Africa
             </h1>
           </div>

@@ -183,7 +183,7 @@ const HeroSection = () => {
                 </div>
 
                 {/* Titre principal */}
-                <h1 className="text-xl sm:text-2xl md:text-4xl lg:text-5xl font-medium text-white leading-tight text-left max-w-full break-words" style={{ fontFamily: 'Nata Sans, sans-serif' }}>
+                <h1 className="text-xl sm:text-2xl md:text-4xl lg:text-5xl font-medium text-white leading-tight text-left max-w-full break-words font-nata">
                   {slides[currentSlide].title} <br />
                   <span className="text-mck-green-400">{slides[currentSlide].subtitle}</span>
                   <br />

@@ -29,7 +29,7 @@ const KanbanColumn = ({ id, title, candidates, onCandidateClick }: KanbanColumnP
     <div className="flex-shrink-0 w-64 sm:w-72 lg:w-80">
       <Card className="h-full bg-white">
         <CardHeader className="pb-2 sm:pb-3 px-3 sm:px-4 pt-3 sm:pt-4">
-          <CardTitle className="text-sm sm:text-base font-medium text-gray-700 flex items-center justify-between">
+          <CardTitle className="text-sm sm:text-base font-medium text-black flex items-center justify-between">
             <span className="truncate mr-2 leading-tight">{title}</span>
             <Badge variant="secondary" className="text-xs shrink-0 px-1.5 sm:px-2 py-0.5 sm:py-1 min-w-[1.5rem] flex items-center justify-center">
               {candidates.length}
@@ -52,7 +52,7 @@ const KanbanColumn = ({ id, title, candidates, onCandidateClick }: KanbanColumnP
                 ))}
                 {/* Zone de drop vide pour faciliter le drop */}
                 {candidates.length === 0 && (
-                  <div className="h-20 flex items-center justify-center text-gray-400 text-sm border-2 border-dashed border-gray-200 rounded-lg">
+                  <div className="h-20 flex items-center justify-center text-gray-800 text-sm border-2 border-dashed border-gray-200 rounded-lg">
                     Déposez ici
                   </div>
                 )}

@@ -89,11 +89,11 @@ const ArticleDetail = () => {
                 )}
               </div>
               
-              <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+              <h1 className="text-4xl md:text-5xl font-bold text-black mb-6 leading-tight">
                 {articleData.title}
               </h1>
               
-              <div className="flex flex-wrap items-center gap-6 text-gray-600 mb-6">
+              <div className="flex flex-wrap items-center gap-6 text-black mb-6">
                 <div className="flex items-center gap-2">
                   <User className="h-4 w-4" />
                   <span>Par {articleData.author}</span>
@@ -122,7 +122,7 @@ const ArticleDetail = () => {
             <div className="prose prose-lg max-w-none mb-12">
               <div 
                 dangerouslySetInnerHTML={{ __html: articleData.content }}
-                className="text-gray-700 leading-relaxed space-y-6 [&>h2]:text-2xl [&>h2]:font-bold [&>h2]:text-gray-900 [&>h2]:mt-8 [&>h2]:mb-4 [&>p]:mb-6"
+                className="text-black leading-relaxed space-y-6 [&>h2]:text-2xl [&>h2]:font-bold [&>h2]:text-black [&>h2]:mt-8 [&>h2]:mb-4 [&>p]:mb-6"
               />
             </div>
 
@@ -136,10 +136,10 @@ const ArticleDetail = () => {
                     {articleData.author.split(' ').map(n => n[0]).join('')}
                   </div>
                   <div className="flex-1">
-                    <h3 className="text-xl font-bold text-gray-900 mb-2">
+                    <h3 className="text-xl font-bold text-black mb-2">
                       {articleData.author}
                     </h3>
-                    <p className="text-gray-600 leading-relaxed">
+                    <p className="text-black leading-relaxed">
                       {articleData.authorBio}
                     </p>
                   </div>
@@ -149,7 +149,7 @@ const ArticleDetail = () => {
 
             {/* Articles connexes */}
             <section>
-              <h2 className="text-2xl font-bold text-gray-900 mb-6">Articles connexes</h2>
+              <h2 className="text-2xl font-bold text-black mb-6">Articles connexes</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {articleData.relatedArticles.map((article) => (
                   <Card key={article.id} className="hover:shadow-lg transition-shadow duration-300 cursor-pointer border-0 shadow-md">
@@ -157,10 +157,10 @@ const ArticleDetail = () => {
                       <Badge variant="outline" className="mb-3 border-mck-blue-600 text-mck-blue-600">
                         {article.category}
                       </Badge>
-                      <h3 className="font-bold text-gray-900 mb-3 hover:text-mck-blue-600 transition-colors">
+                      <h3 className="font-bold text-black mb-3 hover:text-mck-blue-600 transition-colors">
                         {article.title}
                       </h3>
-                      <p className="text-sm text-gray-500">
+                      <p className="text-sm text-black">
                         {article.readTime} de lecture
                       </p>
                     </CardContent>

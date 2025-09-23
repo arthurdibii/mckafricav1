@@ -72,10 +72,10 @@ const JobBoardSection = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* En-tête */}
         <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+          <h2 className="text-4xl md:text-5xl font-bold text-black mb-6">
             Nos Recrutements <span className="text-mck-blue-600">Exécutifs</span>
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-xl text-black max-w-3xl mx-auto">
             Découvrez les meilleures opportunités de carrière avec les entreprises
             les plus innovantes d'Afrique.
           </p>
@@ -122,7 +122,7 @@ const JobBoardSection = () => {
 
         {/* Résultats de recherche */}
         <div className="mb-8">
-          <p className="text-gray-600">
+          <p className="text-black">
             <span className="font-semibold">{filteredJobs.length}</span> offre(s) trouvée(s)
           </p>
         </div>
@@ -136,7 +136,7 @@ const JobBoardSection = () => {
                   <div className="flex-1">
                     <div className="flex items-center gap-3 mb-2">
                       <Link to={`/emploi/${job.id}`}>
-                        <CardTitle className="text-xl font-bold text-gray-900 hover:text-mck-blue-600 transition-colors cursor-pointer">
+                        <CardTitle className="text-xl font-bold text-black hover:text-mck-blue-600 transition-colors cursor-pointer">
                           {job.title}
                         </CardTitle>
                       </Link>
@@ -147,15 +147,15 @@ const JobBoardSection = () => {
                       )}
                     </div>
                     <p className="text-mck-blue-600 font-semibold mb-1">{job.company}</p>
-                    <p className="text-gray-600 text-sm">{job.location} • {job.type} • {job.experience}</p>
+                    <p className="text-black text-sm">{job.location} • {job.type} • {job.experience}</p>
                   </div>
                   <div className="text-right">
-                    <p className="text-gray-500 text-sm">{job.postedDate}</p>
+                    <p className="text-black text-sm">{job.postedDate}</p>
                   </div>
                 </div>
               </CardHeader>
               <CardContent className="space-y-4">
-                <p className="text-gray-600">{job.description}</p>
+                <p className="text-black">{job.description}</p>
 
                 <div className="flex flex-wrap gap-2">
                   {job.tags.map((tag, index) => (
@@ -167,7 +167,7 @@ const JobBoardSection = () => {
 
                 <div className="flex justify-between items-center pt-4">
                   <div className="flex items-center gap-4">
-                    <span className="text-sm text-gray-600">
+                    <span className="text-sm text-black">
                       <strong>Salaire:</strong> {job.salary}
                     </span>
                     <Badge variant="outline" className="border-mck-gold-400 text-mck-gold-600">
@@ -192,10 +192,10 @@ const JobBoardSection = () => {
 
         {/* Call to Action pour candidats */}
         <div className="text-center mt-16 bg-white p-12 rounded-2xl shadow-lg">
-          <h3 className="text-2xl font-bold text-gray-900 mb-4">
+          <h3 className="text-2xl font-bold text-black mb-4">
             Vous ne trouvez pas l'offre idéale ?
           </h3>
-          <p className="text-gray-600 mb-8">
+          <p className="text-black mb-8">
             Créez votre profil candidat et recevez les offres qui correspondent à vos critères.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

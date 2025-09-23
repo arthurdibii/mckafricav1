@@ -134,7 +134,7 @@ const EmployabiliteJeunes = () => {
                   onClick={() => setActiveTab(tab.id)}
                   className={`flex items-center space-x-2 px-6 py-3 rounded-lg font-medium transition-all duration-200 ${activeTab === tab.id
                     ? 'bg-emerald-600 text-white shadow-lg'
-                    : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-200'
+                    : 'bg-white text-black hover:bg-gray-100 border border-gray-200'
                     }`}
                 >
                   <IconComponent className="w-5 h-5" />
@@ -159,18 +159,18 @@ const EmployabiliteJeunes = () => {
                     <currentTab.icon className="w-6 h-6 text-emerald-600" />
                   </div>
                 </div>
-                <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                <h2 className="text-3xl md:text-4xl font-bold text-black mb-4">
                   {currentTab.title}
                 </h2>
-                <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                <p className="text-xl text-black max-w-3xl mx-auto">
                   {currentTab.description}
                 </p>
               </div>
 
               {/* Vue d'ensemble */}
               <div className="bg-gradient-to-r from-emerald-50 to-teal-50 rounded-2xl p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">Vue d'ensemble</h3>
-                <p className="text-lg text-gray-700 leading-relaxed">
+                <h3 className="text-2xl font-bold text-black mb-4">Vue d'ensemble</h3>
+                <p className="text-lg text-black leading-relaxed">
                   {currentTab.content.overview}
                 </p>
               </div>
@@ -190,7 +190,7 @@ const EmployabiliteJeunes = () => {
                       {currentTab.content.services.map((service, index) => (
                         <li key={index} className="flex items-start space-x-3">
                           <CheckCircle className="w-5 h-5 text-emerald-600 mt-0.5 flex-shrink-0" />
-                          <span className="text-gray-700">{service}</span>
+                          <span className="text-black">{service}</span>
                         </li>
                       ))}
                     </ul>
@@ -210,7 +210,7 @@ const EmployabiliteJeunes = () => {
                       {currentTab.content.benefits.map((benefit, index) => (
                         <li key={index} className="flex items-start space-x-3">
                           <CheckCircle className="w-5 h-5 text-teal-600 mt-0.5 flex-shrink-0" />
-                          <span className="text-gray-700">{benefit}</span>
+                          <span className="text-black">{benefit}</span>
                         </li>
                       ))}
                     </ul>
@@ -220,7 +220,7 @@ const EmployabiliteJeunes = () => {
 
               {/* Secteurs d'intervention */}
               <div className="bg-white border border-gray-200 rounded-2xl p-8 shadow-lg">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center flex items-center justify-center space-x-2">
+                <h3 className="text-2xl font-bold text-black mb-6 text-center flex items-center justify-center space-x-2">
                   <Award className="w-6 h-6 text-emerald-600" />
                   <span>Secteurs d'Intervention</span>
                 </h3>
@@ -230,7 +230,7 @@ const EmployabiliteJeunes = () => {
                       <div className="w-10 h-10 bg-emerald-100 rounded-lg flex items-center justify-center mx-auto mb-3">
                         <Briefcase className="w-5 h-5 text-emerald-600" />
                       </div>
-                      <p className="text-sm font-medium text-gray-900">{sector}</p>
+                      <p className="text-sm font-medium text-black">{sector}</p>
                     </div>
                   ))}
                 </div>
@@ -261,7 +261,7 @@ const EmployabiliteJeunes = () => {
 
               {/* Processus d'accompagnement */}
               <div className="bg-gradient-to-r from-gray-50 to-emerald-50 rounded-2xl p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">
+                <h3 className="text-2xl font-bold text-black mb-6 text-center">
                   Notre Processus d'Accompagnement
                 </h3>
                 <div className="grid md:grid-cols-4 gap-6">
@@ -269,29 +269,29 @@ const EmployabiliteJeunes = () => {
                     <div className="w-12 h-12 bg-emerald-100 rounded-xl flex items-center justify-center mx-auto mb-4">
                       <span className="text-emerald-600 font-bold text-lg">1</span>
                     </div>
-                    <h4 className="font-semibold text-gray-900 mb-2">Évaluation</h4>
-                    <p className="text-sm text-gray-600">Diagnostic des compétences et aspirations</p>
+                    <h4 className="font-semibold text-black mb-2">Évaluation</h4>
+                    <p className="text-sm text-black">Diagnostic des compétences et aspirations</p>
                   </div>
                   <div className="text-center">
                     <div className="w-12 h-12 bg-teal-100 rounded-xl flex items-center justify-center mx-auto mb-4">
                       <span className="text-teal-600 font-bold text-lg">2</span>
                     </div>
-                    <h4 className="font-semibold text-gray-900 mb-2">Formation</h4>
-                    <p className="text-sm text-gray-600">Programmes adaptés et certifiants</p>
+                    <h4 className="font-semibold text-black mb-2">Formation</h4>
+                    <p className="text-sm text-black">Programmes adaptés et certifiants</p>
                   </div>
                   <div className="text-center">
                     <div className="w-12 h-12 bg-cyan-100 rounded-xl flex items-center justify-center mx-auto mb-4">
                       <span className="text-cyan-600 font-bold text-lg">3</span>
                     </div>
-                    <h4 className="font-semibold text-gray-900 mb-2">Insertion</h4>
-                    <p className="text-sm text-gray-600">Placement en emploi ou création d'entreprise</p>
+                    <h4 className="font-semibold text-black mb-2">Insertion</h4>
+                    <p className="text-sm text-black">Placement en emploi ou création d'entreprise</p>
                   </div>
                   <div className="text-center">
                     <div className="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center mx-auto mb-4">
                       <span className="text-green-600 font-bold text-lg">4</span>
                     </div>
-                    <h4 className="font-semibold text-gray-900 mb-2">Suivi</h4>
-                    <p className="text-sm text-gray-600">Accompagnement post-insertion</p>
+                    <h4 className="font-semibold text-black mb-2">Suivi</h4>
+                    <p className="text-sm text-black">Accompagnement post-insertion</p>
                   </div>
                 </div>
               </div>

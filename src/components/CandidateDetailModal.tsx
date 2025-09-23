@@ -126,7 +126,7 @@ const CandidateDetailModal = ({ candidate, onClose }: CandidateDetailModalProps)
       <Star
         key={i}
         className={`${sizeClass} ${
-          i < Math.floor(score) ? 'text-yellow-400 fill-current' : 'text-gray-300'
+          i < Math.floor(score) ? 'text-yellow-400 fill-current' : 'text-gray-700'
         }`}
       />
     ));
@@ -171,14 +171,14 @@ const CandidateDetailModal = ({ candidate, onClose }: CandidateDetailModalProps)
             </div>
             
             <div className="flex-1">
-              <h2 className="text-2xl font-bold text-gray-900">
+              <h2 className="text-2xl font-bold text-black">
                 {candidate.name}
               </h2>
               <p className="text-lg text-mck-blue-600 font-medium mb-2">
                 Candidat - {candidate.stage.replace('-', ' ').toUpperCase()}
               </p>
               
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-600">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-black">
                 <div className="flex items-center">
                   <Mail className="h-4 w-4 mr-2" />
                   {candidate.email}
@@ -211,7 +211,7 @@ const CandidateDetailModal = ({ candidate, onClose }: CandidateDetailModalProps)
               <div className="flex items-center">
                 {renderStars(parseFloat(calculateWeightedScore()))}
               </div>
-              <div className="text-sm text-gray-600">
+              <div className="text-sm text-black">
                 Basée sur {evaluators.length} évaluations
               </div>
             </div>
@@ -230,10 +230,10 @@ const CandidateDetailModal = ({ candidate, onClose }: CandidateDetailModalProps)
                   >
                     <div className="flex items-center justify-between">
                       <div className="flex items-center space-x-3">
-                        <User className="h-5 w-5 text-gray-600" />
+                        <User className="h-5 w-5 text-black" />
                         <div>
                           <div className="font-medium">{evaluator.name}</div>
-                          <div className="text-sm text-gray-600">{evaluator.role}</div>
+                          <div className="text-sm text-black">{evaluator.role}</div>
                         </div>
                         <Badge className="bg-blue-100 text-blue-800">
                           Coeff. {evaluator.coefficient}
@@ -254,7 +254,7 @@ const CandidateDetailModal = ({ candidate, onClose }: CandidateDetailModalProps)
                       </div>
                     </div>
                     
-                    <div className="mt-2 text-sm text-gray-700 italic">
+                    <div className="mt-2 text-sm text-black italic">
                       "{evaluator.comment}"
                     </div>
                   </div>
@@ -274,7 +274,7 @@ const CandidateDetailModal = ({ candidate, onClose }: CandidateDetailModalProps)
                               </div>
                             </div>
                             
-                            <div className="text-xs text-gray-600">
+                            <div className="text-xs text-black">
                               {editingComment?.evaluatorId === evaluator.id && 
                                editingComment?.axisName === axis.name ? (
                                 <div className="space-y-2">

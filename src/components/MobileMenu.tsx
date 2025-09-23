@@ -18,52 +18,119 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isHomePage, isScrolled }) => {
     setCurrentLevel,
     setSelectedExpertise,
     setBreadcrumb,
-    setIsOpen
+    setIsOpen,
+    navigateToSubExpertises,
+    navigateBack
   } = useNavigationStore();
 
-  // Données des expertises
+  // Données des expertises avec sous-expertises et onglets
   const expertisesData = {
     'human-capital': {
       title: 'Human Capital',
       route: '/human-capital',
-      items: [
-        { id: 'management-executive-recruitment', title: 'Management & Executive Recruitment', href: '/human-capital#management-executive-recruitment' },
-        { id: 'human-capital-advisory', title: 'Human Capital Advisory', href: '/human-capital#human-capital-advisory' },
-        { id: 'development-programs', title: 'Development Programs & Executive Certification', href: '/human-capital#development-programs' }
+      subExpertises: [
+        {
+          id: 'management-executive-recruitment',
+          title: 'Management & Executive Recruitment',
+          tab: 'management-executive-recruitment',
+          route: '/human-capital?tab=management-executive-recruitment'
+        },
+        {
+          id: 'human-capital-advisory',
+          title: 'Human Capital Advisory',
+          tab: 'human-capital-advisory',
+          route: '/human-capital?tab=human-capital-advisory'
+        },
+        {
+          id: 'development-programs',
+          title: 'Development Programs & Executive Certification',
+          tab: 'development-programs',
+          route: '/human-capital?tab=development-programs'
+        }
       ]
     },
     'strategie-performance': {
       title: 'Stratégie, Performance & Transformation',
       route: '/strategie-performance',
-      items: [
-        { id: 'performance-organisations', title: 'Performance des Organisations', href: '/strategie-performance#performance-organisations' },
-        { id: 'transformation-organisations', title: 'Transformation des Organisations', href: '/strategie-performance#transformation-organisations' }
+      subExpertises: [
+        {
+          id: 'performance-organisations',
+          title: 'Performance des Organisations',
+          tab: 'performance-organisations',
+          route: '/strategie-performance?tab=performance-organisations'
+        },
+        {
+          id: 'transformation-organisations',
+          title: 'Transformation des Organisations',
+          tab: 'transformation-organisations',
+          route: '/strategie-performance?tab=transformation-organisations'
+        }
       ]
     },
     'technologie-innovation': {
       title: 'Technologie & Innovation',
       route: '/technologie-innovation',
-      items: [
-        { id: 'market-intelligence', title: 'Market Intelligence', href: '/technologie-innovation#market-intelligence' },
-        { id: 'it-solutions', title: 'IT Solutions', href: '/technologie-innovation#it-solutions' }
+      subExpertises: [
+        {
+          id: 'market-intelligence',
+          title: 'Market Intelligence',
+          tab: 'market-intelligence',
+          route: '/technologie-innovation?tab=market-intelligence'
+        },
+        {
+          id: 'it-solutions',
+          title: 'IT Solutions',
+          tab: 'it-solutions',
+          route: '/technologie-innovation?tab=it-solutions'
+        }
       ]
     },
     'employabilite-jeunes': {
       title: 'Employabilité des Jeunes',
       route: '/employabilite-jeunes',
-      items: [
-        { id: 'evaluation-competences', title: 'Évaluation des compétences (DISEC)', href: '/employabilite-jeunes#evaluation-competences' },
-        { id: 'developpement-competences', title: 'Développement des compétences', href: '/employabilite-jeunes#developpement-competences' },
-        { id: 'insertion-professionnelle', title: 'Insertion Professionnelle', href: '/employabilite-jeunes#insertion-professionnelle' }
+      subExpertises: [
+        {
+          id: 'evaluation-competences',
+          title: 'Évaluation des compétences (DISEC)',
+          tab: 'evaluation-competences',
+          route: '/employabilite-jeunes?tab=evaluation-competences'
+        },
+        {
+          id: 'developpement-competences',
+          title: 'Développement des compétences',
+          tab: 'developpement-competences',
+          route: '/employabilite-jeunes?tab=developpement-competences'
+        },
+        {
+          id: 'insertion-professionnelle',
+          title: 'Insertion Professionnelle',
+          tab: 'insertion-professionnelle',
+          route: '/employabilite-jeunes?tab=insertion-professionnelle'
+        }
       ]
     },
     'sourcing-interim': {
       title: 'Sourcing & Intérim',
       route: '/sourcing-interim',
-      items: [
-        { id: 'travail-temporaire', title: 'Travail Temporaire & Sous-Traitance', href: '/sourcing-interim#travail-temporaire' },
-        { id: 'recrutement-expert', title: 'Recrutement Expert métier', href: '/sourcing-interim#recrutement-expert' },
-        { id: 'administration-rh', title: 'Administration RH', href: '/sourcing-interim#administration-rh' }
+      subExpertises: [
+        {
+          id: 'travail-temporaire',
+          title: 'Travail Temporaire & Sous-Traitance',
+          tab: 'travail-temporaire',
+          route: '/sourcing-interim?tab=travail-temporaire'
+        },
+        {
+          id: 'recrutement-expert',
+          title: 'Recrutement Expert métier',
+          tab: 'recrutement-expert',
+          route: '/sourcing-interim?tab=recrutement-expert'
+        },
+        {
+          id: 'administration-rh',
+          title: 'Administration RH',
+          tab: 'administration-rh',
+          route: '/sourcing-interim?tab=administration-rh'
+        }
       ]
     }
   };
@@ -72,13 +139,6 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isHomePage, isScrolled }) => {
   const navigateToExpertises = () => {
     setCurrentLevel('expertises');
     setBreadcrumb(['Menu principal', 'Expertises']);
-  };
-
-  const navigateToExpertiseDetail = (expertiseKey: string) => {
-    const expertise = expertisesData[expertiseKey as keyof typeof expertisesData];
-    setCurrentLevel('expertise-detail');
-    setSelectedExpertise(expertiseKey);
-    setBreadcrumb(['Menu principal', 'Expertises', expertise.title]);
   };
 
   const navigateToPage = (path: string) => {
@@ -92,15 +152,14 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isHomePage, isScrolled }) => {
     resetMobileMenu();
   };
 
-  const navigateBack = () => {
-    if (currentLevel === 'expertise-detail') {
-      setCurrentLevel('expertises');
-      setBreadcrumb(['Menu principal', 'Expertises']);
-      setSelectedExpertise(null);
-    } else if (currentLevel === 'expertises') {
-      setCurrentLevel('main');
-      setBreadcrumb(['Menu principal']);
-    }
+  const navigateToSubExpertisesLevel = (expertiseKey: string) => {
+    const expertise = expertisesData[expertiseKey as keyof typeof expertisesData];
+    navigateToSubExpertises(expertiseKey, expertise.title);
+  };
+
+  const navigateToSubExpertisePage = (subExpertiseRoute: string) => {
+    navigate(subExpertiseRoute);
+    resetMobileMenu();
   };
 
   const resetMobileMenu = () => {
@@ -289,40 +348,37 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isHomePage, isScrolled }) => {
             {currentLevel === 'expertises' && (
               <nav className="space-y-4">
                 {Object.entries(expertisesData).map(([key, expertise]) => (
-                  <div key={key} className="space-y-2">
+                  <div key={key}>
                     <button
-                      onClick={() => navigateToExpertisePage(key)}
+                      onClick={() => navigateToSubExpertisesLevel(key)}
                       className="flex items-center justify-between w-full text-left text-lg font-medium text-gray-900 hover:text-mck-blue-600 transition-colors p-3 rounded-lg hover:bg-gray-50"
                     >
                       {expertise.title}
                       <ChevronRight className="w-5 h-5 text-mck-blue-600" />
-                    </button>
-                    <button
-                      onClick={() => navigateToExpertiseDetail(key)}
-                      className="w-full text-left text-sm text-gray-600 hover:text-mck-blue-600 transition-colors pl-3"
-                    >
-                      Voir les détails →
                     </button>
                   </div>
                 ))}
               </nav>
             )}
 
-            {/* Détail d'une expertise */}
-            {currentLevel === 'expertise-detail' && selectedExpertise && (
+            {/* Liste des sous-expertises */}
+            {currentLevel === 'sub-expertises' && selectedExpertise && (
               <nav className="space-y-4">
-                {expertisesData[selectedExpertise as keyof typeof expertisesData]?.items.map((item) => (
-                  <div key={item.id}>
+                {expertisesData[selectedExpertise as keyof typeof expertisesData]?.subExpertises.map((subExpertise) => (
+                  <div key={subExpertise.id}>
                     <button
-                      onClick={() => navigateToPage(item.href)}
-                      className="block w-full text-left text-lg font-medium text-gray-900 hover:text-mck-blue-600 transition-colors p-3 rounded-lg hover:bg-gray-50"
+                      onClick={() => navigateToSubExpertisePage(subExpertise.route)}
+                      className="flex items-center justify-between w-full text-left text-base font-medium text-gray-900 hover:text-mck-blue-600 transition-colors p-3 rounded-lg hover:bg-gray-50"
                     >
-                      {item.title}
+                      {subExpertise.title}
+                      <ChevronRight className="w-5 h-5 text-mck-blue-600" />
                     </button>
                   </div>
                 ))}
               </nav>
             )}
+
+
           </div>
         </div>
       </div>

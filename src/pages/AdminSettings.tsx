@@ -14,10 +14,10 @@ const AdminSettings = () => {
     <AdminLayout>
       <div className="space-y-6">
         <div>
-          <h2 className="text-3xl font-bold text-gray-900 mb-2">
+          <h2 className="text-3xl font-bold text-black mb-2">
             Paramètres Administrateur
           </h2>
-          <p className="text-gray-600">
+          <p className="text-black">
             Gérez les paramètres de votre plateforme de recrutement
           </p>
         </div>
@@ -80,21 +80,21 @@ const AdminSettings = () => {
             <div className="flex items-center justify-between">
               <div>
                 <Label>Notifications email pour nouvelles candidatures</Label>
-                <p className="text-sm text-gray-500">Recevoir un email à chaque nouvelle candidature</p>
+                <p className="text-sm text-black">Recevoir un email à chaque nouvelle candidature</p>
               </div>
               <Switch defaultChecked />
             </div>
             <div className="flex items-center justify-between">
               <div>
                 <Label>Notifications email quotidiennes</Label>
-                <p className="text-sm text-gray-500">Résumé quotidien des activités</p>
+                <p className="text-sm text-black">Résumé quotidien des activités</p>
               </div>
               <Switch defaultChecked />
             </div>
             <div className="flex items-center justify-between">
               <div>
                 <Label>Notifications pour nouveaux commentaires</Label>
-                <p className="text-sm text-gray-500">Être notifié des nouveaux commentaires sur les candidatures</p>
+                <p className="text-sm text-black">Être notifié des nouveaux commentaires sur les candidatures</p>
               </div>
               <Switch />
             </div>
@@ -124,7 +124,7 @@ const AdminSettings = () => {
             <div className="flex items-center justify-between">
               <div>
                 <Label>Archivage automatique des candidatures rejetées</Label>
-                <p className="text-sm text-gray-500">Archiver automatiquement après 30 jours</p>
+                <p className="text-sm text-black">Archiver automatiquement après 30 jours</p>
               </div>
               <Switch defaultChecked />
             </div>
@@ -145,14 +145,14 @@ const AdminSettings = () => {
             <div className="flex items-center justify-between">
               <div>
                 <Label>Authentification à deux facteurs obligatoire</Label>
-                <p className="text-sm text-gray-500">Exiger la 2FA pour tous les utilisateurs</p>
+                <p className="text-sm text-black">Exiger la 2FA pour tous les utilisateurs</p>
               </div>
               <Switch />
             </div>
             <div className="flex items-center justify-between">
               <div>
                 <Label>Session automatique expirée</Label>
-                <p className="text-sm text-gray-500">Déconnexion automatique après inactivité</p>
+                <p className="text-sm text-black">Déconnexion automatique après inactivité</p>
               </div>
               <Switch defaultChecked />
             </div>
@@ -226,14 +226,14 @@ const AdminSettings = () => {
             <div className="flex items-center justify-between">
               <div>
                 <Label>Mode de débogage</Label>
-                <p className="text-sm text-gray-500">Activer les logs détaillés (développement uniquement)</p>
+                <p className="text-sm text-black">Activer les logs détaillés (développement uniquement)</p>
               </div>
               <Switch />
             </div>
             <div className="flex items-center justify-between">
               <div>
                 <Label>Sauvegarde automatique</Label>
-                <p className="text-sm text-gray-500">Sauvegarde quotidienne des données</p>
+                <p className="text-sm text-black">Sauvegarde quotidienne des données</p>
               </div>
               <Switch defaultChecked />
             </div>

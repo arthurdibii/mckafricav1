@@ -139,7 +139,25 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans;
+  }
+
+  /* Application de Nata Sans Bold pour tous les H1 et H2 */
+  h1,
+  h2 {
+    @apply font-nata;
+    font-weight: 700; /* Bold */
+  }
+
+  /* Application d'Inter Regular pour tous les paragraphes */
+  p {
+    @apply font-sans;
+    font-weight: 400; /* Regular */
+  }
+
+  /* S'assurer que tous les autres éléments utilisent Inter par défaut */
+  * {
+    @apply font-sans;
   }
 }
 

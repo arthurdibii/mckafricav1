@@ -44,16 +44,16 @@ const CandidateCard = ({ candidate, onViewDetails }: CandidateCardProps) => {
       <Star
         key={i}
         className={`h-3 w-3 sm:h-4 sm:w-4 ${
-          i < score ? 'text-yellow-400 fill-current' : 'text-gray-300'
+          i < score ? 'text-yellow-400 fill-current' : 'text-gray-700'
         }`}
       />
     ));
   };
 
   const getRankingColor = (ranking: number | undefined) => {
-    if (!ranking) return 'bg-gray-100 text-gray-600';
+    if (!ranking) return 'bg-gray-100 text-black';
     if (ranking === 1) return 'bg-yellow-100 text-yellow-800';
-    if (ranking === 2) return 'bg-gray-100 text-gray-600';
+    if (ranking === 2) return 'bg-gray-100 text-black';
     if (ranking === 3) return 'bg-orange-100 text-orange-800';
     return 'bg-blue-100 text-blue-600';
   };
@@ -91,14 +91,14 @@ const CandidateCard = ({ candidate, onViewDetails }: CandidateCardProps) => {
             </Button>
           </div>
           
-          <p className="text-xs sm:text-sm text-gray-600 mb-2 truncate">{candidate.email}</p>
+          <p className="text-xs sm:text-sm text-black mb-2 truncate">{candidate.email}</p>
           
           <div className="flex items-center justify-between gap-2">
             <div className="flex items-center space-x-0.5 sm:space-x-1 flex-shrink-0">
               {renderStars(candidate.score)}
             </div>
             {candidate.notes && (
-              <MessageSquare className="h-3 w-3 sm:h-4 sm:w-4 text-gray-400 shrink-0" />
+              <MessageSquare className="h-3 w-3 sm:h-4 sm:w-4 text-gray-800 shrink-0" />
             )}
           </div>
         </CardContent>

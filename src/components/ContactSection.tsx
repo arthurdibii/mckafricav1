@@ -30,10 +30,10 @@ const ContactSection = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* En-tête */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+          <h2 className="text-4xl md:text-5xl font-bold text-black mb-6">
             Contactez <span className="text-mck-blue-600">mcK Africa</span>
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-xl text-black max-w-3xl mx-auto">
             Prêt à transformer votre stratégie RH ? Nos experts sont là pour vous accompagner.
             Parlons de vos défis et trouvons ensemble les solutions adaptées.
           </p>
@@ -49,8 +49,8 @@ const ContactSection = () => {
               <CardContent className="space-y-6">
 
                 <div>
-                  <h4 className="font-semibold text-gray-900 mb-2">🇲Bureau de Côte d'Ivoire</h4>
-                  <p className="text-gray-600 text-sm">
+                  <h4 className="font-semibold text-black mb-2">🇲Bureau de Côte d'Ivoire</h4>
+                  <p className="text-black text-sm">
 
                     info@mckafrica.com<br />
                     +225 27 22 20 45 07 +225 07 07 20 17 65<br />
@@ -83,8 +83,8 @@ const ContactSection = () => {
           <div className="lg:col-span-2">
             <Card className="border-0 shadow-lg">
               <CardHeader>
-                <CardTitle className="text-2xl text-gray-900">Envoyez-nous un message</CardTitle>
-                <p className="text-gray-600">
+                <CardTitle className="text-2xl text-black">Envoyez-nous un message</CardTitle>
+                <p className="text-black">
                   Remplissez le formulaire ci-dessous et nous vous répondrons dans les 24h.
                 </p>
               </CardHeader>
@@ -92,7 +92,7 @@ const ContactSection = () => {
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                      <label className="block text-sm font-medium text-black mb-2">
                         Nom complet *
                       </label>
                       <Input
@@ -104,7 +104,7 @@ const ContactSection = () => {
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                      <label className="block text-sm font-medium text-black mb-2">
                         Entreprise *
                       </label>
                       <Input
@@ -118,7 +118,7 @@ const ContactSection = () => {
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                      <label className="block text-sm font-medium text-black mb-2">
                         Email professionnel *
                       </label>
                       <Input
@@ -131,7 +131,7 @@ const ContactSection = () => {
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                      <label className="block text-sm font-medium text-black mb-2">
                         Téléphone
                       </label>
                       <Input
@@ -143,7 +143,7 @@ const ContactSection = () => {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-sm font-medium text-black mb-2">
                       Sujet de votre demande *
                     </label>
                     <Select value={formData.sujet} onValueChange={(value) => handleChange('sujet', value)}>
@@ -161,7 +161,7 @@ const ContactSection = () => {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-sm font-medium text-black mb-2">
                       Message *
                     </label>
                     <Textarea

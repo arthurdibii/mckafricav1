@@ -61,9 +61,9 @@ const SortableStage = ({ stage, onDelete, canDelete }: SortableStageProps) => {
             {...listeners}
             className="cursor-grab active:cursor-grabbing p-1 hover:bg-gray-100 rounded shrink-0"
           >
-            <GripVertical className="h-4 w-4 text-gray-400" />
+            <GripVertical className="h-4 w-4 text-gray-800" />
           </div>
-          <h3 className="font-medium text-gray-700 truncate">{stage.title}</h3>
+          <h3 className="font-medium text-black truncate">{stage.title}</h3>
           <Badge variant="secondary" className="text-xs shrink-0">
             {stage.candidateCount}
           </Badge>

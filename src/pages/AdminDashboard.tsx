@@ -48,10 +48,10 @@ const AdminDashboard = () => {
     <AdminLayout>
       <div className="space-y-6">
         <div>
-          <h2 className="text-3xl font-bold text-gray-900 mb-2">
+          <h2 className="text-3xl font-bold text-black mb-2">
             Tableau de Bord
           </h2>
-          <p className="text-gray-600">
+          <p className="text-black">
             Vue d'ensemble de vos activités de recrutement
           </p>
         </div>
@@ -63,14 +63,14 @@ const AdminDashboard = () => {
             return (
               <Card key={index}>
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                  <CardTitle className="text-sm font-medium text-gray-600">
+                  <CardTitle className="text-sm font-medium text-black">
                     {stat.title}
                   </CardTitle>
                   <Icon className={`h-4 w-4 ${stat.color}`} />
                 </CardHeader>
                 <CardContent>
                   <div className="text-2xl font-bold">{stat.value}</div>
-                  <p className="text-xs text-gray-500 mt-1">
+                  <p className="text-xs text-black mt-1">
                     {stat.change}
                   </p>
                 </CardContent>
@@ -92,9 +92,9 @@ const AdminDashboard = () => {
                     <div className="w-2 h-2 bg-mck-blue-500 rounded-full"></div>
                     <div className="flex-1">
                       <p className="text-sm font-medium">{activity.action}</p>
-                      <p className="text-xs text-gray-500">{activity.job}</p>
+                      <p className="text-xs text-black">{activity.job}</p>
                     </div>
-                    <span className="text-xs text-gray-400">{activity.time}</span>
+                    <span className="text-xs text-gray-800">{activity.time}</span>
                   </div>
                 ))}
               </div>
@@ -111,7 +111,7 @@ const AdminDashboard = () => {
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="font-medium">Directeur Financier</p>
-                    <p className="text-sm text-gray-500">Lagos, Nigeria</p>
+                    <p className="text-sm text-black">Lagos, Nigeria</p>
                   </div>
                   <span className="bg-green-100 text-green-800 px-2 py-1 rounded text-xs">
                     45 candidats
@@ -120,7 +120,7 @@ const AdminDashboard = () => {
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="font-medium">Head of Technology</p>
-                    <p className="text-sm text-gray-500">Le Cap, Afrique du Sud</p>
+                    <p className="text-sm text-black">Le Cap, Afrique du Sud</p>
                   </div>
                   <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs">
                     32 candidats
@@ -129,7 +129,7 @@ const AdminDashboard = () => {
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="font-medium">Consultant Senior</p>
-                    <p className="text-sm text-gray-500">Abidjan, Côte d'Ivoire</p>
+                    <p className="text-sm text-black">Abidjan, Côte d'Ivoire</p>
                   </div>
                   <span className="bg-orange-100 text-orange-800 px-2 py-1 rounded text-xs">
                     28 candidats

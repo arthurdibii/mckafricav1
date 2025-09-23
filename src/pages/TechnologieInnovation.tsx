@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import Navigation from '@/components/Navigation';
+import Hyperspeed from '@/components/Hyperspeed';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -88,8 +89,54 @@ const TechnologieInnovation = () => {
       <Navigation />
 
       {/* Bannière Hero */}
-      <section className="bg-gradient-to-br from-blue-600 via-indigo-600 to-purple-700 text-white py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="relative text-white py-20 overflow-hidden min-h-[500px]">
+        {/* Background noir */}
+        <div className="absolute inset-0 bg-black"></div>
+
+        {/* Hyperspeed au-dessus */}
+        <div className="absolute inset-0 w-full h-full z-10">
+          <Hyperspeed
+            effectOptions={{
+              onSpeedUp: () => { },
+              onSlowDown: () => { },
+              distortion: 'turbulentDistortion',
+              length: 400,
+              roadWidth: 10,
+              islandWidth: 2,
+              lanesPerRoad: 4,
+              fov: 90,
+              fovSpeedUp: 150,
+              speedUp: 2,
+              carLightsFade: 0.4,
+              totalSideLightSticks: 20,
+              lightPairsPerRoadWay: 40,
+              shoulderLinesWidthPercentage: 0.05,
+              brokenLinesWidthPercentage: 0.1,
+              brokenLinesLengthPercentage: 0.5,
+              lightStickWidth: [0.12, 0.5],
+              lightStickHeight: [1.3, 1.7],
+              movingAwaySpeed: [60, 80],
+              movingCloserSpeed: [-120, -160],
+              carLightsLength: [400 * 0.03, 400 * 0.2],
+              carLightsRadius: [0.05, 0.14],
+              carWidthPercentage: [0.3, 0.5],
+              carShiftX: [-0.8, 0.8],
+              carFloorSeparation: [0, 5],
+              colors: {
+                roadColor: 0x080808,
+                islandColor: 0x0a0a0a,
+                background: 0x000000,
+                shoulderLines: 0xFFFFFF,
+                brokenLines: 0xFFFFFF,
+                leftCars: [0xD856BF, 0x6750A2, 0xC247AC],
+                rightCars: [0x03B3C3, 0x0E5EA5, 0x324555],
+                sticks: 0x03B3C3,
+              }
+            }}
+          />
+        </div>
+
+        <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <div className="flex justify-center mb-6">
               <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center">
@@ -130,7 +177,7 @@ const TechnologieInnovation = () => {
                   onClick={() => setActiveTab(tab.id)}
                   className={`flex items-center space-x-2 px-6 py-3 rounded-lg font-medium transition-all duration-200 ${activeTab === tab.id
                     ? 'bg-indigo-600 text-white shadow-lg'
-                    : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-200'
+                    : 'bg-white text-black hover:bg-gray-100 border border-gray-200'
                     }`}
                 >
                   <IconComponent className="w-5 h-5" />
@@ -155,18 +202,18 @@ const TechnologieInnovation = () => {
                     <currentTab.icon className="w-6 h-6 text-indigo-600" />
                   </div>
                 </div>
-                <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                <h2 className="text-3xl md:text-4xl font-bold text-black mb-4">
                   {currentTab.title}
                 </h2>
-                <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                <p className="text-xl text-black max-w-3xl mx-auto">
                   {currentTab.description}
                 </p>
               </div>
 
               {/* Vue d'ensemble */}
               <div className="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-2xl p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">Vue d'ensemble</h3>
-                <p className="text-lg text-gray-700 leading-relaxed">
+                <h3 className="text-2xl font-bold text-black mb-4">Vue d'ensemble</h3>
+                <p className="text-lg text-black leading-relaxed">
                   {currentTab.content.overview}
                 </p>
               </div>
@@ -186,7 +233,7 @@ const TechnologieInnovation = () => {
                       {currentTab.content.services.map((service, index) => (
                         <li key={index} className="flex items-start space-x-3">
                           <CheckCircle className="w-5 h-5 text-indigo-600 mt-0.5 flex-shrink-0" />
-                          <span className="text-gray-700">{service}</span>
+                          <span className="text-black">{service}</span>
                         </li>
                       ))}
                     </ul>
@@ -206,7 +253,7 @@ const TechnologieInnovation = () => {
                       {currentTab.content.benefits.map((benefit, index) => (
                         <li key={index} className="flex items-start space-x-3">
                           <CheckCircle className="w-5 h-5 text-purple-600 mt-0.5 flex-shrink-0" />
-                          <span className="text-gray-700">{benefit}</span>
+                          <span className="text-black">{benefit}</span>
                         </li>
                       ))}
                     </ul>
@@ -216,7 +263,7 @@ const TechnologieInnovation = () => {
 
               {/* Technologies utilisées */}
               <div className="bg-white border border-gray-200 rounded-2xl p-8 shadow-lg">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center flex items-center justify-center space-x-2">
+                <h3 className="text-2xl font-bold text-black mb-6 text-center flex items-center justify-center space-x-2">
                   <Database className="w-6 h-6 text-indigo-600" />
                   <span>Technologies & Outils</span>
                 </h3>
@@ -226,7 +273,7 @@ const TechnologieInnovation = () => {
                       <div className="w-10 h-10 bg-indigo-100 rounded-lg flex items-center justify-center mx-auto mb-3">
                         <Cpu className="w-5 h-5 text-indigo-600" />
                       </div>
-                      <p className="text-sm font-medium text-gray-900">{tech}</p>
+                      <p className="text-sm font-medium text-black">{tech}</p>
                     </div>
                   ))}
                 </div>
@@ -234,7 +281,7 @@ const TechnologieInnovation = () => {
 
               {/* Processus de mise en œuvre */}
               <div className="bg-gradient-to-r from-gray-50 to-indigo-50 rounded-2xl p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">
+                <h3 className="text-2xl font-bold text-black mb-6 text-center">
                   Notre Processus de Mise en Œuvre
                 </h3>
                 <div className="grid md:grid-cols-5 gap-6">
@@ -242,36 +289,36 @@ const TechnologieInnovation = () => {
                     <div className="w-12 h-12 bg-indigo-100 rounded-xl flex items-center justify-center mx-auto mb-4">
                       <span className="text-indigo-600 font-bold text-lg">1</span>
                     </div>
-                    <h4 className="font-semibold text-gray-900 mb-2">Analyse</h4>
-                    <p className="text-sm text-gray-600">Évaluation des besoins et contraintes</p>
+                    <h4 className="font-semibold text-black mb-2">Analyse</h4>
+                    <p className="text-sm text-black">Évaluation des besoins et contraintes</p>
                   </div>
                   <div className="text-center">
                     <div className="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center mx-auto mb-4">
                       <span className="text-purple-600 font-bold text-lg">2</span>
                     </div>
-                    <h4 className="font-semibold text-gray-900 mb-2">Conception</h4>
-                    <p className="text-sm text-gray-600">Design de la solution technique</p>
+                    <h4 className="font-semibold text-black mb-2">Conception</h4>
+                    <p className="text-sm text-black">Design de la solution technique</p>
                   </div>
                   <div className="text-center">
                     <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mx-auto mb-4">
                       <span className="text-blue-600 font-bold text-lg">3</span>
                     </div>
-                    <h4 className="font-semibold text-gray-900 mb-2">Développement</h4>
-                    <p className="text-sm text-gray-600">Création et tests de la solution</p>
+                    <h4 className="font-semibold text-black mb-2">Développement</h4>
+                    <p className="text-sm text-black">Création et tests de la solution</p>
                   </div>
                   <div className="text-center">
                     <div className="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center mx-auto mb-4">
                       <span className="text-green-600 font-bold text-lg">4</span>
                     </div>
-                    <h4 className="font-semibold text-gray-900 mb-2">Déploiement</h4>
-                    <p className="text-sm text-gray-600">Mise en production et formation</p>
+                    <h4 className="font-semibold text-black mb-2">Déploiement</h4>
+                    <p className="text-sm text-black">Mise en production et formation</p>
                   </div>
                   <div className="text-center">
                     <div className="w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center mx-auto mb-4">
                       <span className="text-orange-600 font-bold text-lg">5</span>
                     </div>
-                    <h4 className="font-semibold text-gray-900 mb-2">Support</h4>
-                    <p className="text-sm text-gray-600">Maintenance et évolutions</p>
+                    <h4 className="font-semibold text-black mb-2">Support</h4>
+                    <p className="text-sm text-black">Maintenance et évolutions</p>
                   </div>
                 </div>
               </div>

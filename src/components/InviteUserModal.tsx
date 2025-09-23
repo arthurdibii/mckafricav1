@@ -82,7 +82,7 @@ const InviteUserModal = ({
               onChange={(e) => setCoefficient(parseFloat(e.target.value) || 1)}
               required
             />
-            <p className="text-xs text-gray-500 mt-1">
+            <p className="text-xs text-black mt-1">
               Coefficient appliqué aux performances de recrutement (ex: 1.2 pour +20%)
             </p>
           </div>

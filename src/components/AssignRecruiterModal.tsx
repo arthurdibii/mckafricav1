@@ -106,7 +106,7 @@ const AssignRecruiterModal = ({
                   <div key={recruiter.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
                     <div>
                       <div className="font-medium">{recruiter.name}</div>
-                      <div className="text-sm text-gray-600">{recruiter.email}</div>
+                      <div className="text-sm text-black">{recruiter.email}</div>
                       <div className="flex gap-1 mt-1">
                         {recruiter.specialties.map((specialty) => (
                           <Badge key={specialty} variant="secondary" className="text-xs">
@@ -149,7 +149,7 @@ const AssignRecruiterModal = ({
                     <SelectItem key={recruiter.id} value={recruiter.id}>
                       <div className="flex flex-col">
                         <span>{recruiter.name}</span>
-                        <span className="text-xs text-gray-500">
+                        <span className="text-xs text-black">
                           {recruiter.specialties.join(', ')} • Coeff. {recruiter.coefficient}x
                         </span>
                       </div>
@@ -170,7 +170,7 @@ const AssignRecruiterModal = ({
                 onChange={(e) => setCoefficient(parseFloat(e.target.value) || 1)}
                 required
               />
-              <p className="text-xs text-gray-500 mt-1">
+              <p className="text-xs text-black mt-1">
                 Coefficient appliqué aux performances pour cette affectation
               </p>
             </div>

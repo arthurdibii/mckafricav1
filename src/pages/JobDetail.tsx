@@ -69,7 +69,7 @@ const JobDetail = () => {
               <div className="flex justify-between items-start">
                 <div className="flex-1">
                   <div className="flex items-center gap-3 mb-4">
-                    <CardTitle className="text-3xl font-bold text-gray-900">
+                    <CardTitle className="text-3xl font-bold text-black">
                       {jobData.title}
                     </CardTitle>
                     {jobData.urgent && (
@@ -81,7 +81,7 @@ const JobDetail = () => {
                     {jobData.company}
                   </p>
                   
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm text-gray-600">
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm text-black">
                     <div className="flex items-center gap-2">
                       <MapPin className="h-4 w-4" />
                       {jobData.location}
@@ -102,7 +102,7 @@ const JobDetail = () => {
                 </div>
                 
                 <div className="text-right">
-                  <p className="text-gray-500 text-sm mb-4">{jobData.postedDate}</p>
+                  <p className="text-black text-sm mb-4">{jobData.postedDate}</p>
                   <Button 
                     size="lg" 
                     className="bg-mck-blue-600 hover:bg-mck-blue-700"
@@ -132,7 +132,7 @@ const JobDetail = () => {
                   <CardTitle className="text-xl">Description du poste</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-gray-700 leading-relaxed">{jobData.description}</p>
+                  <p className="text-black leading-relaxed">{jobData.description}</p>
                 </CardContent>
               </Card>
 
@@ -146,7 +146,7 @@ const JobDetail = () => {
                     {jobData.responsibilities.map((responsibility, index) => (
                       <li key={index} className="flex items-start gap-3">
                         <div className="w-2 h-2 bg-mck-blue-600 rounded-full mt-2 flex-shrink-0"></div>
-                        <span className="text-gray-700">{responsibility}</span>
+                        <span className="text-black">{responsibility}</span>
                       </li>
                     ))}
                   </ul>
@@ -163,7 +163,7 @@ const JobDetail = () => {
                     {jobData.requirements.map((requirement, index) => (
                       <li key={index} className="flex items-start gap-3">
                         <div className="w-2 h-2 bg-mck-green-500 rounded-full mt-2 flex-shrink-0"></div>
-                        <span className="text-gray-700">{requirement}</span>
+                        <span className="text-black">{requirement}</span>
                       </li>
                     ))}
                   </ul>
@@ -180,18 +180,18 @@ const JobDetail = () => {
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div>
-                    <p className="font-semibold text-gray-900">Salaire</p>
-                    <p className="text-gray-600">{jobData.salary}</p>
+                    <p className="font-semibold text-black">Salaire</p>
+                    <p className="text-black">{jobData.salary}</p>
                   </div>
                   <Separator />
                   <div>
-                    <p className="font-semibold text-gray-900">Type de contrat</p>
-                    <p className="text-gray-600">{jobData.type}</p>
+                    <p className="font-semibold text-black">Type de contrat</p>
+                    <p className="text-black">{jobData.type}</p>
                   </div>
                   <Separator />
                   <div>
-                    <p className="font-semibold text-gray-900">Expérience requise</p>
-                    <p className="text-gray-600">{jobData.experience}</p>
+                    <p className="font-semibold text-black">Expérience requise</p>
+                    <p className="text-black">{jobData.experience}</p>
                   </div>
                 </CardContent>
               </Card>
@@ -206,7 +206,7 @@ const JobDetail = () => {
                     {jobData.benefits.map((benefit, index) => (
                       <li key={index} className="flex items-start gap-2">
                         <div className="w-1.5 h-1.5 bg-mck-gold-500 rounded-full mt-2 flex-shrink-0"></div>
-                        <span className="text-sm text-gray-700">{benefit}</span>
+                        <span className="text-sm text-black">{benefit}</span>
                       </li>
                     ))}
                   </ul>
@@ -216,8 +216,8 @@ const JobDetail = () => {
               {/* Call to action */}
               <Card className="shadow-md border-0 bg-mck-blue-50">
                 <CardContent className="p-6 text-center">
-                  <h3 className="font-bold text-gray-900 mb-3">Intéressé par ce poste ?</h3>
-                  <p className="text-sm text-gray-600 mb-4">
+                  <h3 className="font-bold text-black mb-3">Intéressé par ce poste ?</h3>
+                  <p className="text-sm text-black mb-4">
                     Postulez dès maintenant et rejoignez notre équipe dynamique.
                   </p>
                   <Button 

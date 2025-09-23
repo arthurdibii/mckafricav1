@@ -4,6 +4,7 @@ import Navigation from '../components/Navigation';
 import HeroSection from '../components/HeroSection';
 import MissionsEventsSection from '../components/MissionsEventsSection';
 import ServicesSection from '../components/ServicesSection';
+import ReferencesSection from '../components/ReferencesSection';
 import FeaturedJobsSection from '../components/FeaturedJobsSection';
 import Footer from '../components/Footer';
 import { Button } from '@/components/ui/button';
@@ -51,8 +52,11 @@ const Index = () => {
         {/* Section missions et événements */}
         <MissionsEventsSection />
 
-        {/* Plateforme d'offres d'emploi */}
+        {/* Plateforme d'offres d'emploi - Nos Recrutements Exécutifs */}
         <FeaturedJobsSection />
+
+        {/* Section références clients */}
+        <ReferencesSection />
       </main>
 
       {/* Footer avec liens et informations */}

@@ -63,10 +63,10 @@ const ApplicationForm = ({ jobData, onBack }: ApplicationFormProps) => {
               Retour à l'offre
             </Button>
             
-            <h1 className="text-3xl font-bold text-gray-900 mb-2">
+            <h1 className="text-3xl font-bold text-black mb-2">
               Postuler pour : {jobData.title}
             </h1>
-            <p className="text-lg text-gray-600">
+            <p className="text-lg text-black">
               {jobData.company} • {jobData.location}
             </p>
           </div>
@@ -217,8 +217,8 @@ const ApplicationForm = ({ jobData, onBack }: ApplicationFormProps) => {
                       <div className="mt-2">
                         <label className="flex flex-col items-center justify-center w-full h-32 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100">
                           <div className="flex flex-col items-center justify-center pt-5 pb-6">
-                            <Upload className="w-8 h-8 mb-2 text-gray-400" />
-                            <p className="text-sm text-gray-500 text-center">
+                            <Upload className="w-8 h-8 mb-2 text-gray-800" />
+                            <p className="text-sm text-black text-center">
                               {formData.cv ? formData.cv.name : "Cliquez pour télécharger votre CV"}
                             </p>
                           </div>
@@ -239,8 +239,8 @@ const ApplicationForm = ({ jobData, onBack }: ApplicationFormProps) => {
                       <div className="mt-2">
                         <label className="flex flex-col items-center justify-center w-full h-32 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100">
                           <div className="flex flex-col items-center justify-center pt-5 pb-6">
-                            <Upload className="w-8 h-8 mb-2 text-gray-400" />
-                            <p className="text-sm text-gray-500 text-center">
+                            <Upload className="w-8 h-8 mb-2 text-gray-800" />
+                            <p className="text-sm text-black text-center">
                               {formData.coverLetter ? formData.coverLetter.name : "Optionnel"}
                             </p>
                           </div>
@@ -266,7 +266,7 @@ const ApplicationForm = ({ jobData, onBack }: ApplicationFormProps) => {
                     >
                       Envoyer ma candidature
                     </Button>
-                    <p className="text-xs text-gray-500 mt-3 text-center">
+                    <p className="text-xs text-black mt-3 text-center">
                       En soumettant votre candidature, vous acceptez que vos données soient traitées 
                       dans le cadre du processus de recrutement.
                     </p>

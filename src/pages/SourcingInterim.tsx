@@ -134,7 +134,7 @@ const SourcingInterim = () => {
                   onClick={() => setActiveTab(tab.id)}
                   className={`flex items-center space-x-2 px-6 py-3 rounded-lg font-medium transition-all duration-200 ${activeTab === tab.id
                     ? 'bg-orange-600 text-white shadow-lg'
-                    : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-200'
+                    : 'bg-white text-black hover:bg-gray-100 border border-gray-200'
                     }`}
                 >
                   <IconComponent className="w-5 h-5" />
@@ -159,18 +159,18 @@ const SourcingInterim = () => {
                     <currentTab.icon className="w-6 h-6 text-orange-600" />
                   </div>
                 </div>
-                <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                <h2 className="text-3xl md:text-4xl font-bold text-black mb-4">
                   {currentTab.title}
                 </h2>
-                <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                <p className="text-xl text-black max-w-3xl mx-auto">
                   {currentTab.description}
                 </p>
               </div>
 
               {/* Vue d'ensemble */}
               <div className="bg-gradient-to-r from-orange-50 to-red-50 rounded-2xl p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">Vue d'ensemble</h3>
-                <p className="text-lg text-gray-700 leading-relaxed">
+                <h3 className="text-2xl font-bold text-black mb-4">Vue d'ensemble</h3>
+                <p className="text-lg text-black leading-relaxed">
                   {currentTab.content.overview}
                 </p>
               </div>
@@ -190,7 +190,7 @@ const SourcingInterim = () => {
                       {currentTab.content.services.map((service, index) => (
                         <li key={index} className="flex items-start space-x-3">
                           <CheckCircle className="w-5 h-5 text-orange-600 mt-0.5 flex-shrink-0" />
-                          <span className="text-gray-700">{service}</span>
+                          <span className="text-black">{service}</span>
                         </li>
                       ))}
                     </ul>
@@ -210,7 +210,7 @@ const SourcingInterim = () => {
                       {currentTab.content.benefits.map((benefit, index) => (
                         <li key={index} className="flex items-start space-x-3">
                           <CheckCircle className="w-5 h-5 text-red-600 mt-0.5 flex-shrink-0" />
-                          <span className="text-gray-700">{benefit}</span>
+                          <span className="text-black">{benefit}</span>
                         </li>
                       ))}
                     </ul>
@@ -220,7 +220,7 @@ const SourcingInterim = () => {
 
               {/* Spécialités sectorielles */}
               <div className="bg-white border border-gray-200 rounded-2xl p-8 shadow-lg">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center flex items-center justify-center space-x-2">
+                <h3 className="text-2xl font-bold text-black mb-6 text-center flex items-center justify-center space-x-2">
                   <Users className="w-6 h-6 text-orange-600" />
                   <span>Nos Spécialités Sectorielles</span>
                 </h3>
@@ -230,7 +230,7 @@ const SourcingInterim = () => {
                       <div className="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center mx-auto mb-3">
                         <UserCheck className="w-5 h-5 text-orange-600" />
                       </div>
-                      <p className="text-sm font-medium text-gray-900">{specialty}</p>
+                      <p className="text-sm font-medium text-black">{specialty}</p>
                     </div>
                   ))}
                 </div>
@@ -261,7 +261,7 @@ const SourcingInterim = () => {
 
               {/* Processus de service */}
               <div className="bg-gradient-to-r from-gray-50 to-orange-50 rounded-2xl p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">
+                <h3 className="text-2xl font-bold text-black mb-6 text-center">
                   Notre Processus de Service
                 </h3>
                 <div className="grid md:grid-cols-5 gap-6">
@@ -269,43 +269,43 @@ const SourcingInterim = () => {
                     <div className="w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center mx-auto mb-4">
                       <span className="text-orange-600 font-bold text-lg">1</span>
                     </div>
-                    <h4 className="font-semibold text-gray-900 mb-2">Analyse</h4>
-                    <p className="text-sm text-gray-600">Définition précise des besoins</p>
+                    <h4 className="font-semibold text-black mb-2">Analyse</h4>
+                    <p className="text-sm text-black">Définition précise des besoins</p>
                   </div>
                   <div className="text-center">
                     <div className="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center mx-auto mb-4">
                       <span className="text-red-600 font-bold text-lg">2</span>
                     </div>
-                    <h4 className="font-semibold text-gray-900 mb-2">Sourcing</h4>
-                    <p className="text-sm text-gray-600">Recherche active de candidats</p>
+                    <h4 className="font-semibold text-black mb-2">Sourcing</h4>
+                    <p className="text-sm text-black">Recherche active de candidats</p>
                   </div>
                   <div className="text-center">
                     <div className="w-12 h-12 bg-pink-100 rounded-xl flex items-center justify-center mx-auto mb-4">
                       <span className="text-pink-600 font-bold text-lg">3</span>
                     </div>
-                    <h4 className="font-semibold text-gray-900 mb-2">Sélection</h4>
-                    <p className="text-sm text-gray-600">Évaluation et présélection</p>
+                    <h4 className="font-semibold text-black mb-2">Sélection</h4>
+                    <p className="text-sm text-black">Évaluation et présélection</p>
                   </div>
                   <div className="text-center">
                     <div className="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center mx-auto mb-4">
                       <span className="text-purple-600 font-bold text-lg">4</span>
                     </div>
-                    <h4 className="font-semibold text-gray-900 mb-2">Présentation</h4>
-                    <p className="text-sm text-gray-600">Proposition des meilleurs profils</p>
+                    <h4 className="font-semibold text-black mb-2">Présentation</h4>
+                    <p className="text-sm text-black">Proposition des meilleurs profils</p>
                   </div>
                   <div className="text-center">
                     <div className="w-12 h-12 bg-indigo-100 rounded-xl flex items-center justify-center mx-auto mb-4">
                       <span className="text-indigo-600 font-bold text-lg">5</span>
                     </div>
-                    <h4 className="font-semibold text-gray-900 mb-2">Suivi</h4>
-                    <p className="text-sm text-gray-600">Accompagnement et intégration</p>
+                    <h4 className="font-semibold text-black mb-2">Suivi</h4>
+                    <p className="text-sm text-black">Accompagnement et intégration</p>
                   </div>
                 </div>
               </div>
 
               {/* Témoignages clients */}
               <div className="bg-white border border-gray-200 rounded-2xl p-8 shadow-lg">
-                <h3 className="text-2xl font-bold text-gray-900 mb-8 text-center">
+                <h3 className="text-2xl font-bold text-black mb-8 text-center">
                   Ce que disent nos clients
                 </h3>
                 <div className="grid md:grid-cols-2 gap-8">
@@ -315,11 +315,11 @@ const SourcingInterim = () => {
                         <Users className="w-6 h-6 text-orange-600" />
                       </div>
                       <div>
-                        <h4 className="font-semibold text-gray-900">Sarah Kouame</h4>
-                        <p className="text-sm text-gray-600">DRH, Banque Atlantique</p>
+                        <h4 className="font-semibold text-black">Sarah Kouame</h4>
+                        <p className="text-sm text-black">DRH, Banque Atlantique</p>
                       </div>
                     </div>
-                    <p className="text-gray-700 italic">
+                    <p className="text-black italic">
                       "mcK Africa nous a permis de recruter des profils exceptionnels
                       en un temps record. Leur expertise du marché africain est remarquable."
                     </p>
@@ -330,11 +330,11 @@ const SourcingInterim = () => {
                         <UserCheck className="w-6 h-6 text-red-600" />
                       </div>
                       <div>
-                        <h4 className="font-semibold text-gray-900">Mohamed Diallo</h4>
-                        <p className="text-sm text-gray-600">CEO, TechStart Africa</p>
+                        <h4 className="font-semibold text-black">Mohamed Diallo</h4>
+                        <p className="text-sm text-black">CEO, TechStart Africa</p>
                       </div>
                     </div>
-                    <p className="text-gray-700 italic">
+                    <p className="text-black italic">
                       "Les solutions d'intérim de mcK Africa nous offrent la flexibilité
                       nécessaire pour gérer nos pics d'activité avec efficacité."
                     </p>

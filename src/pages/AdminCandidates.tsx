@@ -160,10 +160,10 @@ const AdminCandidates = () => {
       <div className="space-y-6">
         <div className="flex justify-between items-center">
           <div>
-            <h2 className="text-3xl font-bold text-gray-900 mb-2">
+            <h2 className="text-3xl font-bold text-black mb-2">
               Gestion des Candidats
             </h2>
-            <p className="text-gray-600">
+            <p className="text-black">
               Recherchez et gérez tous vos candidats
             </p>
           </div>
@@ -188,7 +188,7 @@ const AdminCandidates = () => {
             <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
               {/* Recherche */}
               <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-800 h-4 w-4" />
                 <Input
                   placeholder="Rechercher candidats..."
                   value={searchTerm}
@@ -242,7 +242,7 @@ const AdminCandidates = () => {
             {/* Filtres compétences et offres */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-black mb-2">
                   Compétences
                 </label>
                 <div className="flex flex-wrap gap-2">
@@ -270,7 +270,7 @@ const AdminCandidates = () => {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-black mb-2">
                   Offres postulées
                 </label>
                 <Select value={selectedJob} onValueChange={setSelectedJob}>
@@ -291,7 +291,7 @@ const AdminCandidates = () => {
 
         {/* Résultats */}
         <div className="mb-4">
-          <p className="text-gray-600">
+          <p className="text-black">
             <span className="font-semibold">{filteredCandidates.length}</span> candidat(s) trouvé(s)
           </p>
         </div>
@@ -308,7 +308,7 @@ const AdminCandidates = () => {
                   </div>
                   
                   <div className="flex-1">
-                    <h3 className="font-semibold text-lg text-gray-900">
+                    <h3 className="font-semibold text-lg text-black">
                       {candidate.firstName} {candidate.lastName}
                     </h3>
                     <p className="text-mck-blue-600 text-sm font-medium mb-2">
@@ -316,7 +316,7 @@ const AdminCandidates = () => {
                     </p>
                     
                     {/* Informations principales */}
-                    <div className="space-y-1 text-sm text-gray-600 mb-3">
+                    <div className="space-y-1 text-sm text-black mb-3">
                       <div className="flex items-center">
                         <MapPin className="h-3 w-3 mr-1" />
                         {candidate.location}

@@ -25,7 +25,7 @@ interface ExpandedSubSections {
   global: boolean;
 }
 
-type NavigationLevel = 'main' | 'expertises' | 'expertise-detail';
+type NavigationLevel = 'main' | 'expertises' | 'sub-expertises';
 
 export interface NavigationState {
   // États du menu mobile
@@ -49,7 +49,7 @@ export interface NavigationState {
   setBreadcrumb: (breadcrumb: string[]) => void;
   resetMobileMenu: () => void;
   navigateToExpertises: () => void;
-  navigateToExpertiseDetail: (expertiseKey: string, expertiseTitle: string) => void;
+  navigateToSubExpertises: (expertiseKey: string, expertiseTitle: string) => void;
   navigateBack: () => void;
 }
 
@@ -133,20 +133,20 @@ export const useNavigationStore = create<NavigationState>()(
           'navigateToExpertises'
         ),
       
-      navigateToExpertiseDetail: (expertiseKey, expertiseTitle) =>
+      navigateToSubExpertises: (expertiseKey, expertiseTitle) =>
         set(
           {
-            currentLevel: 'expertise-detail',
+            currentLevel: 'sub-expertises',
             selectedExpertise: expertiseKey,
             breadcrumb: ['Menu principal', 'Expertises', expertiseTitle],
           },
           false,
-          'navigateToExpertiseDetail'
+          'navigateToSubExpertises'
         ),
       
       navigateBack: () => {
         const state = get();
-        if (state.currentLevel === 'expertise-detail') {
+        if (state.currentLevel === 'sub-expertises') {
           set(
             {
               currentLevel: 'expertises',

@@ -186,50 +186,48 @@ const MissionsEventsSection = () => {
   return (
     <section className="py-16 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-20">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:items-start">
 
           {/* Nos Missions et Réalisations - 2 colonnes */}
-          <div className="lg:col-span-2">
+          <div className="lg:col-span-2 flex flex-col h-full">
             <div className="flex items-center justify-between mb-8">
               <div className="flex items-center gap-4">
-                <h2 className="text-2xl font-bold text-gray-900">Nos <span className="text-mck-blue-600">Missions</span> et <span className="text-mck-blue-600">Réalisations</span></h2>
-                <div className="h-0.5 bg-mck-green-600 w-12"></div>
+                <h2 className="text-2xl font-bold text-black whitespace-nowrap">Nos <span className="text-mck-blue-600">Missions</span> et <span className="text-mck-blue-600">Réalisations</span></h2>
               </div>
 
               {/* Contrôles du slider - Desktop seulement */}
               <div className="hidden lg:flex items-center gap-2">
                 <button
-                  onClick={prevSlide}
-                  className="p-2 rounded-full bg-white border border-gray-200 hover:border-mck-blue-500 hover:bg-mck-blue-50 transition-colors"
+                  onClick={() => setCurrentSlide(Math.max(0, currentSlide - 1))}
                   disabled={currentSlide === 0}
+                  className="p-2 rounded-full bg-white border border-gray-200 hover:border-mck-blue-500 hover:bg-mck-blue-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  <ChevronLeft className="h-4 w-4 text-gray-600" />
+                  <ChevronLeft className="h-5 w-5 text-gray-600" />
                 </button>
-                <span className="text-sm text-gray-500 px-2">
-                  {currentSlide + 1} / {totalSlides}
+                <span className="text-sm text-gray-500 mx-2">
+                  {currentSlide + 1} / {Math.ceil(missions.length / itemsPerSlide)}
                 </span>
                 <button
-                  onClick={nextSlide}
-                  className="p-2 rounded-full bg-white border border-gray-200 hover:border-mck-blue-500 hover:bg-mck-blue-50 transition-colors"
-                  disabled={currentSlide === totalSlides - 1}
+                  onClick={() => setCurrentSlide(Math.min(Math.ceil(missions.length / itemsPerSlide) - 1, currentSlide + 1))}
+                  disabled={currentSlide >= Math.ceil(missions.length / itemsPerSlide) - 1}
+                  className="p-2 rounded-full bg-white border border-gray-200 hover:border-mck-blue-500 hover:bg-mck-blue-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  <ChevronRight className="h-4 w-4 text-gray-600" />
+                  <ChevronRight className="h-5 w-5 text-gray-600" />
                 </button>
               </div>
             </div>
 
-            {/* Grille des missions - Desktop avec slider, Mobile/Tablette avec scroll horizontal */}
-            <div className="mb-8">
-              {/* Version Desktop - Slider avec pagination */}
-              <div className="hidden lg:block">
-                <div className="relative overflow-hidden">
+            <div className="flex-1 flex flex-col">
+              {/* Version Desktop - Grid avec slider */}
+              <div className="hidden lg:block flex-1">
+                <div className="overflow-hidden">
                   <div
-                    className="flex transition-transform duration-500 ease-in-out"
+                    className="flex transition-transform duration-300 ease-in-out"
                     style={{ transform: `translateX(-${currentSlide * 100}%)` }}
                   >
-                    {Array.from({ length: totalSlides }).map((_, slideIndex) => (
+                    {Array.from({ length: Math.ceil(missions.length / itemsPerSlide) }).map((_, slideIndex) => (
                       <div key={slideIndex} className="w-full flex-shrink-0">
-                        <div className="grid grid-cols-3 gap-4">
+                        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
                           {missions.slice(slideIndex * itemsPerSlide, (slideIndex + 1) * itemsPerSlide).map((mission) => (
                             <div key={mission.id} className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow">
                               <div className="aspect-video bg-gray-200 relative overflow-hidden">
@@ -245,7 +243,7 @@ const MissionsEventsSection = () => {
                                     {mission.category}
                                   </span>
                                 </div>
-                                <h3 className="font-semibold text-gray-900 text-sm line-clamp-2">{mission.title}</h3>
+                                <h3 className="font-semibold text-black text-sm line-clamp-2">{mission.title}</h3>
                               </div>
                             </div>
                           ))}
@@ -257,16 +255,16 @@ const MissionsEventsSection = () => {
 
                 {/* Bouton Voir plus - Desktop */}
                 <div className="flex justify-center mt-6">
-                  <Button variant="outline" className="px-8 py-3 rounded-full border-gray-300 hover:border-mck-green-500 hover:text-mck-green-500 transition-colors">
+                  <Button variant="outline" className="px-8 py-3 rounded-full border-gray-300 hover:border-mck-blue-600 hover:bg-mck-blue-600 hover:text-white transition-colors group">
                     Voir plus
-                    <ArrowRight className="ml-2 h-4 w-4" />
+                    <ArrowRight className="ml-2 h-4 w-4 group-hover:text-white" />
                   </Button>
                 </div>
               </div>
 
               {/* Version Mobile/Tablette - Scroll horizontal */}
-              <div className="lg:hidden">
-                <div className="flex gap-4 overflow-x-auto pb-4 scrollbar-hide">
+              <div className="lg:hidden flex-1 flex flex-col">
+                <div className="flex gap-4 overflow-x-auto pb-4 scrollbar-hide flex-1">
                   {missions.map((mission) => (
                     <div key={mission.id} className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow flex-shrink-0 w-64">
                       <div className="aspect-video bg-gray-200 relative overflow-hidden">
@@ -282,16 +280,16 @@ const MissionsEventsSection = () => {
                             {mission.category}
                           </span>
                         </div>
-                        <h3 className="font-semibold text-gray-900 text-sm line-clamp-2">{mission.title}</h3>
+                        <h3 className="font-semibold text-black text-sm line-clamp-2">{mission.title}</h3>
                       </div>
                     </div>
                   ))}
                 </div>
                 {/* Bouton centré sur mobile */}
                 <div className="flex justify-center mt-4">
-                  <Button variant="outline" className="px-6 py-2 text-sm rounded-full border-gray-300 hover:border-mck-green-500 hover:text-mck-green-500 transition-colors">
+                  <Button variant="outline" className="px-6 py-2 text-sm rounded-full border-gray-300 hover:border-mck-blue-600 hover:bg-mck-blue-600 hover:text-white transition-colors group">
                     Voir plus
-                    <ArrowRight className="ml-2 h-3 w-3" />
+                    <ArrowRight className="ml-2 h-3 w-3 group-hover:text-white" />
                   </Button>
                 </div>
               </div>
@@ -299,89 +297,20 @@ const MissionsEventsSection = () => {
           </div>
 
           {/* Nos Événements - 1 colonne */}
-          <div className="lg:col-span-1">
+          <div className="lg:col-span-1 flex flex-col h-full">
             <div className="flex items-center gap-4 mb-8">
-              <h2 className="text-2xl font-bold text-gray-900">Nos <span className="text-mck-blue-600">Événements</span> à Venir</h2>
-              <div className="h-0.5 bg-mck-green-600 w-12"></div>
+              <h2 className="text-2xl font-bold text-black whitespace-nowrap">Nos <span className="text-mck-blue-600">Événements</span> à Venir</h2>
             </div>
 
-            {/* Version Desktop - Liste verticale */}
-            <div className="hidden lg:block bg-white rounded-2xl border border-gray-200 shadow-sm mb-8">
-              {events.map((event, index) => (
-                <div key={event.id}>
-                  <div className="p-4 hover:bg-gray-50 transition-colors">
-                    {/* Header avec date et bookmark */}
-                    <div className="flex items-center justify-between mb-3">
-                      <span className="text-sm text-gray-500 font-medium">{event.date}</span>
-                      <Bookmark className="h-5 w-5 text-gray-400 hover:text-gray-600 cursor-pointer" />
-                    </div>
-
-                    {/* Contenu principal avec image et texte */}
-                    <div className="flex gap-4">
-                      {/* Image à gauche */}
-                      <div className="flex-shrink-0">
-                        <img
-                          src={event.image}
-                          alt={event.title}
-                          className="w-20 h-20 rounded-lg object-cover"
-                        />
-                      </div>
-
-                      {/* Contenu à droite */}
-                      <div className="flex-1 min-w-0">
-                        <h3 className="font-semibold text-gray-900 mb-2 text-lg leading-tight">{event.title}</h3>
-
-                        {/* Avatars et participants */}
-                        <div className="flex items-center gap-3 mb-3">
-                          <div className="flex -space-x-2">
-                            {event.avatars.slice(0, 4).map((avatar, idx) => (
-                              <img
-                                key={idx}
-                                src={avatar}
-                                alt=""
-                                className="w-6 h-6 rounded-full border-2 border-white object-cover"
-                              />
-                            ))}
-                          </div>
-                          <span className="text-sm text-gray-600 font-medium">{event.participants}</span>
-                        </div>
-
-                        {/* Statut public/privé */}
-                        <div className="flex items-center gap-2">
-                          {event.isPublic ? (
-                            <>
-                              <Globe className="h-4 w-4 text-blue-500" />
-                              <span className="text-sm text-blue-500 font-medium">Public</span>
-                            </>
-                          ) : (
-                            <>
-                              <Lock className="h-4 w-4 text-gray-500" />
-                              <span className="text-sm text-gray-500 font-medium">Privé</span>
-                            </>
-                          )}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Séparateur entre les événements (sauf pour le dernier) */}
-                  {index < events.length - 1 && (
-                    <div className="border-b border-gray-100"></div>
-                  )}
-                </div>
-              ))}
-            </div>
-
-            {/* Version Mobile/Tablette - Scroll horizontal */}
-            <div className="lg:hidden">
-              <div className="flex gap-4 overflow-x-auto pb-4 scrollbar-hide">
-                {events.map((event) => (
-                  <div key={event.id} className="flex-shrink-0 w-80 bg-white rounded-2xl border border-gray-200 shadow-sm">
-                    <div className="p-4">
-                      {/* Header avec date et bookmark */}
+            <div className="flex-1 flex flex-col">
+              {/* Version Desktop - Liste verticale */}
+              <div className="hidden lg:block bg-white rounded-2xl border border-gray-200 shadow-sm mb-8 flex-1">
+                {events.map((event, index) => (
+                  <div key={event.id}>
+                    <div className="p-4 hover:bg-gray-50 transition-colors">
+                      {/* Header avec date */}
                       <div className="flex items-center justify-between mb-3">
                         <span className="text-sm text-gray-500 font-medium">{event.date}</span>
-                        <Bookmark className="h-5 w-5 text-gray-400 hover:text-gray-600 cursor-pointer" />
                       </div>
 
                       {/* Contenu principal avec image et texte */}
@@ -397,7 +326,7 @@ const MissionsEventsSection = () => {
 
                         {/* Contenu à droite */}
                         <div className="flex-1 min-w-0">
-                          <h3 className="font-semibold text-gray-900 mb-2 text-lg leading-tight">{event.title}</h3>
+                          <h3 className="font-semibold text-black mb-2 text-lg leading-tight">{event.title}</h3>
 
                           {/* Avatars et participants */}
                           <div className="flex items-center gap-3 mb-3">
@@ -411,38 +340,78 @@ const MissionsEventsSection = () => {
                                 />
                               ))}
                             </div>
-                            <span className="text-sm text-gray-600 font-medium">{event.participants}</span>
+                            <span className="text-sm text-black font-medium">{event.participants}</span>
                           </div>
 
-                          {/* Statut public/privé */}
-                          <div className="flex items-center gap-2">
-                            {event.isPublic ? (
-                              <>
-                                <Globe className="h-4 w-4 text-blue-500" />
-                                <span className="text-sm text-blue-500 font-medium">Public</span>
-                              </>
-                            ) : (
-                              <>
-                                <Lock className="h-4 w-4 text-gray-500" />
-                                <span className="text-sm text-gray-500 font-medium">Privé</span>
-                              </>
-                            )}
-                          </div>
+
                         </div>
                       </div>
                     </div>
+
+                    {/* Séparateur entre les événements (sauf pour le dernier) */}
+                    {index < events.length - 1 && (
+                      <div className="border-b border-gray-100"></div>
+                    )}
                   </div>
                 ))}
               </div>
 
+              {/* Version Mobile/Tablette - Scroll horizontal */}
+              <div className="lg:hidden flex-1">
+                <div className="flex gap-4 overflow-x-auto pb-4 scrollbar-hide">
+                  {events.map((event) => (
+                    <div key={event.id} className="flex-shrink-0 w-80 bg-white rounded-2xl border border-gray-200 shadow-sm">
+                      <div className="p-4">
+                        {/* Header avec date */}
+                        <div className="flex items-center justify-between mb-3">
+                          <span className="text-sm text-gray-500 font-medium">{event.date}</span>
+                        </div>
 
-            </div>
+                        {/* Contenu principal avec image et texte */}
+                        <div className="flex gap-4">
+                          {/* Image à gauche */}
+                          <div className="flex-shrink-0">
+                            <img
+                              src={event.image}
+                              alt={event.title}
+                              className="w-20 h-20 rounded-lg object-cover"
+                            />
+                          </div>
 
-            <div className="text-center">
-              <Button variant="outline" className="px-8 py-3 rounded-full border-gray-300 hover:border-mck-green-500 hover:text-mck-green-500 transition-colors">
-                Voir plus
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
+                          {/* Contenu à droite */}
+                          <div className="flex-1 min-w-0">
+                            <h3 className="font-semibold text-black mb-2 text-lg leading-tight">{event.title}</h3>
+
+                            {/* Avatars et participants */}
+                            <div className="flex items-center gap-3 mb-3">
+                              <div className="flex -space-x-2">
+                                {event.avatars.slice(0, 4).map((avatar, idx) => (
+                                  <img
+                                    key={idx}
+                                    src={avatar}
+                                    alt=""
+                                    className="w-6 h-6 rounded-full border-2 border-white object-cover"
+                                  />
+                                ))}
+                              </div>
+                              <span className="text-sm text-black font-medium">{event.participants}</span>
+                            </div>
+
+
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="text-center">
+                <Button variant="outline" className="px-8 py-3 rounded-full border-gray-300 hover:border-mck-blue-600 hover:bg-mck-blue-600 hover:text-white transition-colors group">
+                  Voir plus
+                  <ArrowRight className="ml-2 h-4 w-4 group-hover:text-white" />
+                </Button>
+              </div>
             </div>
           </div>
         </div>
