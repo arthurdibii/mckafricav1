@@ -95,7 +95,7 @@ const HumanCapital = () => {
       <Navigation />
 
       {/* Bannière Hero */}
-      <section className="relative text-white py-20 overflow-hidden min-h-[500px]">
+      <section className="relative text-white py-20 overflow-hidden min-h-[500px] flex items-center">
         {/* Background DarkVeil */}
         <div className="absolute inset-0 w-full h-full">
           <DarkVeil
@@ -114,11 +114,6 @@ const HumanCapital = () => {
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <div className="flex justify-center mb-6">
-              <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center">
-                <Users className="w-8 h-8 text-white" />
-              </div>
-            </div>
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
               Human Capital
             </h1>

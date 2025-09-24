@@ -97,7 +97,7 @@ const ServicesSection = () => {
           </h2>
           <p className="text-xl text-black max-w-3xl mx-auto font-sans">
             Une approche méthodologique éprouvée et des solutions sur mesure
-            pour répondre à tous vos défis de recrutement et de gestion des talents.
+            pour répondre à tous vos défis.
           </p>
         </div>
 

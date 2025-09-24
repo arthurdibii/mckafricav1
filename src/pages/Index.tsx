@@ -6,6 +6,7 @@ import MissionsEventsSection from '../components/MissionsEventsSection';
 import ServicesSection from '../components/ServicesSection';
 import ReferencesSection from '../components/ReferencesSection';
 import FeaturedJobsSection from '../components/FeaturedJobsSection';
+import TestimonialsSection from '../components/TestimonialsSection';
 import Footer from '../components/Footer';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
@@ -57,6 +58,9 @@ const Index = () => {
 
         {/* Section références clients */}
         <ReferencesSection />
+
+        {/* Section avis clients */}
+        <TestimonialsSection />
       </main>
 
       {/* Footer avec liens et informations */}

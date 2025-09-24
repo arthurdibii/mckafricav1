@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from '@/components/ui/button';
+import { Linkedin } from 'lucide-react';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -27,12 +27,14 @@ const Footer = () => {
               <p>+225 07 07 20 17 65</p>
             </div>
             <div className="flex space-x-4">
-              <Button variant="outline" size="sm" className="border-mck-green-500 bg-white text-mck-blue-600 hover:bg-mck-green-500 hover:text-black">
-                LinkedIn
-              </Button>
-              <Button variant="outline" size="sm" className="border-mck-green-500 bg-white text-mck-blue-600 hover:bg-mck-green-500 hover:text-black">
-                Twitter
-              </Button>
+              <a
+                href="https://linkedin.com/company/mckafrica"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center w-10 h-10 bg-white rounded-lg hover:bg-mck-green-500 transition-all duration-200 group"
+              >
+                <Linkedin className="w-5 h-5 text-mck-blue-600 group-hover:text-black" />
+              </a>
             </div>
 
           </div>

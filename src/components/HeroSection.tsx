@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, ChevronDown } from 'lucide-react';
+import Waves from '@/components/Waves';
 
 const HeroSection = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -145,20 +146,78 @@ const HeroSection = () => {
 
   return (
     <section id="accueil" className="relative min-h-[85vh] md:min-h-[85vh] lg:min-h-[80vh] grid grid-rows-[1fr_auto] lg:grid-rows-[auto_1fr_auto] lg:pt-32 overflow-hidden -mt-16 pt-16">
-      {/* Slides avec effet zoom */}
-      {slides.map((slide, index) => (
-        <div
-          key={slide.id}
-          className={`absolute inset-0 bg-cover bg-center bg-no-repeat transition-all duration-1000 ${index === currentSlide
-            ? 'opacity-100 scale-110 animate-pulse'
-            : 'opacity-0 scale-105'
-            }`}
-          style={{
-            backgroundImage: `url("${slide.image}")`,
-            animation: index === currentSlide ? 'continuousZoom 10s ease-in-out infinite' : 'none'
-          }}
-        />
-      ))}
+      {/* Slides avec animation Waves */}
+      {slides.map((slide, index) => {
+        // Fonction pour obtenir la couleur thématique de chaque slide
+        const getSlideColor = (tag: string) => {
+          switch (tag) {
+            case 'mcK Report':
+              return 'rgba(59, 130, 246, 0.4)'; // Bleu McKinsey
+            case 'Certificat LIS':
+              return 'rgba(168, 85, 247, 0.4)'; // Violet pour certification
+            case 'Human Capital':
+              return 'rgba(34, 197, 94, 0.4)'; // Vert pour capital humain
+            case 'IT':
+              return 'rgba(59, 130, 246, 0.3)'; // Bleu pour IT
+            case 'HRacT':
+              return 'rgba(34, 197, 94, 0.3)'; // Vert pour HR
+            case 'Système de Management de la performance':
+              return 'rgba(245, 158, 11, 0.4)'; // Orange pour performance
+            case 'Recrutements Top Management':
+              return 'rgba(239, 68, 68, 0.4)'; // Rouge pour leadership
+            case 'Team building':
+              return 'rgba(14, 165, 233, 0.4)'; // Bleu ciel pour équipe
+            case 'Employabilité des jeunes':
+              return 'rgba(16, 185, 129, 0.4)'; // Vert émeraude pour jeunes
+            default:
+              return 'rgba(59, 130, 246, 0.3)'; // Bleu par défaut
+          }
+        };
+
+        // Slide mcK Report avec image d'origine
+        if (slide.tag === 'mcK Report') {
+          return (
+            <div
+              key={slide.id}
+              className={`absolute inset-0 bg-cover bg-center bg-no-repeat transition-all duration-1000 ${index === currentSlide
+                ? 'opacity-100 scale-110 animate-pulse'
+                : 'opacity-0 scale-105'
+                }`}
+              style={{
+                backgroundImage: `url("/Landing mcK.webp")`,
+                animation: index === currentSlide ? 'continuousZoom 10s ease-in-out infinite' : 'none'
+              }}
+            />
+          );
+        }
+
+        // Autres slides avec animation Waves
+        return (
+          <div
+            key={slide.id}
+            className={`absolute inset-0 bg-black transition-all duration-1000 ${index === currentSlide
+              ? 'opacity-100 scale-110'
+              : 'opacity-0 scale-105'
+              }`}
+          >
+            {/* Animation Waves pour les autres slides */}
+            <div className="absolute inset-0">
+              <Waves 
+                lineColor={getSlideColor(slide.tag)}
+                backgroundColor="transparent"
+                waveSpeedX={0.008}
+                waveSpeedY={0.004}
+                waveAmpX={35}
+                waveAmpY={18}
+                xGap={15}
+                yGap={30}
+                friction={0.92}
+                tension={0.006}
+              />
+            </div>
+          </div>
+        );
+      })}
 
       {/* Overlay pour améliorer la lisibilité */}
       <div className="absolute inset-0 bg-black/40"></div>
