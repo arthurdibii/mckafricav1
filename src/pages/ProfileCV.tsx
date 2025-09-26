@@ -272,26 +272,45 @@ const ProfileCV = () => {
                       <GraduationCap className="w-6 h-6 mr-2 text-[#0066CC]" />
                       Études et Formations
                     </h2>
-                    <div className="space-y-4">
-                      {profileData.education.map((edu, index) => (
-                        <div key={index} className="flex items-center p-4 bg-gray-50 rounded-lg">
-                          <div className="w-16 h-16 bg-white rounded-lg flex items-center justify-center mr-4 shadow-sm">
-                            <img
-                              src={edu.logo}
-                              alt={edu.school}
-                              className="w-12 h-12 object-contain"
-                              onError={(e) => {
-                                e.currentTarget.src = "https://via.placeholder.com/48x48?text=" + edu.school.charAt(0);
-                              }}
-                            />
+                    <div className="grid grid-cols-3 gap-6">
+                      {memberData?.name === 'Mohamed KABA' ? (
+                        [
+                          '/profils/Mohamed%20KABA/harvard-business-school.webp',
+                          '/profils/Mohamed%20KABA/hec-paris.webp',
+                          '/profils/Mohamed%20KABA/said-business-school.webp',
+                          '/profils/Mohamed%20KABA/insead.webp',
+                          '/profils/Mohamed%20KABA/universite-paris-nanterre.webp',
+                          '/profils/Mohamed%20KABA/igs-rh.webp'
+                        ].map((logoPath, index) => (
+                          <div key={index} className="flex items-center justify-center p-4 bg-gray-50 rounded-lg">
+                            <div className="w-20 h-20 bg-white rounded-lg flex items-center justify-center shadow-sm">
+                              <img
+                                src={logoPath}
+                                alt={`Institution ${index + 1}`}
+                                className="w-16 h-16 object-contain"
+                                onError={(e) => {
+                                  e.currentTarget.src = "https://via.placeholder.com/64x64?text=Logo";
+                                }}
+                              />
+                            </div>
                           </div>
-                          <div>
-                            <h3 className="font-semibold text-gray-900">{edu.degree}</h3>
-                            <p className="text-gray-600">{edu.school}</p>
-                            <p className="text-sm text-gray-500">{edu.year}</p>
+                        ))
+                      ) : (
+                        profileData.education.map((edu, index) => (
+                          <div key={index} className="flex items-center justify-center p-4 bg-gray-50 rounded-lg">
+                            <div className="w-20 h-20 bg-white rounded-lg flex items-center justify-center shadow-sm">
+                              <img
+                                src={edu.logo}
+                                alt={edu.school}
+                                className="w-16 h-16 object-contain"
+                                onError={(e) => {
+                                  e.currentTarget.src = "https://via.placeholder.com/64x64?text=" + edu.school.charAt(0);
+                                }}
+                              />
+                            </div>
                           </div>
-                        </div>
-                      ))}
+                        ))
+                      )}
                     </div>
                   </CardContent>
                 </Card>
@@ -303,26 +322,44 @@ const ProfileCV = () => {
                       <Building className="w-6 h-6 mr-2 text-[#0066CC]" />
                       Expériences Professionnelles
                     </h2>
-                    <div className="space-y-4">
-                      {profileData.experience.map((exp, index) => (
-                        <div key={index} className="flex items-center p-4 bg-gray-50 rounded-lg">
-                          <div className="w-16 h-16 bg-white rounded-lg flex items-center justify-center mr-4 shadow-sm">
-                            <img
-                              src={exp.logo}
-                              alt={exp.company}
-                              className="w-12 h-12 object-contain"
-                              onError={(e) => {
-                                e.currentTarget.src = "https://via.placeholder.com/48x48?text=" + exp.company.charAt(0);
-                              }}
-                            />
+                    <div className="grid grid-cols-3 gap-6">
+                      {memberData?.name === 'Mohamed KABA' ? (
+                        [
+                          '/profils/Mohamed%20KABA/mck-africa.webp',
+                          '/profils/Mohamed%20KABA/ecobank.webp',
+                          '/profils/Mohamed%20KABA/gdln.webp',
+                          '/profils/Mohamed%20KABA/boad.webp',
+                          '/profils/Mohamed%20KABA/inpec.webp'
+                        ].map((logoPath, index) => (
+                          <div key={index} className="flex items-center justify-center p-4 bg-gray-50 rounded-lg">
+                            <div className="w-20 h-20 bg-white rounded-lg flex items-center justify-center shadow-sm">
+                              <img
+                                src={logoPath}
+                                alt={`Entreprise ${index + 1}`}
+                                className="w-16 h-16 object-contain"
+                                onError={(e) => {
+                                  e.currentTarget.src = "https://via.placeholder.com/64x64?text=Logo";
+                                }}
+                              />
+                            </div>
                           </div>
-                          <div>
-                            <h3 className="font-semibold text-gray-900">{exp.role}</h3>
-                            <p className="text-gray-600">{exp.company}</p>
-                            <p className="text-sm text-gray-500">{exp.period}</p>
+                        ))
+                      ) : (
+                        profileData.experience.map((exp, index) => (
+                          <div key={index} className="flex items-center justify-center p-4 bg-gray-50 rounded-lg">
+                            <div className="w-20 h-20 bg-white rounded-lg flex items-center justify-center shadow-sm">
+                              <img
+                                src={exp.logo}
+                                alt={exp.company}
+                                className="w-16 h-16 object-contain"
+                                onError={(e) => {
+                                  e.currentTarget.src = "https://via.placeholder.com/64x64?text=" + exp.company.charAt(0);
+                                }}
+                              />
+                            </div>
                           </div>
-                        </div>
-                      ))}
+                        ))
+                      )}
                     </div>
                   </CardContent>
                 </Card>
