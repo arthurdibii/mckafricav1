@@ -52,7 +52,7 @@ const ServicesSection = () => {
       route: "/technologie-innovation"
     },
     {
-      title: "Employabilité et Insertion Professionnelle des Jeunes Diplômés",
+      title: "Employabilité des Jeunes",
       subtitle: "Développement des Compétences",
       description: "Diagnostic et évaluation des compétences techniques et comportementales, programmes de développement JEDE-eX, iWorkshop, insertion professionnelle",
       services: [
@@ -65,7 +65,7 @@ const ServicesSection = () => {
       route: "/employabilite-jeunes"
     },
     {
-      title: "Sourcing, Intérim, Recrutement Portage salarial",
+      title: "Sourcing & Intérim",
       subtitle: "Solutions de Staffing",
       description: "Solutions de staffing temporaire, sous-traitance de services, recrutement expert métier et administration RH externalisée",
       services: [

@@ -26,6 +26,7 @@ import StrategiePerformance from "./pages/StrategiePerformance";
 import TechnologieInnovation from "./pages/TechnologieInnovation";
 import EmployabiliteJeunes from "./pages/EmployabiliteJeunes";
 import SourcingInterim from "./pages/SourcingInterim";
+import ProfileCV from "./pages/ProfileCV";
 
 const queryClient = new QueryClient();
 
@@ -39,6 +40,7 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/apropos" element={<About />} />
+          <Route path="/profil/:prenomNom" element={<ProfileCV />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/emplois" element={<Emplois />} />
           <Route path="/insights" element={<Insights />} />

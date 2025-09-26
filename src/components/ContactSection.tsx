@@ -34,7 +34,6 @@ const ContactSection = () => {
             Contactez <span className="text-mck-blue-600">mcK Africa</span>
           </h2>
           <p className="text-xl text-black max-w-3xl mx-auto">
-            Prêt à transformer votre stratégie RH ? Nos experts sont là pour vous accompagner.
             Parlons de vos défis et trouvons ensemble les solutions adaptées.
           </p>
         </div>
@@ -152,7 +151,7 @@ const ContactSection = () => {
                       </SelectTrigger>
                       <SelectContent>
                         <SelectItem value="recrutement">Besoin en recrutement</SelectItem>
-                        <SelectItem value="conseil">Conseil en stratégie RH</SelectItem>
+                        <SelectItem value="conseil">Conseil en stratégie</SelectItem>
                         <SelectItem value="assessment">Évaluation de talents</SelectItem>
                         <SelectItem value="partenariat">Opportunité de partenariat</SelectItem>
                         <SelectItem value="autre">Autre demande</SelectItem>
@@ -169,7 +168,7 @@ const ContactSection = () => {
                       rows={6}
                       value={formData.message}
                       onChange={(e) => handleChange('message', e.target.value)}
-                      placeholder="Décrivez-nous votre besoin, vos défis RH ou toute question que vous souhaitez nous poser..."
+                      placeholder="Décrivez-nous votre besoin, vos défis ou toute question que vous souhaitez nous poser..."
                       className="resize-none"
                     />
                   </div>
@@ -191,7 +190,7 @@ const ContactSection = () => {
 
         {/* Call to action urgent */}
         <div className="mt-16 bg-mck-blue-600 text-white p-12 rounded-2xl text-center">
-          <h3 className="text-2xl font-bold mb-4">Besoin urgent d'un recrutement ?</h3>
+          <h3 className="text-2xl font-bold mb-4">Un besoin urgent ?</h3>
           <p className="text-mck-blue-100 mb-8 max-w-2xl mx-auto">
             Pour les demandes urgentes, contactez directement notre équipe.
             Nous nous engageons à vous répondre sous 2h en jours ouvrés.

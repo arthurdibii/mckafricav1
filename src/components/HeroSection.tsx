@@ -202,7 +202,7 @@ const HeroSection = () => {
           >
             {/* Animation Waves pour les autres slides */}
             <div className="absolute inset-0">
-              <Waves 
+              <Waves
                 lineColor={getSlideColor(slide.tag)}
                 backgroundColor="transparent"
                 waveSpeedX={0.008}

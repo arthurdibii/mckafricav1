@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import Navigation from '@/components/Navigation';
+import DarkVeil from '@/components/DarkVeil';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Search, Clock, UserCheck, Target, CheckCircle, ArrowRight, Users, Zap } from 'lucide-react';
+import { Users, Search, Clock, CheckCircle, ArrowRight, UserCheck, Target, Briefcase, Zap } from 'lucide-react';
 
 const SourcingInterim = () => {
   const [activeTab, setActiveTab] = useState('sourcing-talents');
@@ -92,18 +93,29 @@ const SourcingInterim = () => {
       <Navigation />
 
       {/* Bannière Hero */}
-      <section className="bg-gradient-to-br from-orange-600 via-red-600 to-pink-700 text-white py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="relative text-white py-20 overflow-hidden min-h-[500px] flex items-center">
+        {/* Background DarkVeil */}
+        <div className="absolute inset-0 w-full h-full">
+          <DarkVeil
+            hueShift={230}
+            noiseIntensity={0.15}
+            scanlineIntensity={0.08}
+            speed={1.9}
+            scanlineFrequency={0.6}
+            warpAmount={0.3}
+            resolutionScale={1.0}
+          />
+        </div>
+
+        {/* Overlay pour améliorer la lisibilité */}
+        <div className="absolute inset-0 bg-black/20"></div>
+
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <div className="flex justify-center mb-6">
-              <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center">
-                <UserCheck className="w-8 h-8 text-white" />
-              </div>
-            </div>
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
               Sourcing & Intérim
             </h1>
-            <p className="text-xl md:text-2xl text-orange-100 mb-8 max-w-3xl mx-auto">
+            <p className="text-xl md:text-2xl text-blue-100 mb-8 max-w-3xl mx-auto">
               Trouvez les talents qu'il vous faut avec nos solutions de sourcing
               et de travail temporaire adaptées à vos besoins
             </p>

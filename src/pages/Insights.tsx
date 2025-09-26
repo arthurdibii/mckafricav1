@@ -22,17 +22,17 @@ const Insights = () => {
 
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-      
+
       // Si on scroll vers le bas et que les filtres sont ouverts sur mobile
       if (currentScrollY > lastScrollY && showFilters && window.innerWidth < 1024) {
         setShowFilters(false);
       }
-      
+
       lastScrollY = currentScrollY;
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
-    
+
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
@@ -258,7 +258,7 @@ const Insights = () => {
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-20">
           <div className="text-center">
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-6" style={{ fontFamily: 'Nata Sans, serif' }}>
-              mcK Insights
+              mcK <span className="text-mck-green-400">Insights</span>
             </h1>
             <p className="text-xl sm:text-2xl text-white/90 max-w-4xl mx-auto mb-8">
               Décryptage des tendances, analyses de marché et conseils d'experts
