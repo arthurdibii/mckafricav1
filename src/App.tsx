@@ -30,12 +30,15 @@ import ProfileCV from "./pages/ProfileCV";
 
 const queryClient = new QueryClient();
 
+// Configuration du basename pour GitHub Pages
+const basename = import.meta.env.PROD ? '/mckafricav1' : '';
+
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <BrowserRouter>
+      <BrowserRouter basename={basename}>
         <ScrollToTop />
         <Routes>
           <Route path="/" element={<Index />} />
